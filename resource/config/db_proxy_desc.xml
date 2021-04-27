@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+
+<metalib tagsetversion="1" name="db_proxy" version="1" >
+	
+	<struct name="DbProxyConf" version="1">
+		<entry name="DbProxyIndex" type="int" desc="访问的db proxy索引ID" />
+		<entry name="DbGlobalProxyIndex" type="int" desc="访问的db proxy global索引ID" />
+		<entry name="DbCacheProxyIndex" type="int" desc="cache_svr访问的db代理索引" />
+	</struct>
+	
+</metalib>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+
+<BusConf version="1">
+	<AddrTemplet>region:6.world:14.func:8.inst:4</AddrTemplet>
+	<ConfShmKey>18030801</ConfShmKey>
+	<ChannelCount>2</ChannelCount>
+	
+	<ChannelList type="ChannelConf">
+		<Address>1.6.61.1</Address>
+		<Address>1.6.60.1</Address>
+		<SendSize>4096000</SendSize>
+		<RecvSize>4096000</RecvSize>
+		<FuncType>0</FuncType>
+		<Desc>channel from inst conn to zone</Desc>
+	</ChannelList>
+
+	<ChannelList type="ChannelConf">
+		<Address>1.6.61.1</Address>
+		<Address>1.6.30.1</Address>
+		<SendSize>8192000</SendSize>
+		<RecvSize>8192000</RecvSize>
+		<FuncType>0</FuncType>
+		<Desc>channel from inst zone to db proxy</Desc>
+	</ChannelList>
+
+</BusConf>
+
+

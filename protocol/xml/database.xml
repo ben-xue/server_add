@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<metalib name="net" version="756" tagsetversion="1" >
+	<macro name="ACCOUNT_LOGIN_NAME_LEN"    value="64" />
+    <macro name="ACCOUNT_DEVICE_ID_LEN" value="64" desc="账户设备ID长度"/>
+    <macro name="MAX_CHANNEL_NAME" value="32" desc="渠道名字的最大长度" />
+    <macro name="ROLEDATA_SPLIT_FACTOR" value="10" desc="DbRoleData分表因子" />
+
+    <struct name="DbBagData" version="1" desc="背包数据" >
+        <entry name="Default" type="int" desc="" />
+    </struct>
+    
+    <struct name="DbGeneralBlob" version="1" desc="普通的blob数据" >
+        <entry name="Default" type="int" desc="" />
+    </struct>
+    
+    <struct name="DbImportBlob" version="1" desc="重要的Blob数据" >
+        <entry name="BagData" type="DbBagData" desc="背包数据" />
+        <entry name="Lang" type="int" desc="语言" />
+        <entry name="Area" type="int" desc="区域" />
+    </struct>
+    
+    <struct name="DbRoleData" desc="角色数据" primarykey="RoleID" splittablefactor="ROLEDATA_SPLIT_FACTOR" splittablekey="RoleID" version="1">
+        <entry name="RoleNO" type="uint" defaultvalue="1001" />
+        <entry name="Uin" type="uint" desc="Uin" />
+        <entry name="RoleID" type="biguint" desc="角色ID" />
+        <entry name="ChannelName" type="string" size="MAX_CHANNEL_NAME"  desc="角色的渠道名字" />
+        <entry name="RoleInit" type="Byte" desc="标记数据是否初始化过" />
+        <entry name="Name" type="String" size="MAX_ROLE_NAME" desc="角色名" />
+        <entry name="Head" type="Smalluint" desc="头像" />
+        <entry name="Sex" type="Smalluint" desc="性别" />
+        <entry name="Level" type="Smalluint" desc="等级" />
+        <entry name="Exp" type="uint" desc="经验" />
+        <entry name="Diamond" type="uint" desc="钻石" />
+        <entry name="Gold" type="uint" desc="金币" />
+        <entry name="CreateTime" type="uint" desc="创建时间" />
+        <entry name="LastLoginTime" type="uint" desc="最近登录时间" />
+        <entry name="LastLogoutTime" type="uint" desc="最近登出时间" />
+        <entry name="LastSaveDBTime" type="uint" desc="最近存档时间" />
+        <entry name="TotalRMB" type="int" desc="累计充值" />
+        <entry name="ImportBlob" type="DbImportBlob" desc="重要的Blob数据" />
+        <entry name="GeneralBlob" type="DbGeneralBlob" desc="普通的blob数据" />
+    </struct>
+    
+</metalib>

@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<OrmSvrConf version="1">
+	<dr>../cfg/db_meta/database.dr</dr>
+	<conn_db_num>3</conn_db_num>
+	<conn_db_info type="ConnDBInfo">
+		<type>mysql</type>
+		<host>#db_proxy_host#</host>
+		<port>#db_proxy_port#</port>
+		<user>#db_proxy_user#</user>
+		<pwd>#db_proxy_pwd#</pwd>
+		<database>kgame_#regionid#_#worldid#</database>
+		<charset>utf8mb4</charset>
+	</conn_db_info>
+
+	<conn_db_info type="ConnDBInfo">
+		<type>mysql</type>
+		<host>#db_global_proxy_host#</host>
+		<port>#db_global_proxy_port#</port>
+		<user>#db_global_proxy_user#</user>
+		<pwd>#db_global_proxy_pwd#</pwd>
+		<database>kgame_global_#regionid#</database>
+		<charset>utf8mb4</charset>
+	</conn_db_info>
+
+	<conn_db_info type="ConnDBInfo">
+		<type>mysql</type>
+		<host>#db_global_proxy_host#</host>
+		<port>#db_global_proxy_port#</port>
+		<user>#db_global_proxy_user#</user>
+		<pwd>#db_global_proxy_pwd#</pwd>
+		<database>kg_region_#regionid#</database>
+		<charset>utf8mb4</charset>
+	</conn_db_info>
+
+	<table_num>69</table_num>
+	<!-- db_index is 1-->
+	<table_info type="TableInfo">
+		<name>DbGlobalWorldDetectData</name>	
+		<db_idx>1</db_idx>
+	</table_info>
+	
+	<table_info type="TableInfo">
+		<name>DbChargeSuccLog</name>
+		<db_idx>1</db_idx>
+	</table_info>	
+	
+	<table_info type="TableInfo">
+		<name>DbBattleListDetailData</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbSingleBattleDetailData_0</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbSingleBattleDetailData_1</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbSingleBattleDetailData_2</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbSingleBattleDetailData_3</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbSingleBattleDetailData_4</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbSingleBattleDetailData_5</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbSingleBattleDetailData_6</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbSingleBattleDetailData_7</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbSingleBattleDetailData_8</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbSingleBattleDetailData_9</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbGlobalLegionData</name>
+		<db_idx>1</db_idx>
+	</table_info>	
+
+	<table_info type="TableInfo">
+		<name>DbGlobalWorldFocusArmyData</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbLegionNameRecord</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbLegionShortNameRecord</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbMailData_0</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbMailData_1</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbMailData_2</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbMailData_3</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbMailData_4</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbMailData_5</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbMailData_6</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbMailData_7</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbMailData_8</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbMailData_9</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbRoleData_0</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbRoleData_1</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbRoleData_2</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbRoleData_3</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbRoleData_4</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbRoleData_5</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbRoleData_6</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbRoleData_7</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbRoleData_8</name>
+		<db_idx>1</db_idx>
+	</table_info>
+	
+	<table_info type="TableInfo">
+		<name>DbRoleData_9</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbWorldNodeData_0</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbWorldNodeData_1</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbWorldNodeData_2</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbWorldNodeData_3</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbWorldNodeData_4</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbWorldNodeData_5</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbWorldNodeData_6</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbWorldNodeData_7</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbWorldNodeData_8</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbWorldNodeData_9</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbNamesRecord</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbWorldData</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbOfflineGmCmd</name>
+		<db_idx>1</db_idx>
+	</table_info>
+
+	<!-- db_index is 2-->
+	<table_info type="TableInfo">
+		<name>DbGlobalAdvertiseBlockData</name>
+		<db_idx>2</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbGlobalManorSvrData_0</name>
+		<db_idx>2</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbGlobalRelationData_0</name>
+		<db_idx>2</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbGlobalRelationData_1</name>
+		<db_idx>2</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbGlobalRelationData_2</name>
+		<db_idx>2</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbGlobalRelationData_3</name>
+		<db_idx>2</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbGlobalRelationData_4</name>
+		<db_idx>2</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbGlobalRelationData_5</name>
+		<db_idx>2</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbGlobalRelationData_6</name>
+		<db_idx>2</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbGlobalRelationData_7</name>
+		<db_idx>2</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbGlobalRelationData_8</name>
+		<db_idx>2</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbGlobalRelationData_9</name>
+		<db_idx>2</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbLegionAutoIncrId</name>
+		<db_idx>2</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbOssMailInfo</name>
+		<db_idx>2</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbOssMailUin</name>
+		<db_idx>2</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbUploadPhotoData</name>
+		<db_idx>2</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbChannelGiftInfo</name>
+		<db_idx>2</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>DbUserFeedback</name>
+		<db_idx>3</db_idx>
+	</table_info>
+
+	<table_info type="TableInfo">
+		<name>LogChat</name>
+		<db_idx>2</db_idx>
+	</table_info>
+
+	<thread_num>#db_proxy_thread_num#</thread_num>
+	<thread_info type="ThreadInfo">
+		<msg_queue_key>#db_proxy_thread_queue_key_1#</msg_queue_key>
+		<msg_queue_size>4096000</msg_queue_size>
+	</thread_info>
+	<thread_info type="ThreadInfo">
+		<msg_queue_key>#db_proxy_thread_queue_key_2#</msg_queue_key>
+		<msg_queue_size>4096000</msg_queue_size>
+	</thread_info>
+	<thread_info type="ThreadInfo">
+		<msg_queue_key>#db_proxy_thread_queue_key_3#</msg_queue_key>
+		<msg_queue_size>4096000</msg_queue_size>
+	</thread_info>
+	<thread_info type="ThreadInfo">
+		<msg_queue_key>#db_proxy_thread_queue_key_4#</msg_queue_key>
+		<msg_queue_size>4096000</msg_queue_size>
+	</thread_info>
+	<thread_info type="ThreadInfo">
+		<msg_queue_key>#db_proxy_thread_queue_key_5#</msg_queue_key>
+		<msg_queue_size>4096000</msg_queue_size>
+	</thread_info>
+	<thread_info type="ThreadInfo">
+		<msg_queue_key>#db_proxy_thread_queue_key_6#</msg_queue_key>
+		<msg_queue_size>4096000</msg_queue_size>
+	</thread_info>
+	<thread_info type="ThreadInfo">
+		<msg_queue_key>#db_proxy_thread_queue_key_7#</msg_queue_key>
+		<msg_queue_size>4096000</msg_queue_size>
+	</thread_info>
+	<thread_info type="ThreadInfo">
+		<msg_queue_key>#db_proxy_thread_queue_key_8#</msg_queue_key>
+		<msg_queue_size>4096000</msg_queue_size>
+	</thread_info>
+
+	<max_row_num_per_select>100</max_row_num_per_select>
+</OrmSvrConf>
+

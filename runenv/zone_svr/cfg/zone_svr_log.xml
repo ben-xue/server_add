@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+
+<LogConf version="1">
+	<PriorityHigh>LOG_PRIORITY_FATAL</PriorityHigh>
+	<PriorityLow>LOG_PRIORITY_TRACE</PriorityLow>
+	<Count>9 </Count>
+	<CategoryList type="LogCategoryConf">
+		<Name>app.debug</Name>
+		<PriorityHigh>LOG_PRIORITY_FATAL</PriorityHigh>
+		<PriorityLow>LOG_PRIORITY_TRACE</PriorityLow>
+		<MaxMsgSize></MaxMsgSize>
+		<Format>[%d.%u][(%f:%l) (%F)] %m%n</Format>
+		<ForwardCat>app.error</ForwardCat>
+		<Device type="LogDeviceConf">
+			<Type>0</Type>
+			<Device type="LogDeviceSelectorConf">
+				<File type="LogDeviceFileConf">
+					<Pattern>/home/ben/log/zone_svr/zone_svr_%Y%m%d%H.log</Pattern>
+					<BuffSize>0</BuffSize>
+					<SizeLimit>1073741824</SizeLimit>
+					<SyncTime>0</SyncTime>
+				</File>
+			</Device>
+		</Device>
+	</CategoryList>
+
+	<CategoryList type="LogCategoryConf">
+		<Name>app.error</Name>
+		<PriorityHigh>LOG_PRIORITY_FATAL</PriorityHigh>
+		<PriorityLow>LOG_PRIORITY_ERROR</PriorityLow>
+		<MaxMsgSize></MaxMsgSize>
+		<Format>[%d.%u][(%f:%l) (%F)] %m%n</Format>
+		<ForwardCat>app.error</ForwardCat>
+		<Device type="LogDeviceConf">
+			<Type>0</Type>
+			<Device type="LogDeviceSelectorConf">
+				<File type="LogDeviceFileConf">
+					<Pattern>/home/ben/log/zone_svr/zone_svr_%Y%m%d%H.error</Pattern>
+					<BuffSize>0</BuffSize>
+					<SizeLimit>1073741824</SizeLimit>
+					<SyncTime>0</SyncTime>
+				</File>
+			</Device>
+		</Device>
+	</CategoryList>
+    
+    <CategoryList type="LogCategoryConf">
+		<Name>app.stat</Name>
+		<PriorityHigh>LOG_PRIORITY_FATAL</PriorityHigh>
+		<PriorityLow>LOG_PRIORITY_TRACE</PriorityLow>
+		<MaxMsgSize></MaxMsgSize>
+		<Format>[%d.%u][(%f:%l) (%F)] %m%n</Format>
+		<ForwardCat></ForwardCat>
+		<Device type="LogDeviceConf">
+			<Type>0</Type>
+			<Device type="LogDeviceSelectorConf">
+				<File type="LogDeviceFileConf">
+					<Pattern>/home/ben/log/zone_svr/zone_svr_stat_%Y%m%d%H.log</Pattern>
+					<BuffSize>0</BuffSize>
+					<SizeLimit>1073741824</SizeLimit>
+					<SyncTime>0</SyncTime>
+				</File>
+			</Device>
+		</Device>
+	</CategoryList>
+
+    <CategoryList type="LogCategoryConf">
+		<Name>app.bus</Name>
+		<PriorityHigh>LOG_PRIORITY_FATAL</PriorityHigh>
+		<PriorityLow>LOG_PRIORITY_TRACE</PriorityLow>
+		<MaxMsgSize></MaxMsgSize>
+		<Format>[%d.%u][(%f:%l) (%F)] %m%n</Format>
+		<ForwardCat></ForwardCat>
+		<Device type="LogDeviceConf">
+			<Type>0</Type>
+			<Device type="LogDeviceSelectorConf">
+				<File type="LogDeviceFileConf">
+					<Pattern>/home/ben/log/zone_svr/zone_svr_bus_%Y%m%d%H.log</Pattern>
+					<BuffSize>0</BuffSize>
+					<SizeLimit>1073741824</SizeLimit>
+					<SyncTime>0</SyncTime>
+				</File>
+			</Device>
+		</Device>
+	</CategoryList>
+	
+	<CategoryList type="LogCategoryConf">
+		<Name>app.oper</Name>
+		<PriorityHigh>LOG_PRIORITY_FATAL</PriorityHigh>
+		<PriorityLow>LOG_PRIORITY_TRACE</PriorityLow>
+		<MaxMsgSize></MaxMsgSize>
+		<Format>%m%n</Format>
+		<ForwardCat>app.udp_oper</ForwardCat>
+		<Device type="LogDeviceConf">
+			<Type>0</Type>
+			<Device type="LogDeviceSelectorConf">
+				<File type="LogDeviceFileConf">
+					<Pattern>/home/ben/log/zone_svr/zone_svr_oper_%Y%m%d%H.log</Pattern>
+					<BuffSize>0</BuffSize>
+					<SizeLimit>1073741824</SizeLimit>
+					<SyncTime>0</SyncTime>
+				</File>
+			</Device>
+		</Device>
+	</CategoryList>
+
+	<CategoryList type="LogCategoryConf">
+		<Name>app.udp_oper</Name>
+		<PriorityHigh>LOG_PRIORITY_FATAL</PriorityHigh>
+		<PriorityLow>LOG_PRIORITY_TRACE</PriorityLow>
+		<MaxMsgSize></MaxMsgSize>
+		<Format>%m%n</Format>
+		<ForwardCat></ForwardCat>
+		<Device type="LogDeviceConf">
+			<Type>1</Type>
+			<Device type="LogDeviceSelectorConf">
+				<Net type="LogDeviceNetConf">
+					<Ip>192.168.1.142</Ip>
+					<Port>24011</Port>
+					<SendBuff>51200</SendBuff>
+					<Timeout>5</Timeout>
+				</Net>
+			</Device>
+		</Device>
+	</CategoryList>
+
+	<CategoryList type="LogCategoryConf">
+		<Name>app.realtime_oper_json</Name>
+		<PriorityHigh>LOG_PRIORITY_FATAL</PriorityHigh>
+		<PriorityLow>LOG_PRIORITY_TRACE</PriorityLow>
+		<MaxMsgSize></MaxMsgSize>
+		<Format>%m%n</Format>
+		<ForwardCat></ForwardCat>
+		<Device type="LogDeviceConf">
+			<Type>1</Type>
+			<Device type="LogDeviceSelectorConf">
+				<Net type="LogDeviceNetConf">
+					<Ip>192.168.1.142</Ip>
+					<Port>24014</Port>
+					<SendBuff>51200</SendBuff>
+					<Timeout>5</Timeout>
+				</Net>
+			</Device>
+		</Device>
+	</CategoryList>
+
+	<CategoryList type="LogCategoryConf">
+		<Name>app.oper_json</Name>
+		<PriorityHigh>LOG_PRIORITY_FATAL</PriorityHigh>
+		<PriorityLow>LOG_PRIORITY_TRACE</PriorityLow>
+		<MaxMsgSize></MaxMsgSize>
+		<Format>%m%n</Format>
+		<ForwardCat></ForwardCat>
+		<Device type="LogDeviceConf">
+			<Type>1</Type>
+			<Device type="LogDeviceSelectorConf">
+				<Net type="LogDeviceNetConf">
+					<Ip>192.168.1.142</Ip>
+					<Port>24013</Port>
+					<SendBuff>51200</SendBuff>
+					<Timeout>5</Timeout>
+				</Net>
+			</Device>
+		</Device>
+	</CategoryList>
+
+	<CategoryList type="LogCategoryConf">
+		<Name>app.ormapi</Name>
+		<PriorityHigh>LOG_PRIORITY_FATAL</PriorityHigh>
+		<PriorityLow>LOG_PRIORITY_TRACE</PriorityLow>
+		<MaxMsgSize></MaxMsgSize>
+		<Format>[%d.%u][(%f:%l) (%F)] %m%n</Format>
+		<ForwardCat></ForwardCat>
+		<Device type="LogDeviceConf">
+			<Type>0</Type>
+			<Device type="LogDeviceSelectorConf">
+				<File type="LogDeviceFileConf">
+					<Pattern>/home/ben/log/zone_svr/zone_svr_ormapi_%Y%m%d%H.log</Pattern>
+					<BuffSize>0</BuffSize>
+					<SizeLimit>1073741824</SizeLimit>
+					<SyncTime>0</SyncTime>
+				</File>
+			</Device>
+		</Device>
+	</CategoryList>
+
+
+</LogConf>
+

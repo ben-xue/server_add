@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+<match_svrconf version="1" >
+	<MemPoolShmKey>#match_svr_shm_key#</MemPoolShmKey>
+	<MemPoolShmSize>#match_svr_shm_size#</MemPoolShmSize>
+	<MaxPlayerCount>#match_player_count#</MaxPlayerCount>
+	<MaxWarPoolSize>#match_svr_war_size#</MaxWarPoolSize>
+	<MaxSearchListCount>#match_SearchList_count#</MaxSearchListCount>
+	<MaxSearchNodeCount>#match_SearchNode_count#</MaxSearchNodeCount>
+	<RedisInfo>
+		<RegionID>0</RegionID>
+		<Host>#center_redis_host#</Host>
+		<Port>#center_redis_port#</Port>
+		<RedisDbNo>#match_redis_db_no#</RedisDbNo>
+		<AuthPass>#center_redis_authpass#</AuthPass>
+	</RedisInfo>
+</match_svrconf>

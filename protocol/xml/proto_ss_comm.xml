@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<metalib name="net" version="1" tagsetversion="1" >
+
+    <macrosgroup name="SSSyncInfoType" desc="ss心跳类型" >
+        <macro name="SSSYNC_NONE" value="0" desc="无" />
+        <macro name="SSSYNC_RELATION" value="1"  desc="relation_svr 心跳" />
+    </macrosgroup>
+
+</metalib>

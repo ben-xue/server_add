@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<metalib tagsetversion="1" name="ResDef" version="1">
+    
+  <macrosgroup name="BootyType" desc="Booty奖励的分配类型">
+    <macro name="BOOTY_TYPE_ABSOLUTE" value="0" desc="全部都分配" />
+    <macro name="BOOTY_TYPE_RAND_ABSOLUTE" value="1" desc="绝对概率分配,概率基数为10w" />
+    <macro name="BOOTY_TYPE_RAND_REL" value="2" desc="相对概率分配" />
+    <macro name="BOOTY_TYPE_NO_PUTBACK_REL" value="3" desc="无放回相对概率" />
+  </macrosgroup>
+  <macrosgroup name="BootyItemType" desc="Booty奖励的物品类型">
+    <macro name="BOOTY_ITEM_TYPE_RESERVED" value="0" desc="空道具" />
+    <macro name="BOOTY_ITEM_TYPE_GOODS" value="1" desc="道具类型" />
+    <macro name="BOOTY_ITEM_TYPE_EXP" value="2" desc="经验类型" />
+    <macro name="BOOTY_ITEM_TYPE_MONEY" value="3" desc="货币类型" />
+    <macro name="BOOTY_ITEM_TYPE_HERO" value="4" desc="奖励英雄 物品ID填英雄ID" />
+    <macro name="BOOTY_ITEM_TYPE_BUFF" value="5" desc="奖励Buff 物品ID填buffID" />
+    <macro name="BOOTY_ITEM_TYPE_VIP_EXP" value="6" desc="vip经验类型" />
+    <macro name="BOOTY_ITEM_TYPE_LINGZHU_EXP" value="7" desc="领主经验类型" />
+    <macro name="BOOTY_ITEM_TYPE_ENVOY" value="8" desc="使臣 物品ID填使臣ID" />
+    <macro name="BOOTY_ITEM_TYPE_PREY" value="9" desc="猎物 物品ID填猎物ID 参数1刷新组ID 参数2猎物ID" />
+    <macro name="BOOTY_ITEM_TYPE_HEADICON" value="10" desc="获取头像奖励" />
+    <macro name="BOOTY_ITEM_TYPE_HEADFRAME" value="11" desc="获取头像框奖励" />
+    <macro name="BOOTY_ITEM_EMOJI" value="12" desc="解锁表情包奖励" />
+    <macro name="BOOTY_ITEM_SOLDIERS" value="13" desc="士兵奖励 参数1为士兵类型 参数2为士兵等级" />
+    <macro name="BOOTY_ITEM_TITLE" value="14" desc="解锁称号"/>
+    <macro name="BOOTY_ITEM_TYPE_HEROEQUIP" value="15" desc="英雄装备" />
+  </macrosgroup>
+  <struct name="BootyConfig" version="1" sortkey="BootyID" desc="掉落配置">
+    <entry name="BootyID" type="uint" cname="奖励ID" desc="奖励编号" />
+    <entry name="BootyType" type="int" bindmacrosgroup="BootyType" cname="奖励类型" desc="奖励类型,参考BootyType定义" />
+    <entry name="AwardCnt" type="int" cname="奖励领取的个数" desc="奖励领取的个数" />
+    <entry name="AwardIndex" type="int" cname="奖励序号" desc="奖励序号" />
+    <entry name="RandParam" type="int" cname="概率" desc="概率参数,更具BootyType来决定" only_svr="true" />
+    <entry name="MinLevel" type="int" cname="最低等级" desc="最低等级" />
+    <entry name="MaxLevel" type="int" cname="最高等级" desc="最高等级" />
+    <entry name="MinMainStructureLv" type="uint" cname="最低主城等级" desc="最低主城等级" />
+    <entry name="MaxMainStructureLv" type="uint" cname="最高主城等级" desc="最高主城等级" />
+    <entry name="Fluxay" type="byte" cname="流光" desc="流光" />
+    <entry name="ItemType" type="int" bindmacrosgroup="BootyItemType" cname="奖励物品类型" desc="奖励物品类型,参考BootyItemType定义" />
+    <entry name="ItemID" type="int" cname="奖励物品ID" desc="奖励物品ID" />
+    <entry name="ItemCnt" type="int" cname="奖励物品个数" desc="奖励物品个数" />
+    <entry name="ItemParam" type="int" cname="奖励参数" count="3" desc="奖励参数" />
+    <entry name="BootyQuality" type="uint" cname="奖励品质" bindmacrosgroup="ColorQuality" desc="奖励的品质，某些系统用于客户端展示" only_svr="true" />
+  </struct>
+  <struct name="RotaryTableConfig" version="1" desc="转盘配置表" only_svr="true">
+    <entry name="ID" type="uint" cname="ID" desc="ID" />
+    <entry name="Weight" type="int" cname="权重" desc="权重" />
+    <entry name="BattleType" type="int" cname="战斗类型" desc="战斗类型" />
+    <entry name="RewardType" type="int" cname="奖励类型" desc="奖励类型" />
+    <entry name="Arg1" type="int" cname="参数1" desc="参数1" />
+    <entry name="Arg2" type="float" cname="参数2" desc="参数2" />
+    <entry name="ItemIcon" type="string" size="MAX_PATH_LENGTH" cname="ICON" desc="ICON" />
+    <entry name="TextID" type="uint" cname="文本表ID" desc="文本表ID" />
+    <entry name="FilterCondList" type="FilterCondEntry" count="MAX_FILTER_COND_COUNT" cname="过滤条件列表" desc="过滤条件列表" />
+  </struct>
+
+  <struct name="QualityRandomConfig" version="1" desc="品质随机方案" only_svr="true">
+    <entry name="QualityRandomPlan" type="uint" cname="品质分布ID" desc="品质分布ID" />
+    <entry name="Quality" type="uint" cname="品质" desc="品质" />
+    <entry name="Probability" type="uint" cname="概率" desc="概率" />
+  </struct>
+</metalib>

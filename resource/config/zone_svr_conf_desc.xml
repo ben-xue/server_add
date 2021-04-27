@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+
+<metalib tagsetversion="1" name="zone_svr" version="1" >
+	
+	<macro name="MAX_AUTH_ENC_KEY_LEN" value="64" desc="认证加密的密钥" />
+	<macro name="MAX_PROTO_KEY_LEN" value="64" desc="协议加密的密钥的最大长度" />
+
+	<struct name="zone_svrconf" version ="1" >
+		<entry name="ConnIPStr" type="string" size="32" desc="外网连接ip"/>
+		<entry name="ConnPort" type="uint" desc="外网连接端口" />
+		<entry name="UdpHost" type="string" size="32" desc="udp地址" />
+		<entry name="UdpPort" type="uint" desc="udp端口" />
+		<entry name="MemPoolShmKey" type="int" />
+		<entry name="MemPoolShmSize" type="biguint" />
+		<entry name="MaxPlayerCount" type="uint" />
+		<entry name="MaxClientSeqObjCount" type="uint" />
+		<entry name="EncodeFlag" type="byte" desc="标记是否开启协议加密" />
+	    <entry name="ProtoEncKey" type="string" size="MAX_PROTO_KEY_LEN" desc="协议加密的密钥" />
+	    <entry name="AuthFlag" type="byte" desc="标记是否开启认证功能" />
+	    <entry name="AuthEncKey" type="string" size="MAX_AUTH_ENC_KEY_LEN" desc="认证加密的密钥" />
+		<entry name="BlockMsgSerialize" type="int" desc="是否屏蔽消息序列化"/>
+		<entry name="BlockClientGmCmd" type="uint" desc="屏蔽来自客户端的GM请求" />
+		<entry name="BattleCount" type="uint" desc="最大战报个数" />
+        <entry name="MaxSingleBattleCount" type="uint" desc="最大单场战报数" />
+		<entry name="MaxCacheCount" type="uint" />
+		<entry name="MaxWorldNodeCount" type="uint" desc="最大大世界个数" />
+		<entry name="MaxWorldCount" type="uint" desc="最大创建世界(副本竞技场大世界)个数" />
+		<entry name="BattleThreadCnt" type="uint" desc="战斗线程个数最少为1个" />
+		<entry name="MaxMailCount" type="uint" desc="zone服最多缓存的邮件数目" />
+		<entry name="MaxGuildCount" type="uint" desc="最大军团个数" />
+		<entry name="MaxWorldChatCacheCount" type="uint" desc="世界聊天缓存个数" />
+		<entry name="MaxAoiKeyCount" type="uint" desc="Aoi最大位置点数" />
+		<entry name="MaxAoiPlayerCount" type="uint" desc="Aoi单元区域最大玩家数" />
+		<entry name="ChannelID" type="uint" desc="ID" />
+		<entry name="CDKeyOpen" type="uint" desc="是否开启渠道兑换码" />
+		<entry name="ServerOpenTime" type="uint" desc="服务器首次开服时间" />
+		<entry name="ReloadMapBlock" type="uint" desc="是否需要重新加载大世界阻挡" />
+		<entry name="ModerationHost" type="string" size="32" desc="图片验证代理服udp地址" />
+		<entry name="ModerationPort" type="uint" desc="图片验证代理服udp端口" />
+	</struct>
+
+	<struct name="zone_svr_opentime" version ="1" >
+		<entry name="ServerOpenTime" type="uint" desc="服务器首次开服时间" />
+	</struct>
+  
+</metalib>

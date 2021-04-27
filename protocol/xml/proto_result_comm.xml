@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<metalib name="net" version="1" tagsetversion="1" >
+
+	<macro name="ERR_STR_PARAM_MAX_LEN" value="64" desc="错误字符串每个参数的长度" />	
+	<macro name="ERR_STR_PARAM_MAX_CNT" value="8" desc="错误字符串每个参数的个数" />
+	<macro name="MAX_PARAMS_LEN" value="32" desc="参数最大长度" />
+	<macro name="LARGE_MAX_PARAMS_LEN" value="1024" desc="错误字符串每个参数的长度(大)" />
+	
+	<struct name="ProtoResult" desc="定义通用的操作结果描述" version="1">
+		<entry name="Ret" type="int" desc="操作结果,0 为成功， 其他为错误码" />
+		<entry name="ParamCnt" type="Byte" desc="文本参数" />
+		<entry name="Params" type="string" size="ERR_STR_PARAM_MAX_LEN" count="ERR_STR_PARAM_MAX_CNT" refer="ParamCnt" desc="Ret描述的文本参数" />
+	</struct>
+	
+	<struct name="ParamsData" desc="参数结构" version="1">
+		<entry name="ParamsType" type="Byte"  desc="参数类型" />
+		<entry name="ParamsCount" type="Smalluint"  desc="参数Size" />
+		<entry name="Params" type="string" size="MAX_PARAMS_LEN" desc="广播参数" />
+	</struct>
+
+	<struct name="LargeParamsData" desc="参数结构(大)" version="1" >
+		<entry name="ParamsType" type="Byte"  desc="参数类型" />
+		<entry name="ParamsCount" type="Smalluint"  desc="参数Size" />
+		<entry name="Params" type="string" size="LARGE_MAX_PARAMS_LEN" desc="广播参数" />
+	</struct>
+	
+	<struct name="BroadData" desc="广播结构" version="1">
+		<entry name="BroadID" type="int" desc="广播ID" />
+		<entry name="Time" type="int" desc="广播发送的时间" />
+		<entry name="ParamCnt" type="Byte" desc="文本参数个数" />
+		<entry name="Params" type="ParamsData" count="ERR_STR_PARAM_MAX_CNT" refer="ParamCnt" desc="参数结构" />
+	</struct>
+	
+	<struct name="LargeBroadData" desc="广播结构" version="1">
+		<entry name="BroadID" type="int" desc="广播ID" />
+		<entry name="Time" type="int" desc="广播发送的时间" />
+		<entry name="ParamCnt" type="Byte" desc="文本参数个数" />
+		<entry name="Params" type="LargeParamsData" count="ERR_STR_PARAM_MAX_CNT" refer="ParamCnt" desc="参数结构" />
+	</struct>
+	
+</metalib>

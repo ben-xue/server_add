@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<metalib name="net" version="1" tagsetversion="1" >
+
+    <union name="SSPkgBody" desc="所有SS消息包体" version="1">
+        <entry name="PlayerCoRoutineTestReq" type="uint" id="40001" desc="" />
+    </union>
+
+    <!-- SS头协议 -->
+    <macrosgroup name="SSPkgHeadFlag" desc="消息头的标记位">
+        <macro name="SS_HEAD_FLAG_TRAN_BY_NORMAL" value="0" desc="" />
+        <macro name="SS_HEAD_FLAG_TRAN_BY_UIN" value="1" desc="按照角色Uin路由消息透传给客户端"/>
+    </macrosgroup>
+
+    <struct name="SSPkgHeadNormal" version="1" desc="" >
+        <entry name="Reserved" type="byte" desc="" />
+    </struct>
+
+    <macro name="MAX_SS_PKG_HEAD_UIN_NUM" value="20" desc="" />
+    <struct name="SSPkgHeadUin" version="1" desc="" >
+        <entry name="FuncID" type="smalluint" desc="标记消息的目标FUNC" />
+        <entry name="Uin" type="biguint"  desc="" />
+    </struct>
+
+    <union name="SSHeadSpec" version="1" desc="ss包头有差异的内容" >
+        <entry name="HeadUin" type="SSPkgHeadUin" id="SS_HEAD_FLAG_TRAN_BY_UIN" desc="" />
+        <entry name="HeadNormal" type="SSPkgHeadNormal" id="SS_HEAD_FLAG_TRAN_BY_NORMAL" desc="" />
+    </union>
+
+    <struct name="OrigCoData" version="1" >
+        <entry name="SvrId" type="uint" desc="协程存在的位置" />
+        <entry name="Seq" type="int" desc="消息序列号" />
+        <entry name="CoId" type="int" desc="协程ID" />
+        <entry name="Cmd" type="int" desc="命令号" />
+    </struct>
+
+	<struct name="SSUinCbData" version="1" >
+		<entry name="Uin" 	 type="biguint"  desc="回调UIN" />
+        <entry name="CliSeq" type="uint"     desc="" />
+        <entry name="AccUin" type="uint"     desc="账号Uin" />
+    </struct>
+
+    <struct name="SSPkgHead" version="1">
+        <entry name="Cmd" type="smalluint"/>
+        <entry name="PkgLen" type="smalluint" />
+        <entry name="HasOrigCo" type="byte" desc="是否有协程" />
+        <entry name="OrigCoData" type="OrigCoData" count="1" refer="HasOrigCo"  />
+		<entry name="HasUinCbData" type="byte" desc="是否有UIN数据" />
+        <entry name="UinCbData" type="SSUinCbData" count="1" refer="HasUinCbData"  />
+        <entry name="Flag" type="uint" desc="一些标记位字段，参考SSPkgHeadFlag定义" />
+        <entry name="HeadSpec" type="SSHeadSpec" select="Flag" desc="" />
+    </struct>
+
+    <!-- SS包体 -->
+    <struct name="SSPkg" version="1" sizeinfo="Head.PkgLen" >
+        <entry name="Head" type="SSPkgHead"  />
+        <entry name="Body" type="SSPkgBody" select="Head.Cmd" />
+    </struct>
+
+</metalib>

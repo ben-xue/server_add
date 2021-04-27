@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+
+<metalib name="net" tagsetversion="1" version="1">
+
+        <!-- zone_conn and zone_svr -->
+	<macro name="TFRAMEHEAD_CMD_START" value="0" />
+	<macro name="TFRAMEHEAD_CMD_STOP" value="1" />
+	<macro name="TFRAMEHEAD_CMD_INPROC" value="2" />
+	<macro name="TFRAMEHEAD_CMD_RELAY" value="3" />
+	<macro name="TFRAMEHEAD_CMD_NOTIFY" value="4" />
+	<macro name="TFRAMEHEAD_CMD_SETROUTING" value="5" />
+	<macro name="TFRAMEHEAD_CMD_SETLIMITS" value="6" />
+	<macro name="TFRAMEHEAD_CMD_BIND_DEBUG_UIN" value="7" desc="调试信息,方便定位问题" />
+
+	<macro name="TFRAMEHEAD_MAX_BATCH_IDENT" value="512" />
+	<macro name="TFRAMEHEAD_EXTRA_IP" value="1" />
+	<macro name="TFRAMEHEAD_TIMESTAMP_TIMEVAL" value="1" />
+	<macro name="SERLIZER_NAME_LEN" value="32" />
+	<macro name="TFRAMEHEAD_SET_ROUTING" value="1" />
+	<macro name="TFRAMEHEAD_CONNECTKEY_LEN" value="16" />
+	
+	<macro name="RSA_ENC_LEN"    value="256" />	
+		
+	
+  <macrosgroup name="STOP_REASON" >
+  	<macro name="STOP_REASON_NONE" value="0" />
+	<macro name="STOP_REASON_SHUTDOWN"   value="1" />
+	<macro name="STOP_REASON_IDLE"     value="2" />
+	<macro name="STOP_REASON_CLOSE"     value="3" />
+	<macro name="STOP_REASON_NETWORK"     value="4" />
+	<macro name="STOP_REASON_BADPKG"     value="5" />
+	<macro name="STOP_REASON_AUTHFAIL"     value="6" />
+	<macro name="STOP_REASON_KICKOFF"     value="7" />
+	<macro name="STOP_REASON_LOGOUT"     value="8" />
+	<macro name="STOP_REASON_LOST"     value="9" />
+	<macro name="STOP_REASON_LIMIT"     value="10" />
+	<macro name="STOP_REASON_BUS_BUSY"     value="11" desc="写bus失败，关闭" />
+	<macro name="STOP_REASON_ALLOC_FAIL"     value="12" desc="内存分配失败" />
+	<macro name="STOP_REASON_APP_CLOSE"     value="13" desc="BattleSvr主动关闭" />
+	<macro name="STOP_REASON_CONN_STATUS_FAIL"     value="14" desc="状态数据不匹配" />
+	<macro name="STOP_REASON_CONN_CLOSE"     value="15" desc="Conn进程关闭" />
+	<macro name="STOP_REASON_CONN_FREE"     value="16" desc="给客户端通讯用，kcp的连接已经释放掉了" />
+	<macro name="STOP_REASON_CONN_SEQ_NOMATCH"     value="17" desc="给客户端通讯用，kcp的连接序列号不匹配" />
+	<macro name="STOP_REASON_CONN_PROTO_BAD"     value="18" desc="给客户端通讯用，kcp的协议不太对" />
+  </macrosgroup>
+  	
+	<macrosgroup name="BROADCAST_FLAG" >
+	  	<macro name="BROADCAST_FLAG_NO" value="0" />
+		<macro name="BROADCAST_FLAG_GROUP"   value="1" />
+		<macro name="BROADCAST_FLAG_UDP_GROUP"   value="2" desc="群发,udp形式，丢包也没关系" />
+		<macro name="BROADCAST_FLAG_ALL"   value="3" />
+	</macrosgroup>
+	
+	<struct name="TIPInfo" version="1" >
+		<entry name="family" type="smallint" />
+		<entry name="port" type="smalluint" />
+		<entry name="ip" type="uint" />
+	</struct>
+
+	<union name="TFrameHeadData" version="1" >
+		<entry name="IPInfo" type="TIPInfo" id="TFRAMEHEAD_EXTRA_IP" />
+	</union>
+	
+	<struct name="TFrameAuthJC" version="1" >
+		<entry name="Uin" type="int" />
+		<entry name="UinFlag" type="int" />
+		<entry name="BirthDay" type="string" size="BIRTHDAY_LEN" />
+		<entry name="AccSilenceEnd" type="int" />
+	</struct>
+
+	<union name="TFrameAuthData" version="1" >
+		<entry name="AuthJC"      type="TFrameAuthJC" id="AUTH_JC" />
+	</union>
+	
+	<struct name="TFrameCmdStart" version="1" >
+		<entry name="AuthType" type="int" bindmacrosgroup="AUTH" />
+		<entry name="AuthData" type="TFrameAuthData" select="AuthType" />
+	</struct>
+	
+	<struct name="TFrameCmdStop" version="1" >
+		<entry name="Reason" type="int" />
+	</struct>
+
+	<struct name="TFrameIdent" version="1" >
+		<entry name="ID" type="int" />
+		<entry name="ConnIdx" type="int" />
+	</struct>
+
+	<struct name="TFrameCmdInProc" version="1" >
+		<entry name="Flag" type="tinyint" bindmacrosgroup="BROADCAST_FLAG" />
+		<entry name="NoEnc" type="tinyint" />
+		<entry name="Count" type="smallint" />
+		<entry name="Idents" type="TFrameIdent" count="TFRAMEHEAD_MAX_BATCH_IDENT" refer="Count" />
+	</struct>
+	
+	<struct name="TFrameCmdRelay" version="1" >
+	  	<entry name="Uin" type="int" />
+	  	<entry name="RelayType" type="int" />
+		<entry name="Old" type="TFrameIdent" />
+		<entry name="New" type="TFrameIdent" />
+	</struct>
+	
+	<macro name="MAX_TFEXTRA_LEN" value="4096" />
+	
+	<struct name="TFrameCmdSetRouting" version="1" >
+	     <entry name="ID" type="int" defaultvalue="-1" desc="连接在逻辑服务端上的索引,含义同head字段" />
+	     <entry name="BusID" type="int" defaultvalue="0" desc="被替换的BUS ID" />
+	     <entry name="ExtraDataLen" type="int" defaultvalue="0" desc="外带数据长度" />
+	     <entry name="ExtraData" type="tinyuint" count="MAX_TFEXTRA_LEN" refer="ExtraDataLen" desc="外带数据" />
+	</struct>
+
+	<struct name="TFrameCmdSetLimits" version="1" >
+	     <entry name="Enabled" type="int" defaultvalue="0" desc="是否开启连接限制" />
+	     <entry name="Param" type="int" defaultvalue="0" desc="连接限制的参数" />
+	</struct>
+	
+	<union name="TRoutingOption" version="1" >
+		 <entry name="CmdRouting" type="TFrameCmdSetRouting"  id="TFRAMEHEAD_SET_ROUTING" />	 
+	</union>
+	
+	<struct name="TFrameCmdNotify" version="1" >
+	        <entry name="Uin"            type="int" />
+		<entry name="ConnKey"   type="tinyint" count="TFRAMEHEAD_CONNECTKEY_LEN" />
+		<entry name="Identity"     type="tinyint" count="IDENT_LEN" />
+		<entry name="SetRouting" type="tinyuint" defaultvalue="0"/>
+		<entry name ="Routing"     type="TRoutingOption" select="SetRouting"/> 
+	</struct>
+
+	<macro name="KCONN_MAX_ROLE_NAME" value="32" 			desc="角色名最大长度" />	
+	<struct name="TFrameCmdBindDebugUin" version="1" >
+	    <entry name="Uin"            type="int" />
+		<entry name="RoleName"     type="string" size="KCONN_MAX_ROLE_NAME" /> 
+	</struct>
+	
+	<union name="TFrameCmdData" version="1" >
+		<entry name="Start" type="TFrameCmdStart" id="TFRAMEHEAD_CMD_START" />
+		<entry name="Relay" type="TFrameCmdRelay" id="TFRAMEHEAD_CMD_RELAY" />
+		<entry name="Stop" type="TFrameCmdStop" id="TFRAMEHEAD_CMD_STOP" />
+		<entry name="Notify" type="TFrameCmdNotify" id="TFRAMEHEAD_CMD_NOTIFY" />
+		<entry name="InProc" type="TFrameCmdInProc" id="TFRAMEHEAD_CMD_INPROC" />
+		<entry name="SetRouting" type="TFrameCmdSetRouting" id="TFRAMEHEAD_CMD_SETROUTING" />
+		<entry name="SetLimits" type="TFrameCmdSetLimits" id="TFRAMEHEAD_CMD_SETLIMITS" />
+		<entry name="BindDebugUin" type="TFrameCmdBindDebugUin" id="TFRAMEHEAD_CMD_BIND_DEBUG_UIN" />
+	</union>
+	
+	<struct name="TTimeVal" version="1" >
+		<entry name="sec" type="int" />
+		<entry name="usec" type="int" />
+	</struct>
+
+	<union name="TTimeStampData" version="1" >
+		<entry name="TimeVal" type="TTimeVal" id="TFRAMEHEAD_TIMESTAMP_TIMEVAL" />
+	</union>
+
+	<struct name="tframehead" version="1" >
+		<entry name="Ver" type="tinyint" defaultvalue="0" desc="版本信息,默认为零" />
+		<entry name="Cmd" type="tinyint" />
+		<entry name="ExtraType" type="tinyint" />
+		<entry name="TimeStampType" type="tinyint" />
+		<entry name="ID" type="int" />
+		<entry name="ConnIdx" type="int" />
+		<entry name="PkgHeadCmd" type="smalluint" />
+		<entry name="ExtraInfo" type="TFrameHeadData" select="ExtraType" />
+		<entry name="TimeStamp" type="TTimeStampData" select="TimeStampType" />
+		<entry name="CmdData" type="TFrameCmdData" select="Cmd" />
+	</struct>
+	
+</metalib>

@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<metalib tagsetversion="1" name="ResDef" version="1">
+  <macro name="GET_WAY_NAME_LENGTH" value="64" desc="获取途径名字长度" />
+  <macro name="ICON_NAME_LENGTH" value="64" desc="图标长度" />
+  <macro name="ITEM_DESC_LENGTH" value="256" desc="物品描述长度" />
+  <macro name="ITEM_GET_DESC_LENGTH" value="256" desc="物品获得说明长度" />
+  <macro name="ITEM_FUNC_LENGTH" value="256" desc="物品功能说明长度" />
+  <macro name="MaxComposeNum" value="5" desc="最大合成材料数量" />
+  <macro name="MAX_ITEM_FUNC_PARAM" value="5" desc="物品最大功能参数数量" />
+  <macro name="MAX_ITEM_EXPIRED_PARAM" value="2" desc="物品最大过期参数数量" />
+  <macro name="MAX_CANOT_USE_TIP_LENGTH" value="64" desc="不可使用提示长度" />
+  <macro name="IconNameLen" value="64" desc="图标长度" />
+  <macro name="ITEM_JUMP_PARAM_NUM" value="3" desc="UI跳转参数数量" />
+  <macrosgroup name="GoodsTypeDefine" desc="道具类型">
+    <macro name="GOODS_TYPE_BEGIN" value="0" desc="道具开始" />
+    <macro name="GOODS_TYPE_DEBRIS" value="1" desc="碎片" />
+    <macro name="GOODS_TYPE_TREASURE" value="2" desc="宝箱" />
+    <macro name="GOODS_TYPE_CONSUMABLE" value="3" desc="消耗品" />
+    <macro name="GOODS_TYPE_OTHRE" value="4" desc="其他" />
+    <macro name="GOODS_TYPE_END" value="5" desc="道具结束" />
+  </macrosgroup>
+  <macrosgroup name="UseScene" desc="道具使用场景">
+    <macro name="ITEM_USE_ALL" value="0" desc="全部场景" />
+    <macro name="ITEM_USE_BAG" value="1" desc="背包" />
+    <macro name="ITEM_USE_FIGHT" value="2" desc="所有战斗场景" />
+  </macrosgroup>
+  <macrosgroup name="GoodsFuncType" desc="道具功能值类型">
+    <macro name="GOODS_FUNCTYPE_NONE" value="0" desc="无" />
+    <macro name="GOODS_FUNCTYPE_EXP" value="1" desc="人物经验药" />
+    <macro name="GOODS_FUNCTYPE_BOOTY" value="2" desc="礼包" />
+    <macro name="GOODS_FUNCTYPE_MONEY" value="3" desc="增加货币" />
+    <macro name="GOODS_FUNCTYPE_HERO" value="4" desc="增加英雄" />
+    <macro name="GOODS_FUNCTYPE_RECRUIT" value="5" desc="缴文征募英雄用" />
+    <macro name="GOODS_FUNCTYPE_SPEED_UP" value="6" desc="加速升级" />
+    <macro name="GOODS_FUNCTYPE_SPEED_PRODUCE" value="7" desc="加速生产" />
+    <macro name="GOODS_FUNCTYPE_CHOSE_TREASURE" value="8" desc="N选1宝箱" />
+    <macro name="GOODS_FUNCTYPE_HERO_DEBRIS" value="9" desc="英雄碎片" />
+    <macro name="GOODS_FUNCTYPE_HERO_HERO_EXP" value="10" desc="英雄经验" />
+    <macro name="GOODS_FUNCTYPE_INNER_COST_ITEM" value="11" desc="内置购买道具，参数1为货币类型 参数2位货币数量" />
+    <macro name="GOODS_FUNCTYPE_SUMMON_MONSTER" value="12" desc="召唤猎物 参数1为猎物组序号, 参数2位猎物ID" />
+    <macro name="GOODS_FUNCTYPE_MANOR_IMPACT" value="13" desc="领地增益道具 参数1位领地增益类型" />
+    <macro name="GOODS_FUNCTYPE_SCIENCE_SPEEDUP" value="14" desc="科技加速道具" />
+    <macro name="GOODS_FUNCTYPE_ADD_ENVOY" value="15" desc="添加使臣 参数1为使臣ID" />
+    <macro name="GOODS_FUNCTYPE_COMMON_SPEEDUP" value="16" desc="通用加速道具" />
+    <macro name="GOODS_FUNCTYPE_HEAD_BORDER" value="17" desc="获得头像框 参数1位头像框id" />
+    <macro name="GOODS_FUNCTYPE_BOOTY2" value="18" desc="礼包2 使用另一种打开界面的" />
+    <macro name="GOODS_FUNCTYPE_EMOJI" value="19" desc="获得表情包" />
+    <macro name="GOODS_FUNCTYPE_HERO_HETI" value="20" desc="英雄合体碎片" />
+    <macro name="GOODS_FUNCTYPE_ADD_SOLDIERS" value="21" desc="获得士兵" />
+    <macro name="GOODS_FUNCTYPE_SPEED_UP_SOLDIERS_CREATE" value="22" desc="加速士兵生成 参数同加速道具" />
+    <macro name="GOODS_FUNCTYPE_SPEED_UP_SOLDIERS_UPLEVEL" value="23" desc="加速士兵升级 参数同加速道具" />
+    <macro name="GOODS_FUNCTYPE_SPEED_UP_SOLDIERS_CURE" value="24" desc="加速士兵治疗 参数同加速道具" />
+    <macro name="GOODS_FUNCTYPE_SPEED_UP_SOLDIERS_EDUCATE" value="25" desc="加速士兵教化 参数同加速道具" />
+    <macro name="GOODS_FUNCTYPE_ADD_CREATE_SOLADIERS_CNT" value="26" desc="提升士兵下次训练数量" />
+    <macro name="GOODS_FUNCTYPE_TOWER_UNLOC_SOLDIER" value="27" desc="奇迹之塔道具解锁兵种" />
+    <macro name="GOODS_FUNCTYPE_FIRE_OUT" value="28" desc="城墙灭火" />
+    <macro name="GOODS_FUNCTYPE_CITY_WALL_RECOVER_SPEED" value="29" desc="城墙耐久恢复加速" />
+    <macro name="GOODS_FUNCTYPE_COMM_CHURCH_SPEED_UP" value="30" desc="通用教堂加速道具(教化跟治疗)" />
+    <macro name="GOODS_FUNCTYPE_RANDOM_MOVE_CITY" value="32" desc="随机迁城道具" />
+    <macro name="GOODS_FUNCTYPE_FOG_UNLOCK" value="33" desc="迷雾解锁道具" />
+    <macro name="GOODS_FUNCTYPE_ARMY_MOVE_SPEED" value="34" desc="行军加速道具" />
+    <macro name="GOODS_FUNCTYPE_UP_HERO_QUALITY" value="35" desc="英雄升品道具" />
+    <macro name="GOODS_FUNCTYPE_EQUIP_MAT" value="36" desc="装备材料" />
+    <macro name="GOODS_FUNCTYPE_WORKER_BUY" value="37" desc="购买建筑工人" />
+    <macro name="GOODS_FUNCTYPE_ADVANCE_CITY_MOVE" value="38" desc="高级迁城消耗道具" />
+    <macro name="GOODS_FUNCTYPE_NORMAL_CITY_MOVE" value="39" desc="普通迁城消耗道具" />
+    <macro name="GOODS_FUNCTYPE_SUMMON_ACTIVITY_GHOST" value="40" desc="召唤活动野怪道具" />
+    <macro name="GOODS_FUNCTYPE_ENVOY_PIECE" value="41" desc="使臣碎片" />
+    <macro name="GOODS_FUNCTYPE_LEGION_CITY_MOVE" value="42" desc="军团迁城道具" />
+    <macro name="GOODS_FUNCTYPE_COMMON_HERO_PIECE" value="43" desc="通用英雄碎片" />
+    <macro name="GOODS_FUNCTYPE_MAX" value="44" desc="最大值" />
+  </macrosgroup>
+
+  <macrosgroup name="HeroHetiType" desc="英雄合体碎片类型">
+    <macro name="HERO_HETI_NOMAL" value="1" desc="通用类型" />
+    <macro name="BUFF_TYPE_SPECIAL" value="2" desc="指定类型" />
+  </macrosgroup>
+  <macrosgroup name="BuffWineType" desc="BUFF药类型">
+    <macro name="BUFF_TYPE_EXP" value="1" desc="经验药" />
+    <macro name="BUFF_TYPE_BUFF" value="2" desc="BUFF药" />
+  </macrosgroup>
+  <macrosgroup name="ItemGetWayType" desc="物品获得途径类型">
+    <macro name="WAY_TYPE_UI" value="1" desc="UI界面" />
+    <macro name="WAY_TYPE_BUY" value="2" desc="快速购买" />
+    <macro name="WAY_TYPE_SHORTCUTBUG" value="3" desc="快捷购买(只针对资源使用以外的货币)" />
+    <macro name="WAY_TYPE_GUIDE" value="4" desc="引导" />
+    <macro name="WAY_TYPE_DupMainTask" value="5" desc="主线关卡" />
+	<macro name="WAY_TYPE_UI_PARAM" value="6" desc="带参数的UI界面(GetWayUIParamSubType)" />
+  </macrosgroup>
+  <macrosgroup name="GetWayUIParamSubType" desc="带参数的UI界面子类型">
+    <macro name="WAY_SUB_TYPE_COMMON_PIECE" value="1" desc="万能碎片兑换" />
+  </macrosgroup>
+  <struct name="ItemGetWayConfig" desc="物品获取途径配置表" version="1">
+    <entry name="WayID" type="uint" cname="途径ID" desc="途径ID" />
+    <entry name="IconName" type="string" cname="图标" desc="图标" size="ICON_NAME_LENGTH" />
+    <entry name="AtlasName"	type="string" cname="图集名" desc="图集名" size="ICON_NAME_LENGTH"/>
+    <entry name="Name" type="int" cname="文本表ID" desc="名称(文本)" />
+    <entry name="Des" type="int" cname="描述文本ID" desc="描述文本ID" />
+    <entry name="WayType" type="byte" cname="类型" desc="ItemGetWayType类型" />
+    <entry name="ArrParam" type="uint" cname="获取参数" desc="获取参数" count="ITEM_JUMP_PARAM_NUM" />
+    <entry name="OpenLevel" type="byte" cname="开放等级" desc="开放等级" only_svr="true" />
+    <entry name="UnlockID" type="uint" cname="解锁类型" desc="解锁类型" />
+    <entry name="BtnName" type="int" cname="文本表ID2" desc="按钮名称(文本)" />
+  </struct>
+  <struct name="BubbleGetWayConfig" desc="冒泡获取途径配置表" version="1">
+    <entry name="IndexID" type="uint" cname="索引ID" desc="索引ID"/>
+    <entry name="DescID" type="int" cname="描述文本ID" desc="描述文本ID" />
+    <entry name="ArrGetWayID" type="uint" cname="获取途径" desc="获取途径" count="MAX_ITEM_GET_WAY_NUM" />
+  </struct>
+  <struct name="ItemFuncData" desc="物品功能描述" version="1">
+    <entry name="FuncValue" type="byte" cname="类型" desc="GoodsFunType" />
+    <entry name="ArrFuncParam" type="int" cname="参数" desc="参数" count="MAX_ITEM_FUNC_PARAM" />
+  </struct>
+  <struct name="ComposeInfo" version="1" desc="合成材料" only_svr="true">
+    <entry name="ID" type="uint" cname="ID" />
+    <entry name="Num" type="uint" cname="数量" desc="数量" />
+  </struct>
+
+  <macrosgroup name="ItemTimeValidType" desc="物品时效类型">
+    <macro name="VALID_TYPE_NONE" value="0" desc="永久有效" />
+    <macro name="VALID_TYPE_DAY" value="1" desc="当天有效" />
+    <macro name="VALID_TYPE_LAST_TIME" value="2" desc="超过某段时间时效" />
+    <macro name="VALID_TYPE_DATE" value="3" desc="指定日期失效" />
+    <macro name="VALID_TYPE_PASS" value="4" desc="已过期" />
+    <macro name="VALID_TYPE_SERVER_START" value="5" desc="开服N天后失效" />
+    <macro name="VALID_TYPE_ACTIVITY" value="6" desc="活动结束立马失效" />
+  </macrosgroup>
+
+  <struct name="GoodsConfig" version="1" sortkey="ItemID" desc="道具配置表">
+    <entry name="ItemID" type="uint" cname="道具ID" desc="道具ID" />
+    <entry name="Name" type="int" cname="文本表ID" desc="道具名称" />
+    <entry name="IconName" type="string" cname="图标资源名称" desc="图标资源名称" size="MAX_PATH_LENGTH" />
+    <entry name="Quality" type="byte" cname="道具品质" desc="道具品质" />
+    <entry name="ItemType" type="byte" cname="道具类型" desc="参考GoodsTypeDefine定义" />
+    <entry name="ItemSort" type="uint" cname="道具排列顺序" desc="道具排列顺序" />
+    <entry name="ItemPromptType" type="byte" cname="提示类型" desc="提示类型 参考 ItemPromptType定义" />
+    <entry name="DailyMaxUseTimes" type="uint" cname="每日最大使用次数限制" desc="每日最大使用次数限制" only_svr="true" />
+    <entry name="DailyMaxUseLimitGroup" type="uint" cname="每日最大使用次数限制分组" desc="每日最大使用次数限制分组" only_svr="true" />
+    <entry name="CanUse" type="byte" cname="可否使用" desc="标记道具能否使用" />
+    <entry name="IsWarType" type="byte" cname="是否在大世界使用" desc="标记道具是否在大世界使用" only_svr="true" />
+    <entry name="IsAutoUse" type="byte" cname="是否自动使用" desc="是否自动使用" only_svr="true" />
+    <entry name="CanSell" type="byte" cname="可否出售" desc="可否出售" />
+    <entry name="CanAutoSell" type="byte" cname="是否自动出售" desc="是否自动出售" only_svr="true" />
+    <entry name="CanCompose" type="byte" cname="可否合成" desc="可否合成" only_svr="true" />
+    <entry name="GotoID" type="byte" cname="前往ID" desc="前往ID" />
+    <entry name="SellMoneyType" type="uint" cname="售出货币类型" desc="售出货币类型" />
+    <entry name="SellMoneyVal" type="uint" cname="售出货币值" desc="售出货币值" />
+    <entry name="UseLevel" type="byte" cname="使用等级" desc="使用等级" />
+    <entry name="UseUpLevel" type="byte" cname="上限等级" desc="上限等级" />
+    <entry name="GetAudioID" type="uint" cname="获得音效ID" desc="获得音效ID" only_svr="true" />
+    <entry name="UseAudioID" type="uint" cname="使用音效ID" desc="使用音效ID" only_svr="true" />
+    <entry name="MaxStack" type="uint" cname="最大叠加数" desc="最大叠加数" />
+    <entry name="ValidType" type="byte" cname="时效类型" desc="ItemTimeValidType" />
+    <entry name="ValidTime" type="uint" cname="时效时长" desc="时效时长"/>
+    <entry name="FuncDesc" type="string" cname="功能描述" desc="功能描述" size="ITEM_FUNC_LENGTH" only_svr="true" />
+    <entry name="Desc" type="int" cname="文本表ID2" desc="文字描述(文本)" />
+    <entry name="ComposeDesc" type="string" cname="合成描述" desc="合成描述" size="ITEM_DESC_LENGTH" only_svr="true" />
+    <entry name="CanotUseTip" type="string" cname="不可使用提示" desc="不可使用提示" size="MAX_CANOT_USE_TIP_LENGTH" only_svr="true" />
+    <entry name="Func" type="ItemFuncData" cname="功能值" desc="功能值" />
+    <entry name="GetDesc" type="string" cname="获得说明" desc="获得说明" size="ITEM_GET_DESC_LENGTH" only_svr="true" />
+    <entry name="IsBroadcast" type="byte" cname="获得是否广播" desc="获得是否广播" only_svr="true" />
+    <entry name="ArrGetWayID" type="uint" cname="获取途径" desc="获取途径" count="MAX_ITEM_GET_WAY_NUM" />
+    <entry name="DropAnim" type="byte" cname="掉落动画" desc="掉落动画" />
+    <entry name="ShortcutBug" type="byte" cname="快捷购买参数" desc="快捷购买参数(资源使用表的参数值)" />
+    <entry name="UseTypeForTask" type="byte" cname="任务使用类型" desc="任务使用类型" />
+    <entry name="IsDebris" type="byte" cname="是否是碎片" desc="是否是碎片" />
+    <entry name="ItemExpiredType" type="byte" cname="物品过期类型" desc="物品过期类型" />
+    <entry name="ItemExpiredParam" type="int"  count="MAX_ITEM_EXPIRED_PARAM"  cname="物品过期参数" desc="物品过期参数参数"/>
+    <entry name="OwnedActivity" type="uint" cname="所属活动ID" desc="所属活动ID(战略物资活动专用)" />
+    <entry name="AttachActivity" type="uint" cname="关联活动ID" count="RES_MAX_ATTACH_ACTIVITY_COUNT" desc="关联活动ID" />
+  </struct>
+
+  <struct name="CurrencyTypeConfig" version="1" desc="货币类型配置">
+    <entry name="CurrencyType" type="uint" cname="货币类型" desc="货币类型" />
+    <entry name="BootyType" type="uint" cname="掉落类型对应" desc="掉落类型对应" />
+    <entry name="NameID" type="int" cname="货币名字ID" desc="货币名字ID" />
+    <entry name="ItemId" type="uint" cname="对应物品ID" desc="货币对应的物品ID" />
+    <entry name="Icon" type="string" size="MAX_PATH_LENGTH" cname="图标" desc="图标" />
+    <entry name="LackTxtID" type="int" cname="货币不足ID" desc="货币不足ID" />
+  </struct>
+  <struct name="DropAnim" version="1" desc="掉落动画配置表">
+    <entry name="ID" type="byte" cname="动画ID" desc="动画ID" />
+    <entry name="Type" type="byte" cname="动画类型" desc="动画类型" />
+    <entry name="DisperseTime" type="float" cname="飞散时长" desc="飞散时长" />
+    <entry name="BlendTime" type="float" cname="融合时长" desc="融合时长" />
+    <entry name="BackTime" type="float" cname="收回时长" desc="收回时长" />
+    <entry name="offsetDis" type="float" cname="偏移距离" desc="偏移距离" />
+    <entry name="MaxCnt" type="int" cname="最大粒子数量" desc="最大粒子数量" />
+  </struct>
+  <struct name="GoodsGotoUseConfig" version="1" desc="前往使用配置表">
+    <entry name="ID" type="byte" cname="ID" desc="ID" />
+    <entry name="Name" type="int" cname="按钮名" desc="按钮名" />
+    <entry name="GotoUIID" type="byte" cname="跳转界面ID" desc="跳转界面ID" />
+    <entry name="GuideID" type="uint" cname="引导ID" desc="引导ID" />
+  </struct>
+
+  <struct name="CompositeMaterialEntry" version="1" desc="合成材料" >
+    <entry name="ItemID" type="uint" cname="ID" desc="道具ID" />
+    <entry name="ItemCnt" type="uint" cname="数量" desc="数量" />
+  </struct>
+
+  <macro name="RES_COMPOSITE_MATERIALS_CNT" value="4" />
+  <struct name="ItemCompositeConfig" version="1" desc="道具合成表" >
+    <entry name="ItemID" type="uint" cname="道具ID" desc="道具ID" />
+    <entry name="ConsumerCurrencyType" type="byte" cname="消耗货币类型" desc="消耗货币类型"  />
+    <entry name="ConsumerCurrencyCount" type="uint" cname="消耗货币数量" desc="消耗货币数量"  />
+    <entry name="CompositeMaterials" type="CompositeMaterialEntry" count="RES_COMPOSITE_MATERIALS_CNT" cname="合成材料" desc="合成材料" />
+  </struct>
+
+  <struct name="ImmediateBuildSpeedUpConfig" version="1" desc="立即加速配置表" >
+    <entry name="ItemID" type="uint" cname="道具ID" desc="道具ID" />
+    <entry name="CurrencyType" type="byte" cname="货币类型" desc="货币类型" />
+    <entry name="CurrencyVal" type="uint" cname="货币数量" desc="货币数量" />
+  </struct>
+
+</metalib>

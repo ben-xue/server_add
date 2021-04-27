@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+<tunnel_svrconf version="1" >
+	<RegionID>#regionid#</RegionID>
+    <LocalIP>#tunnel_local_ip#</LocalIP>
+    <LocalPort>#tunnel_local_port#</LocalPort>
+	<CenterRedisInfo>
+		<RegionID>#center_redis_region_id#</RegionID>
+		<Host>#center_redis_host#</Host>
+		<Port>#center_redis_port#</Port>
+		<RedisDbNo>#center_redis_db_no#</RedisDbNo>
+		<AuthPass>#center_redis_authpass#</AuthPass>
+	</CenterRedisInfo>
+	
+	 
+	<TunnelForwardCnt>1</TunnelForwardCnt>
+	<TunnelForwardData type="TunnelForwardInfo">
+			<RegionID>#regionid#</RegionID>
+			<TunnelAddrCnt>1</TunnelAddrCnt>
+			<TunnelAddrData type="TunnelAddr" >
+					<IPStr>#tunnel_local_ip#</IPStr>
+					<Port>#tunnel_local_port#</Port>
+    				<VerfityMagic>#tunnel_verfity_magic#</VerfityMagic>
+			</TunnelAddrData>
+	</TunnelForwardData>
+
+    <VerfityMagic>#tunnel_verfity_magic#</VerfityMagic>
+	<GroupCnt>17</GroupCnt>
+	<GroupInfo type="GroupInfoConf">
+		<FuncID>30</FuncID>
+		<FuncCnt>1 </FuncCnt>
+		<Channel>#regionid#</Channel>
+	</GroupInfo>
+
+	<GroupInfo type="GroupInfoConf">
+		<FuncID>61</FuncID>
+		<FuncCnt>1 </FuncCnt>
+		<Channel>#regionid#</Channel>
+	</GroupInfo>
+
+	<GroupInfo type="GroupInfoConf">
+		<FuncID>62</FuncID>
+		<FuncCnt>1 </FuncCnt>
+		<Channel>#regionid#</Channel>
+	</GroupInfo>
+
+	<GroupInfo type="GroupInfoConf">
+		<FuncID>63</FuncID>
+		<FuncCnt>1 </FuncCnt>
+		<Channel>#regionid#</Channel>
+	</GroupInfo>
+
+	<GroupInfo type="GroupInfoConf">
+		<FuncID>64</FuncID>
+		<FuncCnt>1 </FuncCnt>
+		<Channel>#regionid#</Channel>
+	</GroupInfo>
+
+	<GroupInfo type="GroupInfoConf">
+		<FuncID>65</FuncID>
+		<FuncCnt>1 </FuncCnt>
+		<Channel>#regionid#</Channel>
+	</GroupInfo>
+
+	<GroupInfo type="GroupInfoConf">
+		<FuncID>66</FuncID>
+		<FuncCnt>1 </FuncCnt>
+		<Channel>#regionid#</Channel>
+	</GroupInfo>
+
+	<GroupInfo type="GroupInfoConf">
+		<FuncID>77</FuncID>
+		<FuncCnt>1 </FuncCnt>
+		<Channel>#regionid#</Channel>
+	</GroupInfo>
+
+	<GroupInfo type="GroupInfoConf">
+		<FuncID>67</FuncID>
+		<FuncCnt>1 </FuncCnt>
+		<Channel>#regionid#</Channel>
+	</GroupInfo>
+
+	<GroupInfo type="GroupInfoConf">
+		<FuncID>69</FuncID>
+		<FuncCnt>1 </FuncCnt>
+		<Channel>#regionid#</Channel>
+	</GroupInfo>
+
+	<GroupInfo type="GroupInfoConf">
+		<FuncID>73</FuncID>
+		<FuncCnt>1 </FuncCnt>
+		<Channel>#regionid#</Channel>
+	</GroupInfo>
+
+    <GroupInfo type="GroupInfoConf">
+        <FuncID>79</FuncID>
+        <FuncCnt>1 </FuncCnt>
+        <Channel>#regionid#</Channel>
+    </GroupInfo>
+
+	<GroupInfo type="GroupInfoConf">
+		<FuncID>80</FuncID>
+		<FuncCnt>1 </FuncCnt>
+		<Channel>#regionid#</Channel>
+	</GroupInfo>
+
+	<GroupInfo type="GroupInfoConf">
+		<FuncID>81</FuncID>
+		<FuncCnt>1 </FuncCnt>
+		<Channel>#regionid#</Channel>
+	</GroupInfo>
+
+	<GroupInfo type="GroupInfoConf">
+		<FuncID>90</FuncID>
+		<FuncCnt>1 </FuncCnt>
+		<Channel>#regionid#</Channel>
+	</GroupInfo>
+
+	<GroupInfo type="GroupInfoConf">
+		<FuncID>91</FuncID>
+		<FuncCnt>1 </FuncCnt>
+		<Channel>#regionid#</Channel>
+	</GroupInfo>
+
+	<GroupInfo type="GroupInfoConf">
+		<FuncID>92</FuncID>
+		<FuncCnt>1 </FuncCnt>
+		<Channel>#regionid#</Channel>
+	</GroupInfo>
+
+</tunnel_svrconf>

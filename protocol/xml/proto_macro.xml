@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<!-- 用来定义协议和Database公用的宏定义 -->
+<metalib name="net" version="1">
+
+	<macrosgroup name="PlayerStatusType" desc="" >
+		<macro name="PLAYER_STATUS_CONN_INIT" 				value="0" desc="初始状态" />
+		<macro name="PLAYER_STATUS_ACCT_LOGIN" 				value="1" desc="账号登陆" />
+		<macro name="PLAYER_STATUS_ACCT_LOGIN_OK" 			value="2" desc="账号登陆成功" />
+		<macro name="PLAYER_STATUS_CREATE_ROLE_CHECK_NAME" 	value="3" desc="创建角色检查名字是否重合" />
+		<macro name="PLAYER_STATUS_CREATE_ROLE_INSERT" 		value="4" desc="插入角色" />
+		<macro name="PLAYER_STATUS_ROLELIST_REQ" 			value="5" desc="查询角色列表" />
+		<macro name="PLAYER_STATUS_ROLELIST_OK" 			value="6" desc="查询角色列表成功" />
+		<macro name="PLAYER_STATUS_CREATE_ROLE_REQ" 		value="7" desc="创建角色" />
+		<macro name="PLAYER_STATUS_ROLE_LOIGN_REQ" 			value="8" desc="角色登录" />
+		<macro name="PLAYER_STATUS_ROLE_LOIGN_OK" 			value="9" desc="角色登录成功" />
+		<macro name="PLAYER_STATUS_ROLE_OFFLINE" 			value="10" desc="角色掉线" />
+	</macrosgroup>
+
+	<macro name="MAX_ROLE_NAME" value="64" desc="最大角色长度" />
+	<macro name="MAX_SS_GM_LEN" value="256" desc="GM命令最大长度" />
+	<macro name="PROTOCOL_CONN" value="12865" desc="conn使用的命令." />
+	<macro name="PROTOCOL_MAGIC" value="12867" />
+	<macro name="PROTOCOL_MINI_MAGIC" value="12868" />
+	
+</metalib>

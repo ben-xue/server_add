@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+<redis_proxy_conf version="1">
+    <OpenDebug>0 </OpenDebug>
+
+    <redis_db_list_conf type="RedisDbListConfig">
+        <RedisDbNum>1</RedisDbNum>
+
+        <RedisDbList type="RedisDbInfo">
+            <ID>1</ID>
+            <Host>#center_redis_host#</Host>
+            <Port>#center_redis_port#</Port>
+            <Passwd>#center_redis_authpass#</Passwd>
+            <RedisDbNo>#redis_proxy_redis_db_no#</RedisDbNo>
+        </RedisDbList>
+
+    </redis_db_list_conf>
+
+</redis_proxy_conf>

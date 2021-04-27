@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<LogConf version="1">
+    <PriorityHigh>LOG_PRIORITY_FATAL</PriorityHigh>
+    <PriorityLow>LOG_PRIORITY_DEBUG</PriorityLow>
+    <Count>4 </Count>
+    <CategoryList type="LogCategoryConf">
+        <Name>app.debug</Name>
+        <PriorityHigh>LOG_PRIORITY_FATAL</PriorityHigh>
+        <PriorityLow>LOG_PRIORITY_DEBUG</PriorityLow>
+        <MaxMsgSize></MaxMsgSize>
+        <Format>[%d.%u][(%f:%l) (%F)] %m%n</Format>
+        <ForwardCat>app.error</ForwardCat>
+        <Device type="LogDeviceConf">
+            <Type>0</Type>
+            <Device type="LogDeviceSelectorConf">
+                <File type="LogDeviceFileConf">
+                    <Pattern>#logpathprefix#/jsonlogload_svr/jsonlogload_svr_%Y%m%d%H.log</Pattern>
+                    <BuffSize>0</BuffSize>
+                    <SizeLimit>1073741824</SizeLimit>
+                    <SyncTime>0</SyncTime>
+                </File>
+            </Device>
+        </Device>
+    </CategoryList>
+
+    <CategoryList type="LogCategoryConf">
+        <Name>app.error</Name>
+        <PriorityHigh>LOG_PRIORITY_FATAL</PriorityHigh>
+        <PriorityLow>LOG_PRIORITY_ERROR</PriorityLow>
+        <MaxMsgSize></MaxMsgSize>
+        <Format>[%d.%u][(%f:%l) (%F)] %m%n</Format>
+        <ForwardCat>app.error</ForwardCat>
+        <Device type="LogDeviceConf">
+            <Type>0</Type>
+            <Device type="LogDeviceSelectorConf">
+                <File type="LogDeviceFileConf">
+                    <Pattern>#logpathprefix#/jsonlogload_svr/jsonlogload_svr_%Y%m%d%H.error</Pattern>
+                    <BuffSize>0</BuffSize>
+                    <SizeLimit>1073741824</SizeLimit>
+                    <SyncTime>0</SyncTime>
+                </File>
+            </Device>
+        </Device>
+    </CategoryList>
+
+    <CategoryList type="LogCategoryConf">
+        <Name>app.stat</Name>
+        <PriorityHigh>LOG_PRIORITY_FATAL</PriorityHigh>
+        <PriorityLow>LOG_PRIORITY_DEBUG</PriorityLow>
+        <MaxMsgSize></MaxMsgSize>
+        <Format>[%d.%u][(%f:%l) (%F)] %m%n</Format>
+        <ForwardCat></ForwardCat>
+        <Device type="LogDeviceConf">
+            <Type>0</Type>
+            <Device type="LogDeviceSelectorConf">
+                <File type="LogDeviceFileConf">
+                    <Pattern>#logpathprefix#/jsonlogload_svr/jsonlogload_svr_stat_%Y%m%d%H.log</Pattern>
+                    <BuffSize>0</BuffSize>
+                    <SizeLimit>1073741824</SizeLimit>
+                    <SyncTime>0</SyncTime>
+                </File>
+            </Device>
+        </Device>
+    </CategoryList>
+
+    <CategoryList type="LogCategoryConf">
+        <Name>app.oper_json</Name>
+        <PriorityHigh>LOG_PRIORITY_FATAL</PriorityHigh>
+        <PriorityLow>LOG_PRIORITY_DEBUG</PriorityLow>
+        <MaxMsgSize></MaxMsgSize>
+        <Format>%m%n</Format>
+        <ForwardCat></ForwardCat>
+        <Device type="LogDeviceConf">
+            <Type>0</Type>
+            <Device type="LogDeviceSelectorConf">
+                <File type="LogDeviceFileConf">
+                    <Pattern>#oper_json_log_prefix#/oper_json_log_%Y%m%d%H.log</Pattern>
+                    <BuffSize>0</BuffSize>
+                    <SizeLimit>1073741824</SizeLimit>
+                    <SyncTime>0</SyncTime>
+                </File>
+            </Device>
+        </Device>
+    </CategoryList>
+
+</LogConf>
+

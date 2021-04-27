@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<metalib name="net" version="1" tagsetversion="1" >
+
+    <macro name="CS_ACT_AUTH_KEY_LEN" value="33" desc="校验帐号长度" />
+    <macro name="CS_CMD_ACT_LOGIN_REQ" value="2001" desc="帐号登录请求" />
+    <macro name="MAX_CHANNEL_NAME" value="32" desc="渠道名字的最大长度" />
+
+    <struct name="CSActLoginReq" version="1" id="CS_CMD_ACT_LOGIN_REQ" desc="帐号登录请求">
+        <entry name="AccUin" type="uint" desc="帐号Uin"/>
+        <entry name="SvrID" type="uint" desc="服务器ID" />
+        <entry name="AuthTime" type="int" desc="账户认证的时间" />
+        <entry name="ChannelName" type="string" size="MAX_CHANNEL_NAME"  desc="账号所属的渠道名字" />
+        <entry name="LoginKey" type="string" size="CS_ACT_AUTH_KEY_LEN" desc="加密签名,32位字符，所以这儿定义了33个字节" />
+        <entry name="Reconnect" type="Byte" desc="标识是否重连登录" />
+        <entry name="NetworkType" type="Byte" desc="网络类型" />
+    </struct>
+
+    <macro name="CS_CMD_ACT_LOGIN_RES" value="2002" desc="帐号登录返回" />
+    <struct name="CSActLoginRes" version="1" id="CS_CMD_ACT_LOGIN_RES" desc="帐号登录返回">
+        <entry name="AccUin" type="uint" desc="帐号Uin"/>
+        <entry name="Result" type="ProtoResult" desc="返回的操作结果" />
+        <entry name="SvrTime" type="uint" desc="服务器的时间" />
+        <entry name="SvrMsTime" type="uint" desc="服务器的时间MS" />
+        <entry name="SvrOpenTime" type="uint" desc="服务器的开服时间" />
+        <entry name="SvrTimeZone" type="int" desc="服务器时区" />
+        <entry name="Reconnect" type="byte" desc="是否是重连请求成功,如果登录成功，重连不成功，则客户端要重新进入选取角色的界面" />
+        <entry name="QuickLogin" type="byte" desc="是否走快速登录流程,如果是，则服务器直接下发角色登录成功的请求" />
+        <entry name="SimpleEncKey" type="uint" desc="简化加密算法的key" />
+        <entry name="IsHaveRole" type="byte" desc="是否已有角色" />
+        <entry name="Uin" type="biguint" desc="角色uin" />
+    </struct>
+
+    <macro name="CS_CMD_ROLE_CREATE_REQ" value="2003" desc="创建角色请求" />
+    <struct name="CSRoleCreateReq" version="1" id="CS_CMD_ROLE_CREATE_REQ" desc="请求帐号登录">
+        <entry name="Country" 		type="int" 	desc="国家"/>
+        <entry name="Head" 		type="int" 	desc="性别"/>
+        <entry name="Sex" 		type="Byte" 	desc="性别"/>
+        <entry name="RoleName" 	type="string" size="MAX_ROLE_NAME" desc="角色名称" />
+    </struct>
+
+    <macro name="CS_CMD_ROLE_CREATE_RES" value="2004" desc="创建角色返回" />
+    <struct name="CSRoleCreateRes" version="1" id="CS_CMD_ROLE_CREATE_RES" desc="创建角色返回">
+        <entry name="Result" type="ProtoResult" desc="返回的操作结果" />
+        <entry name="UinInfo" type="UinInfo" desc="角色ID"/>
+    </struct>
+
+    <macro name="CS_CMD_ROLE_LOGIN_REQ" value="2005" desc="角色登录结果请求" />
+    <struct name="CSRoleLoginReq" version="1" id="CS_CMD_ROLE_LOGIN_REQ" desc="角色登录结果请求">
+        <entry name="Uin"   type="biguint" desc="角色uin" />
+    </struct>
+
+    <macro name="CS_CMD_ROLE_LOGIN_RES" value="2006" desc="角色登录结果返回" />
+    <struct name="CSRoleLoginRes" version="1" id="CS_CMD_ROLE_LOGIN_RES" desc="角色登录结果返回">
+        <entry name="UinInfo" 			type="UinInfo" 			desc="角色ID"/>
+        <entry name="Result" 			type="ProtoResult" 		desc="返回的操作结果" />
+        <entry name="LastLogoutTime" 	type="uint" 			desc="最后一次登出时间" />
+        <entry name="UinCreateTime" 	type="uint" 			desc="账号创建时间" />
+        <entry name="BattleStartTime" 	type="uint" 			desc="城战开始时间" />
+        <entry name="RoleData"			type="CSRoleData" 		desc="角色数据" />
+    </struct>
+
+    <macro name="CS_CMD_ACT_LOGOUT_REQ" value="2007" desc="帐号退出请求" />
+    <struct name="CSActLogoutReq" version="1" id="CS_CMD_ACT_LOGOUT_REQ" desc="帐号退出请求">
+        <entry name="Reserve" type="Byte" desc="标识是否重连登录" />
+    </struct>
+
+    <macro name="MAX_ACT_LOGOUT_REASON_STR_LEN" value="50" desc="账号登出原因最大字符串个数" />
+    <macro name="CS_CMD_ACT_LOGOUT_RES" value="2008" desc="帐号退出返回" />
+    <struct name="CSActLogoutRes" version="1" id="CS_CMD_ACT_LOGOUT_RES" desc="帐号退出返回">
+        <entry name="GameReason" type="int" desc="详细原因,参考PlayerKickoutReason定义" />
+        <entry name="GameReasonStr" type="string" size="MAX_ACT_LOGOUT_REASON_STR_LEN" desc="详细原因字符描述" />
+    </struct>
+
+    <macro name="CS_CMD_HEATBEAT_REQ" value="2009" desc="心跳请求" />
+    <struct name="CSHeatBeatReq" version="1" id="CS_CMD_HEATBEAT_REQ" desc="心跳请求">
+        <entry name="HeatEchoTime" type="float" desc="客户端的请求时间,服务器原包带回"/>
+    </struct>
+
+    <macro name="CS_CMD_HEATBEAT_RES" value="2010" desc="心跳回包" />
+    <struct name="CSHeatBeatRes" version="1" id="CS_CMD_HEATBEAT_RES" desc="心跳回包">
+        <entry name="HeatEchoTime" type="float" desc="客户端的请求时间,服务器原包带回"/>
+    </struct>
+
+    <macro name="CS_CMD_NOTIFY_TEXT_RES" value="2011" desc="文本通知提示" />
+    <struct name="CSNotifyTextRes" version="1" id="CS_CMD_NOTIFY_TEXT_RES" desc="文本通知提示">
+        <entry name="Result" type="ProtoResult" desc="提示信息" />
+    </struct>
+
+    <macro name="CS_CMD_GM_REQ" value="2012" desc="GM请求" />
+    <struct name="CSGMReq" version="1" id="CS_CMD_GM_REQ" desc="GM请求">
+        <entry name="input" type="string" size="256" desc="GM命令"/>
+        <entry name="GmUin" type="biguint" desc="指定某个Uin的客户端执行GM"/>
+        <entry name="ServerType" type="byte" desc="参照ServerType"/>
+    </struct>
+
+    <macro name="CS_CMD_GM_RES" value="2013" desc="GM显示信息" />
+    <struct name="CSGMRes" version="1" id="CS_CMD_GM_RES" desc="GM显示信息">
+        <entry name="msg" type="string" size="2048" desc="GM输出消息"/>
+        <entry name="GmUin" type="biguint" desc="指定某个Uin的客户端执行GM"/>
+    </struct>
+
+    <macro name="CS_CMD_QUERY_RAND_NAME_REQ" value="2014" desc="查询随机名字请求" />
+    <struct name="CSQueryRandNameReq" version="1" id="CS_CMD_QUERY_RAND_NAME_REQ" desc="查询随机名字请求">
+        <entry name="Sex" type="byte" desc="当前玩家选择的性别"/>
+    </struct>
+
+    <macro name="CS_CMD_QUERY_RAND_NAME_RES" value="2015" desc="查询随机名字返回" />
+    <struct name="CSQueryRandNameRes" version="1" id="CS_CMD_QUERY_RAND_NAME_RES" desc="查询随机名字返回">
+        <entry name="Result" type="ProtoResult" desc="提示信息" />
+        <entry name="Name" type="string" size="MAX_ROLE_NAME" desc="随机名字"/>
+    </struct>
+
+    <macrosgroup name="CSNetworkType" desc="网络类型">
+        <macro name="CSNETWORK_UNKNOWN" value="0" desc="未知类型"/>
+        <macro name="CSNETWORK_WIFI" value="1" desc="Wifi类型"/>
+        <macro name="CSNETWORK_3G" value="2" desc="3G类型"/>
+        <macro name="CSNETWORK_2G" value="3" desc="2G类型"/>
+    </macrosgroup>
+
+    <macro name="CS_CMD_SEND_NETWORK_TYPE_REQ" value="2016" desc="发送给服务器当前的网络情况" />
+    <struct name="CSSendNetworkTypeReq" version="1" id="CS_CMD_SEND_NETWORK_TYPE_REQ" desc="发送给服务器当前的网络情况">
+        <entry name="NetworkType" type="Byte" desc="网络类型, 参考"/>
+    </struct>
+
+    <macro name="CS_CMD_NOTIFY_ROLE_DATA_DIRTY" value="2021" desc="更新玩家的脏数据" />
+    <struct name="CSNotifyRoleDataDirty" version="1" id="CS_CMD_NOTIFY_ROLE_DATA_DIRTY" desc="更新玩家的脏数据" >
+        <entry name="RoleData" type="CSRoleData" desc="角色的完整数据" />
+    </struct>
+
+    <macro name="CS_CMD_NOTIFY_SVR_TIME" value="2022"  desc="通知服务器时间变化" />
+    <struct name="CSNotifySvrTime" id="CS_CMD_NOTIFY_SVR_TIME" version="1" desc="通知服务器时间变化">
+        <entry name="SvrTime" type="uint" desc="服务器时间"/>
+        <entry name="SvrMsTime" type="uint" desc="服务器时间MS"/>
+    </struct>
+
+</metalib>
+ 

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+<ProxyConf version="1" >
+    <CenterAddrCnt>#tunnel_cnt#</CenterAddrCnt>
+    <CenterAddrData type="CenterAddr" >
+          <CenterIpStr>#tunnel_local_ip#</CenterIpStr>
+          <CenterPort>#tunnel_local_port#</CenterPort>
+          <Instance>1</Instance>
+          <RegionID>#regionid#</RegionID>
+    </CenterAddrData>
+    <CenterAddrData type="CenterAddr" >
+          <CenterIpStr>#tunnel_local_ip_2#</CenterIpStr>
+          <CenterPort>#tunnel_local_port_2#</CenterPort>
+          <Instance>2</Instance>
+	  <RegionID>#regionid#</RegionID>
+    </CenterAddrData>
+    <LocalIP>#match_svr_tunnel_ip#</LocalIP>
+    <LocalPort>#match_svr_tunnel_port#</LocalPort>
+    <VerfityMagic>#tunnel_verfity_magic#</VerfityMagic>
+    <SvrStatus>#svr_status#</SvrStatus>
+</ProxyConf>

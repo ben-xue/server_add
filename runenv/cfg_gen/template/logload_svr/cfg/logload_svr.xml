@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<logloader_svr_conf version="1">
+    <DBIp>#logdb_ip#</DBIp>
+    <DBPort>#logdb_port# </DBPort>
+    <DBUser>#logdb_user#</DBUser>
+    <DBPasswd>#logdb_pswd#</DBPasswd>
+    <Charset>utf8mb4</Charset>
+    <DBSock></DBSock>
+    <LogDBName>logload_#regionid#_#worldid#</LogDBName>
+    <LogMetaDBName>logload_record_#regionid#_#worldid#</LogMetaDBName>
+    <FileScanPath>#oper_log_prefix#</FileScanPath>
+    <LogFilePattern>oper_log_%F_%H.log</LogFilePattern>
+    <LogTdrPath>../cfg/dr/log.dr</LogTdrPath>
+    <SpliteLogTmpPath>#splitelogtmppath#</SpliteLogTmpPath>
+	<StatFileScanPath>#stat_log_prefix#</StatFileScanPath>
+    <StatFilePattern>stat_log_%F_%H.log</StatFilePattern>
+    <StatDBName>logload_stat_#regionid#_#worldid#</StatDBName>
+    <LoadProcLockFile>/tmp/kgame_#regionid#_#worldid#.lck</LoadProcLockFile>
+</logloader_svr_conf>

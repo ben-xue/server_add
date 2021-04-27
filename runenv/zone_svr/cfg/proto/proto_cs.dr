@@ -1,0 +1,225 @@
+<metalib name="net" version="1">
+    <macro name="MAX_ROLE_NAME" value="64"/>
+    <macro name="MAX_SS_GM_LEN" value="256"/>
+    <macro name="PROTOCOL_CONN" value="12865"/>
+    <macro name="PROTOCOL_MAGIC" value="12867"/>
+    <macro name="PROTOCOL_MINI_MAGIC" value="12868"/>
+    <macro name="ERR_STR_PARAM_MAX_LEN" value="64"/>
+    <macro name="ERR_STR_PARAM_MAX_CNT" value="8"/>
+    <macro name="MAX_PARAMS_LEN" value="32"/>
+    <macro name="LARGE_MAX_PARAMS_LEN" value="1024"/>
+    <macro name="CS_ACT_AUTH_KEY_LEN" value="33"/>
+    <macro name="CS_CMD_ACT_LOGIN_REQ" value="2001"/>
+    <macro name="MAX_CHANNEL_NAME" value="32"/>
+    <macro name="CS_CMD_ACT_LOGIN_RES" value="2002"/>
+    <macro name="CS_CMD_ROLE_CREATE_REQ" value="2003"/>
+    <macro name="CS_CMD_ROLE_CREATE_RES" value="2004"/>
+    <macro name="CS_CMD_ROLE_LOGIN_REQ" value="2005"/>
+    <macro name="CS_CMD_ROLE_LOGIN_RES" value="2006"/>
+    <macro name="CS_CMD_ACT_LOGOUT_REQ" value="2007"/>
+    <macro name="MAX_ACT_LOGOUT_REASON_STR_LEN" value="50"/>
+    <macro name="CS_CMD_ACT_LOGOUT_RES" value="2008"/>
+    <macro name="CS_CMD_HEATBEAT_REQ" value="2009"/>
+    <macro name="CS_CMD_HEATBEAT_RES" value="2010"/>
+    <macro name="CS_CMD_NOTIFY_TEXT_RES" value="2011"/>
+    <macro name="CS_CMD_GM_REQ" value="2012"/>
+    <macro name="CS_CMD_GM_RES" value="2013"/>
+    <macro name="CS_CMD_QUERY_RAND_NAME_REQ" value="2014"/>
+    <macro name="CS_CMD_QUERY_RAND_NAME_RES" value="2015"/>
+    <macro name="CS_CMD_SEND_NETWORK_TYPE_REQ" value="2016"/>
+    <macro name="CS_CMD_NOTIFY_ROLE_DATA_DIRTY" value="2021"/>
+    <macro name="CS_CMD_NOTIFY_SVR_TIME" value="2022"/>
+    <macrosgroup name="PlayerStatusType">
+        <entry name="PLAYER_STATUS_CONN_INIT" value="0"/>
+        <entry name="PLAYER_STATUS_ACCT_LOGIN" value="1"/>
+        <entry name="PLAYER_STATUS_ACCT_LOGIN_OK" value="2"/>
+        <entry name="PLAYER_STATUS_CREATE_ROLE_CHECK_NAME" value="3"/>
+        <entry name="PLAYER_STATUS_CREATE_ROLE_INSERT" value="4"/>
+        <entry name="PLAYER_STATUS_ROLELIST_REQ" value="5"/>
+        <entry name="PLAYER_STATUS_ROLELIST_OK" value="6"/>
+        <entry name="PLAYER_STATUS_CREATE_ROLE_REQ" value="7"/>
+        <entry name="PLAYER_STATUS_ROLE_LOIGN_REQ" value="8"/>
+        <entry name="PLAYER_STATUS_ROLE_LOIGN_OK" value="9"/>
+        <entry name="PLAYER_STATUS_ROLE_OFFLINE" value="10"/>
+    </macrosgroup>
+    <struct version="1" name="ProtoResult">
+        <entry name="Ret" type="int" version="1"/>
+        <entry name="ParamCnt" type="byte" version="1"/>
+        <entry name="Params" type="string" size="64" count="8" refer="ParamCnt" version="1"/>
+    </struct>
+    <struct version="1" name="ParamsData">
+        <entry name="ParamsType" type="byte" version="1"/>
+        <entry name="ParamsCount" type="smalluint" version="1"/>
+        <entry name="Params" type="string" size="32" version="1"/>
+    </struct>
+    <struct version="1" name="LargeParamsData">
+        <entry name="ParamsType" type="byte" version="1"/>
+        <entry name="ParamsCount" type="smalluint" version="1"/>
+        <entry name="Params" type="string" size="1024" version="1"/>
+    </struct>
+    <struct version="1" name="BroadData">
+        <entry name="BroadID" type="int" version="1"/>
+        <entry name="Time" type="int" version="1"/>
+        <entry name="ParamCnt" type="byte" version="1"/>
+        <entry name="Params" type="ParamsData" count="8" refer="ParamCnt" version="1"/>
+    </struct>
+    <struct version="1" name="LargeBroadData">
+        <entry name="BroadID" type="int" version="1"/>
+        <entry name="Time" type="int" version="1"/>
+        <entry name="ParamCnt" type="byte" version="1"/>
+        <entry name="Params" type="LargeParamsData" count="8" refer="ParamCnt" version="1"/>
+    </struct>
+    <macrosgroup name="CSProtoMagicType">
+        <entry name="PROTOCOL_SEC_MAGIC" value="12869"/>
+        <entry name="PROTOCOL_SEC_S_MAGIC" value="12870"/>
+    </macrosgroup>
+    <struct version="1" name="CSSecHead">
+        <entry name="Magic" type="smalluint" defaultvalue="PROTOCOL_SEC_MAGIC" version="1"/>
+        <entry name="PkgLen" type="smalluint" version="1"/>
+    </struct>
+    <struct version="1" name="CSSecBody">
+        <entry name="Crc" type="uint" version="1"/>
+        <entry name="Seq" type="smalluint" version="1"/>
+    </struct>
+    <struct version="1" name="CSSecPkgPart">
+        <entry name="Head" type="CSSecHead" version="1"/>
+        <entry name="Body" type="CSSecBody" version="1"/>
+    </struct>
+    <struct version="1" name="UinInfo">
+        <entry name="Uin" type="biguint" version="1"/>
+    </struct>
+    <struct version="1" name="CSRoleBaseData">
+        <entry name="Sex" type="byte" version="1"/>
+    </struct>
+    <struct version="1" name="CSRoleData">
+        <entry name="HaveBaseData" type="byte" version="1"/>
+    </struct>
+    <struct id="2001" version="1" name="CSActLoginReq">
+        <entry name="AccUin" type="uint" version="1"/>
+        <entry name="SvrID" type="uint" version="1"/>
+        <entry name="AuthTime" type="int" version="1"/>
+        <entry name="ChannelName" type="string" size="32" version="1"/>
+        <entry name="LoginKey" type="string" size="33" version="1"/>
+        <entry name="Reconnect" type="byte" version="1"/>
+        <entry name="NetworkType" type="byte" version="1"/>
+    </struct>
+    <struct id="2002" version="1" name="CSActLoginRes">
+        <entry name="AccUin" type="uint" version="1"/>
+        <entry name="Result" type="ProtoResult" version="1"/>
+        <entry name="SvrTime" type="uint" version="1"/>
+        <entry name="SvrMsTime" type="uint" version="1"/>
+        <entry name="SvrOpenTime" type="uint" version="1"/>
+        <entry name="SvrTimeZone" type="int" version="1"/>
+        <entry name="Reconnect" type="byte" version="1"/>
+        <entry name="QuickLogin" type="byte" version="1"/>
+        <entry name="SimpleEncKey" type="uint" version="1"/>
+        <entry name="IsHaveRole" type="byte" version="1"/>
+        <entry name="Uin" type="biguint" version="1"/>
+    </struct>
+    <struct id="2003" version="1" name="CSRoleCreateReq">
+        <entry name="Country" type="int" version="1"/>
+        <entry name="Head" type="int" version="1"/>
+        <entry name="Sex" type="byte" version="1"/>
+        <entry name="RoleName" type="string" size="64" version="1"/>
+    </struct>
+    <struct id="2004" version="1" name="CSRoleCreateRes">
+        <entry name="Result" type="ProtoResult" version="1"/>
+        <entry name="UinInfo" type="UinInfo" version="1"/>
+    </struct>
+    <struct id="2005" version="1" name="CSRoleLoginReq">
+        <entry name="Uin" type="biguint" version="1"/>
+    </struct>
+    <struct id="2006" version="1" name="CSRoleLoginRes">
+        <entry name="UinInfo" type="UinInfo" version="1"/>
+        <entry name="Result" type="ProtoResult" version="1"/>
+        <entry name="LastLogoutTime" type="uint" version="1"/>
+        <entry name="UinCreateTime" type="uint" version="1"/>
+        <entry name="BattleStartTime" type="uint" version="1"/>
+        <entry name="RoleData" type="CSRoleData" version="1"/>
+    </struct>
+    <struct id="2007" version="1" name="CSActLogoutReq">
+        <entry name="Reserve" type="byte" version="1"/>
+    </struct>
+    <struct id="2008" version="1" name="CSActLogoutRes">
+        <entry name="GameReason" type="int" version="1"/>
+        <entry name="GameReasonStr" type="string" size="50" version="1"/>
+    </struct>
+    <struct id="2009" version="1" name="CSHeatBeatReq">
+        <entry name="HeatEchoTime" type="float" version="1"/>
+    </struct>
+    <struct id="2010" version="1" name="CSHeatBeatRes">
+        <entry name="HeatEchoTime" type="float" version="1"/>
+    </struct>
+    <struct id="2011" version="1" name="CSNotifyTextRes">
+        <entry name="Result" type="ProtoResult" version="1"/>
+    </struct>
+    <struct id="2012" version="1" name="CSGMReq">
+        <entry name="input" type="string" size="256" version="1"/>
+        <entry name="GmUin" type="biguint" version="1"/>
+        <entry name="ServerType" type="byte" version="1"/>
+    </struct>
+    <struct id="2013" version="1" name="CSGMRes">
+        <entry name="msg" type="string" size="2048" version="1"/>
+        <entry name="GmUin" type="biguint" version="1"/>
+    </struct>
+    <struct id="2014" version="1" name="CSQueryRandNameReq">
+        <entry name="Sex" type="byte" version="1"/>
+    </struct>
+    <struct id="2015" version="1" name="CSQueryRandNameRes">
+        <entry name="Result" type="ProtoResult" version="1"/>
+        <entry name="Name" type="string" size="64" version="1"/>
+    </struct>
+    <macrosgroup name="CSNetworkType">
+        <entry name="CSNETWORK_UNKNOWN" value="0"/>
+        <entry name="CSNETWORK_WIFI" value="1"/>
+        <entry name="CSNETWORK_3G" value="2"/>
+        <entry name="CSNETWORK_2G" value="3"/>
+    </macrosgroup>
+    <struct id="2016" version="1" name="CSSendNetworkTypeReq">
+        <entry name="NetworkType" type="byte" version="1"/>
+    </struct>
+    <struct id="2021" version="1" name="CSNotifyRoleDataDirty">
+        <entry name="RoleData" type="CSRoleData" version="1"/>
+    </struct>
+    <struct id="2022" version="1" name="CSNotifySvrTime">
+        <entry name="SvrTime" type="uint" version="1"/>
+        <entry name="SvrMsTime" type="uint" version="1"/>
+    </struct>
+    <union version="1" name="CSPkgBody">
+        <entry name="HeatBeatReq" type="CSHeatBeatReq" id="2009" version="1"/>
+        <entry name="HeatBeatRes" type="CSHeatBeatRes" id="2010" version="1"/>
+        <entry name="GMReq" type="CSGMReq" id="2012" version="1"/>
+        <entry name="GMRes" type="CSGMRes" id="2013" version="1"/>
+        <entry name="ActLoginReq" type="CSActLoginReq" id="2001" version="1"/>
+        <entry name="ActLoginRes" type="CSActLoginRes" id="2002" version="1"/>
+        <entry name="ActLogoutReq" type="CSActLogoutReq" id="2007" version="1"/>
+        <entry name="ActLogoutRes" type="CSActLogoutRes" id="2008" version="1"/>
+        <entry name="SendNetworkTypeReq" type="CSSendNetworkTypeReq" id="2016" version="1"/>
+        <entry name="RoleCreateReq" type="CSRoleCreateReq" id="2003" version="1"/>
+        <entry name="RoleCreateRes" type="CSRoleCreateRes" id="2004" version="1"/>
+        <entry name="RoleLoginReq" type="CSRoleLoginReq" id="2005" version="1"/>
+        <entry name="RoleLoginRes" type="CSRoleLoginRes" id="2006" version="1"/>
+    </union>
+    <struct version="1" name="CSPkgHead">
+        <entry name="Magic" type="smalluint" defaultvalue="PROTOCOL_MAGIC" version="1"/>
+        <entry name="Cmd" type="smalluint" version="1"/>
+        <entry name="PkgLen" type="smalluint" version="1"/>
+        <entry name="Ver" type="smalluint" version="1"/>
+        <entry name="Echo" type="uint" version="1"/>
+        <entry name="SvrTime" type="uint" version="1"/>
+    </struct>
+    <struct version="1" name="CSMiniPkgHead">
+        <entry name="Magic" type="smalluint" defaultvalue="PROTOCOL_MINI_MAGIC" version="1"/>
+        <entry name="Cmd" type="smalluint" version="1"/>
+        <entry name="PkgLen" type="smalluint" version="1"/>
+        <entry name="Ver" type="smalluint" version="1"/>
+    </struct>
+    <struct version="1" sizeinfo="Head.PkgLen" versionindicator="Head.Ver" name="CSPkg">
+        <entry name="Head" type="CSPkgHead" version="1"/>
+        <entry name="Body" type="CSPkgBody" select="Head.Cmd" version="1"/>
+    </struct>
+    <struct version="1" sizeinfo="Head.PkgLen" versionindicator="Head.Ver" name="CSMiniPkg">
+        <entry name="Head" type="CSMiniPkgHead" version="1"/>
+        <entry name="Body" type="CSPkgBody" select="Head.Cmd" version="1"/>
+    </struct>
+</metalib>

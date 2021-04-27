@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<metalib tagsetversion="1" name="tunnel_proxy" version="1" >
+	
+	<macro name="MAX_PROXY_CENTER_NUM" value="32" version="1" />
+	
+	<struct name="CenterAddr" version="1" desc="" >
+		<entry name="CenterIpStr" type="string" size="32" desc="中心节点ip" />
+		<entry name="CenterPort" type="Smalluint" desc="中心节点端口号" />
+		<entry name="Instance" type="int" desc="中心节点实例ID" />
+	</struct>
+	
+	<struct name="ProxyConf" version="1">
+		<entry name="CenterAddrCnt" type="int" desc="" />
+		<entry name="CenterAddrData" type="CenterAddr" count="MAX_PROXY_CENTER_NUM" refer="CenterAddrCnt" desc="" /> 
+		<entry name="LocalIP" type="string" size="32" desc="本地IP" />
+		<entry name="LocalPort" type="int" desc="本地端口号" />
+		<entry name="VerfityMagic" type="uint" desc="" />
+		<entry name="SvrStatus" type="byte" desc="参考TunnelSvrStatusType" />
+	</struct>
+	
+</metalib>

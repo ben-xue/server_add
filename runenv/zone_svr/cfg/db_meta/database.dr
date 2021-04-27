@@ -1,0 +1,22 @@
+<metalib name="net" version="756">
+    <macro name="MAX_ROLE_NAME" value="64"/>
+    <macro name="MAX_SS_GM_LEN" value="256"/>
+    <macro name="PROTOCOL_CONN" value="12865"/>
+    <macro name="PROTOCOL_MAGIC" value="12867"/>
+    <macro name="PROTOCOL_MINI_MAGIC" value="12868"/>
+    <macro name="ACCOUNT_LOGIN_NAME_LEN" value="64"/>
+    <macro name="ACCOUNT_DEVICE_ID_LEN" value="64"/>
+    <macrosgroup name="PlayerStatusType">
+        <entry name="PLAYER_STATUS_CONN_INIT" value="0"/>
+        <entry name="PLAYER_STATUS_ACCT_LOGIN" value="1"/>
+        <entry name="PLAYER_STATUS_ACCT_LOGIN_OK" value="2"/>
+        <entry name="PLAYER_STATUS_CREATE_ROLE_CHECK_NAME" value="3"/>
+        <entry name="PLAYER_STATUS_CREATE_ROLE_INSERT" value="4"/>
+        <entry name="PLAYER_STATUS_ROLELIST_REQ" value="5"/>
+        <entry name="PLAYER_STATUS_ROLELIST_OK" value="6"/>
+        <entry name="PLAYER_STATUS_CREATE_ROLE_REQ" value="7"/>
+        <entry name="PLAYER_STATUS_ROLE_LOIGN_REQ" value="8"/>
+        <entry name="PLAYER_STATUS_ROLE_LOIGN_OK" value="9"/>
+        <entry name="PLAYER_STATUS_ROLE_OFFLINE" value="10"/>
+    </macrosgroup>
+</metalib>

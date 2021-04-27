@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<metalib name="net" version="1" tagsetversion="1" >
+
+    <struct name="UinInfo" version="1" desc="" >
+        <entry name="Uin" type="biguint" desc="" />
+    </struct>
+
+    <struct name="CSRoleBaseData"  version="1" desc="角色的基础数据" >
+        <!--<entry name="UinInfo" type="UinInfo" desc="玩家ID" />-->
+        <!--<entry name="AccUin" type="uint" desc="账号ID" />-->
+        <!--<entry name="BirthSvrID" type="uint" desc="出生服ID" />-->
+        <!--<entry name="Name" type="string" size="MAX_ROLE_NAME" desc="角色名" />-->
+        <entry name="Sex" type="byte" desc="性别" />
+    </struct>
+    
+    <struct name="CSRoleData" desc="角色的完整数据" version="1">
+        <entry name="HaveBaseData" type="byte" desc="是否有基础数据" />
+        <!--<entry name="BaseData" 	type="CSRoleBaseData" count="1"	refer="HaveBaseData" desc="是否有基本信息" />-->
+    </struct>
+
+</metalib>

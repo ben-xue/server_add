@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+
+<relation_svrconf version="1" >
+	<MemPoolShmKey>#relation_svr_shm_key#</MemPoolShmKey>
+	<MemPoolShmSize>#relation_svr_shm_size#</MemPoolShmSize>
+	<MaxPlayerCount>#max_relation_player_count#</MaxPlayerCount>
+	<MaxCachePlayerCount>#max_relation_cache_player_count#</MaxCachePlayerCount>
+</relation_svrconf>

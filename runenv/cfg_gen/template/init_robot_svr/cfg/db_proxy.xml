@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+<DbProxyConf version="1" >
+    <DbProxyIndex>1</DbProxyIndex>
+	<DbGlobalProxyIndex>1</DbGlobalProxyIndex>
+    <DbCacheProxyIndex>1</DbCacheProxyIndex>
+</DbProxyConf>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<metalib name="net" version="1" tagsetversion="1" >
+	
+	<macrosgroup name="CSProtoMagicType" desc="Magic类型">
+		<macro name="PROTOCOL_SEC_MAGIC" value="12869" />
+		<macro name="PROTOCOL_SEC_S_MAGIC" value="12870" desc="简化版加密算法"  />
+	</macrosgroup>
+	
+	<struct name="CSSecHead" version="1" desc="所有协议之上包装了一层包头">
+		<entry name="Magic" type="smalluint" defaultvalue="PROTOCOL_SEC_MAGIC" />
+		<entry name="PkgLen" type="smalluint" desc="整包长度" />
+	</struct>
+	
+	<struct name="CSSecBody" version="1" desc="所有协议封装的包体,一起加密的结果">
+		<entry name="Crc" type="uint" desc="解密后内容的crc校验,防止篡改包" />
+		<entry name="Seq" type="smalluint" desc="防重放字段" />
+	</struct>
+	
+	<struct name="CSSecPkgPart" version="1" desc="标识安全包头的前部分内容">
+		<entry name="Head" type="CSSecHead"  />
+		<entry name="Body" type="CSSecBody" />
+	</struct>	
+	
+</metalib>

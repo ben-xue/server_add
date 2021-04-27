@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+
+<metalib tagsetversion="1" name="redis_proxy" version="1" >
+
+    <struct name="RedisDbInfo" version="1" >
+        <entry name="ID" type="int" desc="" />
+        <entry name="Host" type="string" size="64" desc="服务IP" />
+        <entry name="Port" type="int" desc="" />
+        <entry name="Passwd" type="string" size="64" desc="访问密码" />
+        <entry name="RedisDbNo" type="int" desc="" />
+        <entry name="InstanceNum" type="int" default="1" desc="" />
+    </struct>
+
+    <macro name="MAX_REDIS_DB_LIST_NUM" value="10" desc="" />
+    <struct name="RedisDbListConfig" version="1" >
+        <entry name="RedisDbNum" type="int" desc="" />
+        <entry name="RedisDbList" type="RedisDbInfo" count="MAX_REDIS_DB_LIST_NUM" refer="RedisDbNum" desc="" />
+    </struct>
+
+    <struct name="redis_proxy_conf" version="1" >
+        <entry name="OpenDebug" type="int" />
+        <entry name="redis_db_list_conf" type="RedisDbListConfig" />
+    </struct>
+
+
+
+</metalib>

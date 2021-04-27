@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+<manor_svrconf version="1" >
+	<MemPoolShmKey>#manor_svr_shm_key#</MemPoolShmKey>
+	<MemPoolShmSize>#manor_svr_shm_size#</MemPoolShmSize>
+	<MaxPlayerCount>#manor_player_count#</MaxPlayerCount>
+	<ServerId>#manor_server_id#</ServerId>
+	<ServerInstanceCnt>#manor_instance_cnt#</ServerInstanceCnt>
+	<QueryCachePerSelect>#manor_query_per_select#</QueryCachePerSelect>
+
+	<RedisInfo>
+		<RegionID>#regionid#</RegionID>
+		<Host>#center_redis_host#</Host>
+		<Port>#center_redis_port#</Port>
+		<RedisDbNo>#manor_redis_db_no#</RedisDbNo>
+		<AuthPass>#center_redis_authpass#</AuthPass>
+	</RedisInfo>
+</manor_svrconf>

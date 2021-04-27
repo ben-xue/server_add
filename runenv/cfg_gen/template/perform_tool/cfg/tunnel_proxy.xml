@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+<ProxyConf version="1" >
+    <CenterIpStr>#tunnel_local_ip#</CenterIpStr>
+    <CenterPort>#tunnel_local_port#</CenterPort>
+    <LocalIP>#zone_svr_tunnel_ip#</LocalIP>
+    <LocalPort>#zone_svr_tunnel_port#</LocalPort>
+    <VerfityMagic>#tunnel_verfity_magic#</VerfityMagic>
+    <SvrStatus>#svr_status#</SvrStatus>
+</ProxyConf>

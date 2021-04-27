@@ -1,0 +1,93 @@
+<SkillDispData version="1">
+    <m_allElemAnimation type="SkillElemAnimationArray">
+        <m_elemCount>1</m_elemCount>
+        <SkillElemAnimation type="SkillElemAnimation">
+            <m_triggleStart type="SkillTriggleParam">
+                <m_eventType>0</m_eventType>
+                <m_eventTime>0</m_eventTime>
+            </m_triggleStart>
+            <m_triggleStop type="SkillTriggleParam">
+                <m_eventType>0</m_eventType>
+                <m_eventTime>0</m_eventTime>
+            </m_triggleStop>
+            <m_triggleRepeat type="SkillRepeatTriggleParam">
+                <m_eventType>0</m_eventType>
+                <m_shootId>0</m_shootId>
+                <m_damageRate>0</m_damageRate>
+            </m_triggleRepeat>
+            <m_animatorId>2</m_animatorId>
+            <m_animatorTime type="SkillAnimationTime">
+                <m_durTime>2</m_durTime>
+            </m_animatorTime>
+        </SkillElemAnimation>
+    </m_allElemAnimation>
+    <m_allElemLockShootPoint type="SkillElementLockShootPointArray">
+        <m_elemCount>0</m_elemCount>
+    </m_allElemLockShootPoint>
+    <m_allElemStepLockShootPoint type="SkillElementStepLockShootPointArray">
+        <m_elemCount>0</m_elemCount>
+    </m_allElemStepLockShootPoint>
+    <m_allElemShootPoint type="SkillElemShootPointArray">
+        <m_elemCount>0</m_elemCount>
+    </m_allElemShootPoint>
+    <m_allElemBullet type="SkillElemBulletArray">
+        <m_elemCount>1</m_elemCount>
+        <SkillElemBullet type="SkillElemBullet">
+            <m_triggleStart type="SkillTriggleParam">
+                <m_eventType>1</m_eventType>
+                <m_eventTime>0.40000001</m_eventTime>
+            </m_triggleStart>
+            <m_triggleStop type="SkillTriggleParam">
+                <m_eventType>2</m_eventType>
+                <m_eventTime>0</m_eventTime>
+            </m_triggleStop>
+            <m_triggleRepeat type="SkillRepeatTriggleParam">
+                <m_eventType>0</m_eventType>
+                <m_shootId>0</m_shootId>
+                <m_damageRate>0</m_damageRate>
+            </m_triggleRepeat>
+            <m_effectData type="SkillBulletEffectData">
+                <m_initMoveSpeed>20</m_initMoveSpeed>
+                <m_passHit>0</m_passHit>
+                <m_passRect type="SkillAttackRect">
+                    <m_length>0</m_length>
+                    <m_width>0</m_width>
+                </m_passRect>
+                <m_dontTriggerHit>1</m_dontTriggerHit>
+            </m_effectData>
+            <m_impactData type="SkillImpactData">
+                <m_shootId>1</m_shootId>
+                <m_damageIndex>0</m_damageIndex>
+            </m_impactData>
+        </SkillElemBullet>
+    </m_allElemBullet>
+    <m_allElemBuff type="SkillElemBuffArray">
+        <m_elemCount>1</m_elemCount>
+        <SkillElemBuff type="SkillElemBuff">
+            <m_triggleStart type="SkillTriggleParam">
+                <m_eventType>1</m_eventType>
+                <m_eventTime>0</m_eventTime>
+            </m_triggleStart>
+            <m_triggleStop type="SkillTriggleParam">
+                <m_eventType>2</m_eventType>
+                <m_eventTime>0</m_eventTime>
+            </m_triggleStop>
+            <m_triggleRepeat type="SkillRepeatTriggleParam">
+                <m_eventType>1</m_eventType>
+                <m_shootId>1</m_shootId>
+                <m_damageRate>0</m_damageRate>
+            </m_triggleRepeat>
+            <m_objectType>1</m_objectType>
+            <m_radius>0</m_radius>
+            <m_lockTargetType>0</m_lockTargetType>
+            <m_buffSequence>0</m_buffSequence>
+            <m_buffIndex>0</m_buffIndex>
+        </SkillElemBuff>
+    </m_allElemBuff>
+    <m_allElemMove type="SkillElemMoveArray">
+        <m_elemCount>0</m_elemCount>
+    </m_allElemMove>
+    <m_allElemRelive type="SkillElemReliveArray">
+        <m_elemCount>0</m_elemCount>
+    </m_allElemRelive>
+</SkillDispData>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<jsonlogloader_svr_conf version="1">
+    <listen_ip>#json_log_svr_ip#</listen_ip>
+    <listen_port>#json_log_svr_port#</listen_port>
+    <buff_size>1024000</buff_size>
+    <size_limit>512000000</size_limit>
+    <sync_time>0</sync_time>
+</jsonlogloader_svr_conf>

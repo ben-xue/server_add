@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<metalib tagsetversion="1" name="ResDef" version="1">
+  <macro name="MAX_SENSITIVEWORD_TYPE_COUNT" value="2" desc="敏感词最大使用类型" />
+  <struct name="SensitiveWordConfig" version="1" sortkey="ID" only_svr="true" desc="敏感词配置表">
+    <entry name="ID" type="uint" cname="敏感词ID" desc="敏感词ID" />
+    <entry name="SensitiveWord" type="string" size="MAX_SENSITIVEWORD_LENGTH" cname="敏感词" desc="敏感词" />
+    <entry name="Type" type="byte" count="MAX_SENSITIVEWORD_TYPE_COUNT" cname="敏感词类型" desc="敏感词类型" />
+  </struct>
+</metalib>

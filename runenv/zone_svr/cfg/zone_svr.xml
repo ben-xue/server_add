@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+<zone_svrconf version="10">
+	<ConnIPStr>192.168.1.142</ConnIPStr>
+	<ConnPort>4802</ConnPort>
+	<UdpHost>192.168.1.142</UdpHost>
+	<UdpPort>1100</UdpPort>
+    <MemPoolShmKey>18030802</MemPoolShmKey>
+    <MemPoolShmSize>3947559020</MemPoolShmSize>
+    <MaxPlayerCount>1000</MaxPlayerCount>
+	<BattleCount>100</BattleCount>
+	<MaxSingleBattleCount>100</MaxSingleBattleCount>
+	<MaxClientSeqObjCount>1008</MaxClientSeqObjCount>
+	<EncodeFlag>1</EncodeFlag>
+	<ProtoEncKey>doKjILyxgame#83&amp;</ProtoEncKey>
+	<AuthFlag>1</AuthFlag>
+	<AuthEncKey>doKjILyxgame#83&amp;</AuthEncKey>
+	<BlockMsgSerialize>0</BlockMsgSerialize>
+	<BlockClientGmCmd>0</BlockClientGmCmd>
+	<MaxCacheCount>100</MaxCacheCount>
+	<BattleThreadCnt>2</BattleThreadCnt>
+	<MaxWorldNodeCount>4000</MaxWorldNodeCount>
+	<MaxWorldCount>12</MaxWorldCount>
+	<MaxMailCount>100</MaxMailCount>
+	<MaxGuildCount>10</MaxGuildCount>
+	<MaxWorldChatCacheCount>200</MaxWorldChatCacheCount>
+	<MaxAoiKeyCount>48400</MaxAoiKeyCount>
+	<MaxAoiPlayerCount>100</MaxAoiPlayerCount>
+	<ChannelID>1</ChannelID>
+	<CDKeyOpen>1</CDKeyOpen>
+	<ServerOpenTime>1618815317</ServerOpenTime>
+	<ModerationHost>192.168.1.142</ModerationHost>
+	<ModerationPort>10002</ModerationPort>
+	<ReloadMapBlock>0</ReloadMapBlock>
+
+</zone_svrconf>

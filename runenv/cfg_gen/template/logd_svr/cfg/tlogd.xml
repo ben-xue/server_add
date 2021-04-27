@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+
+<logd_svr_conf version="1" >
+
+    <listen_count>1</listen_count>
+    <listen_list type="logd_listen_entry" >
+        <listen_ip>#log_svr_ip#</listen_ip>
+        <listen_port>#log_oper_port#</listen_port>
+        <pattern>#oper_log_prefix#/oper_log_%F_%H.log</pattern>
+        <buff_size>1024000</buff_size>
+        <size_limit>512000000</size_limit>
+        <sync_time>0</sync_time>
+    </listen_list>
+
+</logd_svr_conf>

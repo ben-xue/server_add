@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+<zone_svrconf version="10">
+	<ConnIPStr>#zone_outnet_conn_ip#</ConnIPStr>
+	<ConnPort>#zone_conn_port#</ConnPort>
+	<UdpHost>#zone_udp_host#</UdpHost>
+	<UdpPort>#zone_udp_port#</UdpPort>
+    <MemPoolShmKey>#zone_svr_shm_key#</MemPoolShmKey>
+    <MemPoolShmSize>#zone_svr_shm_size#</MemPoolShmSize>
+    <MaxPlayerCount>#zone_svr_player_pool_count#</MaxPlayerCount>
+	<BattleCount>#zone_svr_battle_pool_count#</BattleCount>
+	<MaxSingleBattleCount>#zone_svr_max_single_battle_count#</MaxSingleBattleCount>
+	<MaxClientSeqObjCount>#zone_svr_max_client_seq_obj_count#</MaxClientSeqObjCount>
+	<EncodeFlag>1</EncodeFlag>
+	<ProtoEncKey>doKjILyxgame#83&amp;</ProtoEncKey>
+	<AuthFlag>1</AuthFlag>
+	<AuthEncKey>doKjILyxgame#83&amp;</AuthEncKey>
+	<BlockMsgSerialize>#block_msg_serialize#</BlockMsgSerialize>
+	<BlockClientGmCmd>#block_client_gm_cmd#</BlockClientGmCmd>
+	<MaxCacheCount>#zone_svr_cache_pool_count#</MaxCacheCount>
+	<BattleThreadCnt>#zone_battle_thread_cnt#</BattleThreadCnt>
+	<MaxWorldNodeCount>#zone_svr_max_world_node_count#</MaxWorldNodeCount>
+	<MaxWorldCount>#zone_svr_max_world_cnt#</MaxWorldCount>
+	<MaxMailCount>#zone_svr_max_mail_count#</MaxMailCount>
+	<MaxGuildCount>#zone_svr_max_legion_cnt#</MaxGuildCount>
+	<MaxWorldChatCacheCount>#zone_svr_max_worldchat_cache_cnt#</MaxWorldChatCacheCount>
+	<MaxAoiKeyCount>#zone_svr_max_aoi_key_cnt#</MaxAoiKeyCount>
+	<MaxAoiPlayerCount>#zone_svr_max_aoi_player_cnt#</MaxAoiPlayerCount>
+	<ChannelID>#zone_svr_channel_id#</ChannelID>
+	<CDKeyOpen>#zone_svr_cdkey_open#</CDKeyOpen>
+	<ServerOpenTime>#zone_svr_open_time#</ServerOpenTime>
+	<ModerationHost>#moderation_svr_udp_host#</ModerationHost>
+	<ModerationPort>#moderation_svr_udp_port#</ModerationPort>
+	<ReloadMapBlock>0</ReloadMapBlock>
+
+</zone_svrconf>

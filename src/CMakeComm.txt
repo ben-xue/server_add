@@ -1,0 +1,78 @@
+set(home_dir "${CMAKE_SOURCE_DIR}/..")
+set(src_home_dir ${CMAKE_SOURCE_DIR})
+set(lib_dir ${home_dir}/lib)
+set(lib_dsf_home ${lib_dir}/dsf/lib)
+set(lib_event_home ${lib_dir}/libevent/lib)
+
+#set(lib_co_home ${lib_dir}/libco)
+
+
+set(proto_dir ${home_dir}/protocol/include)
+set(res_dir ${home_dir}/resource/)
+
+set(CMAKE_VERBOSE_MAKEFILE on)
+set(CMAKE_CXX_COMPILER g++)
+set(CMAKE_C_COMPILER gcc)
+
+include_directories(${lib_dir}/dsf/include)
+include_directories(${lib_dir}/libevent/include)
+
+#include_directories(${lib_dir}/libwebsocket)
+#include_directories(${lib_dir}/fmt)
+#include_directories(${lib_dir}/libco/include)
+#include_directories(${lib_dir}/hiredis)
+include_directories(${lib_dir}/jsoncpp/include)
+#include_directories(${lib_dir}/snappy/include)
+#include_directories(${lib_dir}/mt_incl)
+
+include_directories(${proto_dir})
+include_directories(${res_dir}/include ${res_dir}/src)
+include_directories(${CMAKE_SOURCE_DIR}/comm)
+include_directories(${CMAKE_SOURCE_DIR}/logic_comm)
+include_directories(${CMAKE_SOURCE_DIR}/logic_comm/base)
+include_directories(${CMAKE_SOURCE_DIR}/logic_comm/gm)
+include_directories(${CMAKE_SOURCE_DIR}/logic_comm/iocfg)
+include_directories(${CMAKE_SOURCE_DIR}/logic_comm/attr)
+include_directories(${CMAKE_SOURCE_DIR}/logic_comm/config)
+
+link_directories("/usr/lib64/mysql/")
+
+set(lib_link ${lib_link} "${lib_dsf_home}/libdsf.a")
+set(lib_link ${lib_link} "${lib_event_home}/libevent.a")
+#set(lib_link "${lib_co_home}/lib/libcolib.a" ${lib_link})
+#set(lib_link ${lib_link} "${lib_dir}/hiredis/libhiredis.a")
+set(lib_link ${lib_link} "${lib_dir}/jsoncpp/lib/libjson.a")
+#set(lib_link ${lib_link} "${lib_dir}/monitor/libmonitor.a")
+set(lib_link ${lib_link} "-Wl,-Bstatic" "-Wl,-Bdynamic" "mysqlclient" "dl" "pthread" "curl" )
+set(lib_link_flag "")
+
+set(CMAKE_C_FLAGS "-ggdb -DFMT_HEADER_ONLY -fno-omit-frame-pointer -fstack-protector-all -O0 -W -Wextra -Wall -lm -Wno-unused -Wno-variable -pipe -D_NEW_LIC -D_GNU_SOURCE -D_REENTRANT -fPIC")
+#set(CMAKE_CXX_FLAGS "-O0 -g -DFMT_HEADER_ONLY -std=c++0x -rdynamic -ggdb -fno-omit-frame-pointer -fstack-protector-all -W -Wextra -Wall -lm -Wno-unused -Wno-sign-compare -Wno-enum-compare -Wno-unused-parameter -pipe -D_NEW_LIC -D_GNU_SOURCE -D_REENTRANT -fexceptions -fPIC -DSVNREV=${svn_version}")
+set(CMAKE_CXX_FLAGS "-O0 -g -DFMT_HEADER_ONLY -std=c++0x -rdynamic -ggdb -fno-exceptions -fno-omit-frame-pointer -fstack-protector-all -W -Wextra -Wall -lm -Wno-unused -Wno-sign-compare -Wno-enum-compare -Wno-unused-parameter -pipe -D_NEW_LIC -D_GNU_SOURCE -D_REENTRANT -fexceptions -fPIC -DSVNREV=${svn_version}")
+
+macro(add_src_subdirs source_files)
+	foreach(_subdir ${ARGN})
+		set(_sub_files "")
+		aux_source_directory("${CMAKE_CURRENT_SOURCE_DIR}/${_subdir}" _sub_files)
+		set(source_files ${_sub_files} ${${source_files}})
+		
+		include_directories(${CMAKE_CURRENT_SOURCE_DIR}/${_subdir}) 
+	endforeach(_subdir)
+endmacro()
+
+MACRO(SUBDIRLIST result curdir)
+  FILE(GLOB children LIST_DIRECTORIES true "${curdir}" "*")
+  SET(dirlist "")
+  FOREACH(child ${children})
+    IF(IS_DIRECTORY ${child})
+      LIST(APPEND dirlist ${child})
+    ENDIF()
+  ENDFOREACH()
+  SET(${result} ${dirlist})
+ENDMACRO()
+
+find_program(CCACHE_FOUND ccache)
+if(CCACHE_FOUND)
+set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE ccache)
+set_property(GLOBAL PROPERTY RULE_LAUNCH_LINK ccache)
+endif(CCACHE_FOUND)

@@ -1,0 +1,927 @@
+<metalib name="log" version="1">
+    <macro name="LOG_ROLE_NAME_LEN" value="32"/>
+    <macro name="MAX_CHANNEL_NAME" value="32"/>
+    <macro name="MAX_CHANEL_GIFT_SEQ_LEN" value="30"/>
+    <macro name="LOG_HERO_NAME_LEN" value="32"/>
+    <macro name="MAX_HERO_NUM" value="6"/>
+    <macro name="DB_MAX_LEGION_NAME_LEN" value="32"/>
+    <macro name="LOG_MAX_USER_FEED_BACK_LENGTH" value="1000"/>
+    <macro name="LOG_MONEY_TYPE_NAME_LEN" value="32"/>
+    <macro name="LOG_MONEY_CHANGE_REASON_LEN" value="128"/>
+    <macro name="LOG_ITEM_NAME_LEN" value="64"/>
+    <macro name="LOG_ITEM_CHANGE_REASON_LEN" value="128"/>
+    <macro name="LOG_JSON_STRING_LENGTH" value="2048"/>
+    <macro name="LOG_MAX_LEGION_NAME_LEN" value="64"/>
+    <macro name="LOG_MAX_LEGION_SHORT_NAME_LEN" value="64"/>
+    <macro name="LOG_MAX_LEGION_DECLARATION_LEN" value="128"/>
+    <macro name="MAX_BAG_JSON_STR_LEG" value="8192"/>
+    <macro name="LOG_MAIL_ATTACH_NUM" value="10"/>
+    <macrosgroup name="LogSoldiersOperType">
+        <entry name="LogSoldiersOperCreate" value="1"/>
+        <entry name="LogSoldiersOperUp" value="2"/>
+    </macrosgroup>
+    <macrosgroup name="LogSoldiersOperStatus">
+        <entry name="LogSoldiersOperStart" value="1"/>
+        <entry name="LogSoldiersOperComplete" value="2"/>
+    </macrosgroup>
+    <macrosgroup name="LogTaskType">
+        <entry name="LogTaskTypeMain" value="1"/>
+        <entry name="LogTaskTypeDaily" value="2"/>
+    </macrosgroup>
+    <macrosgroup name="LogTaskStatus">
+        <entry name="LogTaskStatusReceive" value="1"/>
+        <entry name="LogTaskStatusComplete" value="2"/>
+    </macrosgroup>
+    <macrosgroup name="KgameOperShopType">
+        <entry name="OperPrivateDiscountShop" value="1"/>
+        <entry name="OperPrivateHonorShop" value="2"/>
+        <entry name="OperPrivateTradeShop" value="3"/>
+        <entry name="OperHotSellShop" value="4"/>
+        <entry name="OperSuperGiftShop" value="5"/>
+        <entry name="OperEquipShop" value="6"/>
+        <entry name="OperPrivateBraveryShop" value="7"/>
+        <entry name="OperPrivateDustShop" value="8"/>
+        <entry name="OperPrivateHeroEquipShop" value="9"/>
+    </macrosgroup>
+    <macrosgroup name="KgameOperWorldEventType">
+        <entry name="OperWorldEventMonster" value="1"/>
+        <entry name="OperWorldEventAtkResFarm" value="2"/>
+        <entry name="OperWorldEventWork" value="3"/>
+        <entry name="OperWorldEventAtkGhost" value="4"/>
+        <entry name="OperWorldEventWarcraft" value="5"/>
+    </macrosgroup>
+    <struct version="1" primarykey="EventID,EventTime" index="AccUin" name="LogNewUserFirstLogin" cname="realtime">
+        <entry name="EventID" type="biguint" version="1"/>
+        <entry name="EventTime" type="uint" version="1"/>
+        <entry name="AccUin" type="uint" tags="#account_id" version="1"/>
+        <entry name="Ret" type="int" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="Uin" tags="user_set" name="LogRoleAccountLogin" cname="realtime">
+        <entry name="EventID" type="biguint" version="1"/>
+        <entry name="EventTime" type="int" version="1"/>
+        <entry name="Uin" type="uint" tags="#account_id" version="1"/>
+        <entry name="Reconnect" type="byte" version="1"/>
+        <entry name="NetworkType" type="byte" version="1"/>
+        <entry name="ChannelName" type="string" size="32" version="1"/>
+        <entry name="ChannelType" type="int" version="1"/>
+        <entry name="Addr" type="string" size="64" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" name="LogRolePlayerBascInfo">
+        <entry name="EventID" type="biguint" version="1"/>
+        <entry name="EventTime" type="int" version="1"/>
+        <entry name="RoleID" type="biguint" tags="#distinct_id" version="1"/>
+        <entry name="Uin" type="uint" tags="#account_id" version="1"/>
+        <entry name="RegionId" type="int" version="1"/>
+        <entry name="RoleName" type="string" size="32" version="1"/>
+        <entry name="Head" type="smalluint" version="1"/>
+        <entry name="Sex" type="smalluint" version="1"/>
+        <entry name="Level" type="int" version="1"/>
+        <entry name="Exp" type="uint" version="1"/>
+        <entry name="VipScore" type="uint" version="1"/>
+        <entry name="Diamond" type="uint" version="1"/>
+        <entry name="Gold" type="uint" version="1"/>
+        <entry name="Yin" type="uint" version="1"/>
+        <entry name="Grain" type="uint" version="1"/>
+        <entry name="Wood" type="uint" version="1"/>
+        <entry name="VipLv" type="uint" version="1"/>
+        <entry name="FightVal" type="uint" version="1"/>
+        <entry name="Stma" type="uint" version="1"/>
+        <entry name="Workers" type="smalluint" version="1"/>
+        <entry name="TotalRMB" type="int" version="1"/>
+        <entry name="LegionID" type="uint" version="1"/>
+        <entry name="MainStructLevel" type="uint" version="1"/>
+        <entry name="LegionName" type="string" size="32" version="1"/>
+        <entry name="CreateTime" type="uint" version="1"/>
+        <entry name="ChannelName" type="string" size="32" version="1"/>
+        <entry name="ChannelType" type="int" version="1"/>
+        <entry name="WorldID" type="int" version="1"/>
+        <entry name="ServerId" type="uint" version="1"/>
+        <entry name="ArenaRank" type="uint" version="1"/>
+        <entry name="ArenaRankStar" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" tags="user_set" name="LogRoleLogin" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" tags="user_set" name="LogRoleLogout" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="TodayOnlineTime" type="uint" version="1"/>
+        <entry name="TotalOnlineTime" type="uint" version="1"/>
+        <entry name="LastGuideID" type="uint" version="1"/>
+        <entry name="LatestStageID" type="uint" version="1"/>
+        <entry name="PVPCnt" type="uint" version="1"/>
+        <entry name="PVPWinCnt" type="uint" version="1"/>
+        <entry name="RobotPVPCnt" type="uint" version="1"/>
+        <entry name="RobotPVPWinCnt" type="uint" version="1"/>
+        <entry name="LastGuideNodeID" type="uint" version="1"/>
+        <entry name="OnlineTime" type="uint" version="1"/>
+        <entry name="LatestChapterID" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogRoleMoneyChange" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="MoneyType" type="byte" version="1"/>
+        <entry name="MoneyTypeName" type="string" size="32" version="1"/>
+        <entry name="Val" type="int" version="1"/>
+        <entry name="Reason" type="int" version="1"/>
+        <entry name="ReasonName" type="string" size="128" version="1"/>
+        <entry name="ReasonParam" type="int" version="1"/>
+        <entry name="BeforeVal" type="uint" version="1"/>
+        <entry name="AfterVal" type="uint" version="1"/>
+        <entry name="MailID" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogRoleItemNumChange" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="ItemID" type="int" version="1"/>
+        <entry name="ItemName" type="string" size="64" version="1"/>
+        <entry name="ItemGID" type="uint" version="1"/>
+        <entry name="Val" type="int" version="1"/>
+        <entry name="IsBind" type="byte" version="1"/>
+        <entry name="Reason" type="int" version="1"/>
+        <entry name="ReasonName" type="string" size="128" version="1"/>
+        <entry name="ReasonParam" type="int" version="1"/>
+        <entry name="BeforeVal" type="int" version="1"/>
+        <entry name="AfterVal" type="int" version="1"/>
+        <entry name="MailID" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogRoleStrongItem" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="ItemID" type="int" version="1"/>
+        <entry name="ItemGID" type="uint" version="1"/>
+        <entry name="CostItemID" type="int" version="1"/>
+        <entry name="CostVal" type="int" version="1"/>
+        <entry name="IsBind" type="byte" version="1"/>
+        <entry name="Reason" type="int" version="1"/>
+        <entry name="ReasonParam" type="int" version="1"/>
+        <entry name="BeforeVal" type="int" version="1"/>
+        <entry name="AfterVal" type="int" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogRoleUseItem" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="ItemID" type="int" version="1"/>
+        <entry name="ItemName" type="string" size="64" version="1"/>
+        <entry name="ItemGUID" type="uint" version="1"/>
+        <entry name="ItemFunType" type="int" version="1"/>
+        <entry name="ItemNum" type="int" version="1"/>
+        <entry name="BeforeVal" type="int" version="1"/>
+        <entry name="AfterVal" type="int" version="1"/>
+        <entry name="Result" type="int" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogRoleAddExp" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="AddVal" type="uint" version="1"/>
+        <entry name="Reason" type="int" version="1"/>
+        <entry name="ReasonParam" type="int" version="1"/>
+        <entry name="OldExp" type="uint" version="1"/>
+        <entry name="OldLevel" type="int" version="1"/>
+        <entry name="NewExp" type="uint" version="1"/>
+        <entry name="NewLevel" type="int" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogRoleAddMatchPoint" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="AddVal" type="int" version="1"/>
+        <entry name="Reason" type="int" version="1"/>
+        <entry name="ReasonParam" type="int" version="1"/>
+        <entry name="OldMatchPoint" type="int" version="1"/>
+        <entry name="NewMatchPoint" type="int" version="1"/>
+        <entry name="HistoryMostCup" type="int" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="Uin" name="LogGmOp" cname="realtime">
+        <entry name="EventID" type="biguint" version="1"/>
+        <entry name="EventTime" type="biguint" version="1"/>
+        <entry name="Uin" type="uint" tags="#account_id" version="1"/>
+        <entry name="RoleName" type="string" size="32" version="1"/>
+        <entry name="Level" type="int" version="1"/>
+        <entry name="GmCmd" type="string" size="64" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogRoleBuyItem" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="ShopType" type="int" version="1"/>
+        <entry name="ShopID" type="int" version="1"/>
+        <entry name="ShopNum" type="int" version="1"/>
+        <entry name="CurrencyType" type="int" version="1"/>
+        <entry name="CurrencyNum" type="int" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogCharge" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="OldDiamond" type="uint" version="1"/>
+        <entry name="NewDiamond" type="uint" version="1"/>
+        <entry name="OldTotalRmb" type="uint" version="1"/>
+        <entry name="NewTotalRmb" type="uint" version="1"/>
+        <entry name="OrderNo" type="biguint" version="1"/>
+        <entry name="SdkOrderSeq" type="string" size="48" version="1"/>
+        <entry name="MoneyNum" type="int" version="1"/>
+        <entry name="GoodID" type="uint" version="1"/>
+        <entry name="AddDiamond" type="uint" version="1"/>
+        <entry name="AddExtraYuan" type="uint" version="1"/>
+        <entry name="ChargeCreateTime" type="int" version="1"/>
+        <entry name="ChargeSuccTime" type="int" version="1"/>
+        <entry name="Balance" type="int" version="1"/>
+        <entry name="ZoneInstanceID" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogRoleDecomposeItem" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="ItemID" type="int" version="1"/>
+        <entry name="ItemGID" type="uint" version="1"/>
+        <entry name="CostType" type="int" version="1"/>
+        <entry name="CostVal" type="int" version="1"/>
+        <entry name="DecomposedItemID" type="int" version="1"/>
+        <entry name="DecomposedItemCnt" type="int" version="1"/>
+        <entry name="IsBind" type="byte" version="1"/>
+        <entry name="Reason" type="int" version="1"/>
+        <entry name="ReasonParam" type="int" version="1"/>
+        <entry name="BeforeVal" type="int" version="1"/>
+        <entry name="AfterVal" type="int" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogRoleComposeItem" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="ItemID" type="int" version="1"/>
+        <entry name="ItemGID" type="uint" version="1"/>
+        <entry name="DecomposedItemID" type="uint" version="1"/>
+        <entry name="DecomposedItemCnt" type="uint" version="1"/>
+        <entry name="Reason" type="uint" version="1"/>
+        <entry name="ReasonParam" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogCumuChargeAward" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="CumuMoneyNum" type="int" version="1"/>
+        <entry name="BootyID" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogGetChannelGift" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="BootyID" type="uint" version="1"/>
+        <entry name="Seq" type="string" size="30" version="1"/>
+        <entry name="GetBootyRet" type="byte" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin,GuideID" name="LogCompleteGuide" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="GuideID" type="uint" version="1"/>
+        <entry name="CompleteAll" type="byte" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogPVPFight">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="DefRoleUin" type="biguint" version="1"/>
+        <entry name="StartTime" type="uint" version="1"/>
+        <entry name="LastTime" type="uint" version="1"/>
+        <entry name="PVPCnt" type="int" version="1"/>
+        <entry name="PVPWinCnt" type="int" version="1"/>
+        <entry name="HeroNum" type="int" version="1"/>
+        <entry name="DefIsRob" type="byte" version="1"/>
+        <entry name="DefWallLevel" type="int" version="1"/>
+        <entry name="DefWallDamage" type="int" version="1"/>
+        <entry name="DefWallRuined" type="byte" version="1"/>
+        <entry name="DefWallDamageTaken" type="int" version="1"/>
+        <entry name="WinSide" type="int" version="1"/>
+        <entry name="AtkHeroID" type="int" count="6" version="1"/>
+        <entry name="AtkHeroName" type="string" size="32" count="6" version="1"/>
+        <entry name="AtkHeroLevel" type="int" count="6" version="1"/>
+        <entry name="AtkHeroStar" type="int" count="6" version="1"/>
+        <entry name="AtkHeroDamage" type="int" count="6" version="1"/>
+        <entry name="AtkHeroCure" type="int" count="6" version="1"/>
+        <entry name="AtkHeroDamageTaken" type="int" count="6" version="1"/>
+        <entry name="AtkHeroDie" type="byte" count="6" version="1"/>
+        <entry name="DefHeroID" type="int" count="6" version="1"/>
+        <entry name="DefHeroName" type="string" size="32" count="6" version="1"/>
+        <entry name="DefHeroLevel" type="int" count="6" version="1"/>
+        <entry name="DefHeroStar" type="int" count="6" version="1"/>
+        <entry name="DefHeroDamage" type="int" count="6" version="1"/>
+        <entry name="DefHeroCure" type="int" count="6" version="1"/>
+        <entry name="DefHeroDamageTaken" type="int" count="6" version="1"/>
+        <entry name="DefHeroDie" type="byte" count="6" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin,HeroID" name="LogAddHero" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="HeroID" type="uint" version="1"/>
+        <entry name="Reason" type="uint" version="1"/>
+        <entry name="ReasonParam" type="uint" version="1"/>
+        <entry name="BootyID" type="uint" version="1"/>
+        <entry name="ConvHeroPieceCnt" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin,HeroID" name="LogHeroUpLevel" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="HeroID" type="uint" version="1"/>
+        <entry name="BeforeLevel" type="uint" version="1"/>
+        <entry name="AfterLevel" type="uint" version="1"/>
+        <entry name="HeroExp" type="uint" version="1"/>
+        <entry name="IsAuto" type="byte" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin,HeroID" name="LogHeroUpStar" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="HeroID" type="uint" version="1"/>
+        <entry name="BeforeStartLevel" type="uint" version="1"/>
+        <entry name="AfterStartLevel" type="uint" version="1"/>
+        <entry name="CostItemID" type="uint" version="1"/>
+        <entry name="CostCnt" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogExploreCastle" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="CastleID" type="uint" version="1"/>
+        <entry name="StageID" type="uint" version="1"/>
+        <entry name="Sucess" type="byte" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin,HeroID" name="LogHeroSoldierUpLevel" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="HeroID" type="uint" version="1"/>
+        <entry name="HeroGID" type="uint" version="1"/>
+        <entry name="SoldierID" type="uint" version="1"/>
+        <entry name="BeforeLevel" type="uint" version="1"/>
+        <entry name="AfterLevel" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin,HeroID" name="LogHeroSkillUpLevel" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="HeroID" type="uint" version="1"/>
+        <entry name="HeroGID" type="uint" version="1"/>
+        <entry name="SkillID" type="uint" version="1"/>
+        <entry name="BeforeLevel" type="uint" version="1"/>
+        <entry name="AfterLevel" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogHeroFightUpLevel" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="BeforeLevel" type="uint" version="1"/>
+        <entry name="AfterLevel" type="uint" version="1"/>
+        <entry name="NeedUpFightVal" type="uint" version="1"/>
+        <entry name="CostType" type="byte" version="1"/>
+        <entry name="CostVal" type="uint" version="1"/>
+        <entry name="OldHeroFightVal" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin,CreateLegionID" name="LogLegionCreate" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="CreateLegionID" type="uint" version="1"/>
+        <entry name="CreateLegionShortName" type="string" size="64" version="1"/>
+        <entry name="CreateLegionName" type="string" size="64" version="1"/>
+        <entry name="CreateLaaguageID" type="uint" version="1"/>
+        <entry name="JoinLimitType" type="byte" version="1"/>
+        <entry name="JoinNeedFightVal" type="uint" version="1"/>
+        <entry name="Declaration" type="string" size="128" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin,JoinLegionID" name="LogLegionJoin" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="JoinLegionID" type="uint" version="1"/>
+        <entry name="JoinLLegionName" type="string" size="64" version="1"/>
+        <entry name="NeedApply" type="byte" version="1"/>
+        <entry name="JoinTime" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin,OwnerLegionID" name="LogLegionBuyShop" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="OwnerLegionID" type="uint" version="1"/>
+        <entry name="Time" type="uint" version="1"/>
+        <entry name="CostType" type="byte" version="1"/>
+        <entry name="CostVal" type="uint" version="1"/>
+        <entry name="ShopType" type="byte" version="1"/>
+        <entry name="ShopID" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogLegionScienceDonate" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="OwnerLegionID" type="uint" version="1"/>
+        <entry name="Time" type="uint" version="1"/>
+        <entry name="Class" type="uint" version="1"/>
+        <entry name="ScienceID" type="uint" version="1"/>
+        <entry name="DonateType" type="byte" version="1"/>
+        <entry name="ScienceLevel" type="uint" version="1"/>
+        <entry name="ScieneValue" type="uint" version="1"/>
+        <entry name="ExploitValue" type="uint" version="1"/>
+        <entry name="CriticalValue" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogLegionModifyName" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="OwnerLegionID" type="uint" version="1"/>
+        <entry name="Time" type="uint" version="1"/>
+        <entry name="ModifyLegionName" type="string" size="64" version="1"/>
+        <entry name="ShortNameFlag" type="byte" version="1"/>
+        <entry name="CostType" type="byte" version="1"/>
+        <entry name="CostVal" type="uint" version="1"/>
+        <entry name="CostItemID" type="uint" version="1"/>
+        <entry name="CostItemCnt" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogLegionDailyWelfareSingReq" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="OwnerLegionID" type="uint" version="1"/>
+        <entry name="Time" type="uint" version="1"/>
+        <entry name="LegionLevel" type="uint" version="1"/>
+        <entry name="BoostyID" type="uint" version="1"/>
+        <entry name="CumulativeSignDays" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogLegionAccumulativeWelfareSingReq" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="OwnerLegionID" type="uint" version="1"/>
+        <entry name="Time" type="uint" version="1"/>
+        <entry name="DayCnt" type="uint" version="1"/>
+        <entry name="BoostyID" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogLegionAssistanceSeekHelp" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="OwnerLegionID" type="uint" version="1"/>
+        <entry name="Time" type="uint" version="1"/>
+        <entry name="Type" type="byte" version="1"/>
+        <entry name="StructureGID" type="uint" version="1"/>
+        <entry name="StructureID" type="uint" version="1"/>
+        <entry name="StructureLevel" type="uint" version="1"/>
+        <entry name="ScienceID" type="uint" version="1"/>
+        <entry name="ScienceLevel" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogLeaveLegion" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="LeaveLegionID" type="uint" version="1"/>
+        <entry name="LeaveLegionName" type="string" size="64" version="1"/>
+        <entry name="Time" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" name="LogLegionDestory" cname="realtime">
+        <entry name="EventID" type="biguint" version="1"/>
+        <entry name="EventTime" type="int" version="1"/>
+        <entry name="LegionID" type="uint" version="1"/>
+        <entry name="LegionShortName" type="string" size="64" version="1"/>
+        <entry name="LegionName" type="string" size="64" version="1"/>
+        <entry name="Time" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin,TickUin" name="LogLegionTickMember" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="TickLegionID" type="uint" version="1"/>
+        <entry name="TickLegionName" type="string" size="64" version="1"/>
+        <entry name="TickUin" type="biguint" version="1"/>
+        <entry name="Time" type="uint" version="1"/>
+    </struct>
+    <struct version="1" name="LogPlayerBagData">
+        <entry name="Uin" type="biguint" tags="#distinct_id" version="1"/>
+        <entry name="RoleName" type="string" size="32" version="1"/>
+        <entry name="Time" type="uint" version="1"/>
+        <entry name="BagJsonStr" type="string" size="8192" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin,TaskID" name="LogTaskComplete" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="TaskID" type="uint" version="1"/>
+        <entry name="TaskType" type="byte" version="1"/>
+        <entry name="TaskScore" type="int" version="1"/>
+        <entry name="TaskStatus" type="byte" version="1"/>
+        <entry name="CompleteTime" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogPlayerScienceLvUp" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="ScienceID" type="uint" version="1"/>
+        <entry name="BeforeLevel" type="uint" version="1"/>
+        <entry name="AfterLevel" type="uint" version="1"/>
+        <entry name="CompleteTime" type="uint" version="1"/>
+    </struct>
+    <macrosgroup name="KgameLogStructType">
+        <entry name="WorldStruct" value="1"/>
+        <entry name="CityStruct" value="2"/>
+    </macrosgroup>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogStructureLvUp" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="Type" type="byte" version="1"/>
+        <entry name="StructType" type="byte" version="1"/>
+        <entry name="BeforeLevel" type="uint" version="1"/>
+        <entry name="AfterLevel" type="uint" version="1"/>
+        <entry name="CompleteTime" type="uint" version="1"/>
+    </struct>
+    <macrosgroup name="KgameLogSoldierKind">
+        <entry name="NormalSoldier" value="1"/>
+        <entry name="HurtSoldier" value="2"/>
+        <entry name="SlaveSoldier" value="3"/>
+    </macrosgroup>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogSoldiersCountChange" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="SoldierKind" type="byte" version="1"/>
+        <entry name="SoldierClass" type="byte" version="1"/>
+        <entry name="ChangeNum" type="int" version="1"/>
+        <entry name="ChangeReason" type="int" version="1"/>
+        <entry name="NomalNum" type="int" version="1"/>
+        <entry name="DeadNum" type="int" version="1"/>
+        <entry name="HurtNum" type="int" version="1"/>
+        <entry name="SlaveNum" type="int" version="1"/>
+    </struct>
+    <struct version="1" name="LogMailAttachInfo">
+        <entry name="AwardItemID" type="int" version="1"/>
+        <entry name="AwardItemCnt" type="int" version="1"/>
+        <entry name="Type" type="byte" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogReceiveMail" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="MailGID" type="biguint" version="1"/>
+        <entry name="Time" type="uint" version="1"/>
+        <entry name="AttachData" type="string" size="2048" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogRoleCreate" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+    </struct>
+    <struct version="1" name="LogUinCreate">
+        <entry name="Uin" type="biguint" tags="#distinct_id" version="1"/>
+        <entry name="CreateTime" type="uint" version="1"/>
+        <entry name="ChannelName" type="string" size="32" version="1"/>
+        <entry name="ChannelType" type="int" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogRoleLevelUp" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="BeforeLevel" type="uint" version="1"/>
+        <entry name="AfterLevel" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogSpeed" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="SpeedType" type="uint" version="1"/>
+        <entry name="SpeedTime" type="uint" version="1"/>
+        <entry name="JsonData" type="string" size="2048" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogPlayerAddBooty" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="BootyID" type="uint" version="1"/>
+        <entry name="Reason" type="uint" version="1"/>
+        <entry name="ReasonPara" type="uint" version="1"/>
+        <entry name="BootyLevel" type="uint" version="1"/>
+        <entry name="Value1" type="uint" version="1"/>
+        <entry name="Value2" type="uint" version="1"/>
+        <entry name="Value3" type="uint" version="1"/>
+        <entry name="JsonData" type="string" size="2048" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogOperPlayerAddBooty" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="OperType" type="uint" version="1"/>
+        <entry name="Value1" type="uint" version="1"/>
+        <entry name="Value2" type="uint" version="1"/>
+        <entry name="Value3" type="uint" version="1"/>
+        <entry name="JsonData" type="string" size="2048" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogRankAct">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="RankType" type="uint" version="1"/>
+        <entry name="Value1" type="uint" version="1"/>
+        <entry name="Value2" type="uint" version="1"/>
+        <entry name="Value3" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogWorldEventJoin" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="EventType" type="uint" version="1"/>
+        <entry name="JsonData" type="string" size="2048" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="LegionID,CityID" name="LogCitySummary" cname="realtime">
+        <entry name="EventID" type="biguint" version="1"/>
+        <entry name="EventTime" type="int" version="1"/>
+        <entry name="LegionID" type="uint" version="1"/>
+        <entry name="CityID" type="uint" version="1"/>
+        <entry name="LegionRank" type="uint" version="1"/>
+        <entry name="Durability" type="uint" version="1"/>
+        <entry name="IsOccupied" type="byte" version="1"/>
+        <entry name="JsonData" type="string" size="2048" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogPvP">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="AtkData" type="string" size="2048" version="1"/>
+        <entry name="DefData" type="string" size="2048" version="1"/>
+        <entry name="IsAttack" type="byte" version="1"/>
+        <entry name="Win" type="byte" version="1"/>
+        <entry name="FightID" type="uint" version="1"/>
+        <entry name="PvPType" type="byte" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="BattleID" name="LogBattleRecode" cname="realtime">
+        <entry name="EventID" type="biguint" version="1"/>
+        <entry name="EventTime" type="int" version="1"/>
+        <entry name="WorldID" type="int" version="1"/>
+        <entry name="ServerId" type="uint" version="1"/>
+        <entry name="RegionId" type="uint" version="1"/>
+        <entry name="BattleID" type="biguint" version="1"/>
+        <entry name="MapID" type="uint" version="1"/>
+        <entry name="BattleCastTime" type="uint" version="1"/>
+        <entry name="RoundCnt" type="uint" version="1"/>
+        <entry name="BattleType" type="byte" version="1"/>
+        <entry name="WinSide" type="byte" version="1"/>
+        <entry name="MopUpType" type="byte" version="1"/>
+        <entry name="DefSideCityWallLevel" type="uint" version="1"/>
+        <entry name="AtkUin" type="biguint" version="1"/>
+        <entry name="DefUin" type="biguint" version="1"/>
+        <entry name="PlaceNodeGID" type="uint" version="1"/>
+        <entry name="PlaceItemID" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogLordEquipForgeBegin" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="TargetID" type="uint" version="1"/>
+        <entry name="IsForgeRightNow" type="byte" version="1"/>
+        <entry name="MaterialEquipGID" type="uint" version="1"/>
+        <entry name="ForgeEventID" type="uint" version="1"/>
+        <entry name="BeginForgeTime" type="uint" version="1"/>
+        <entry name="ForgeNeedTime" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogLordEquipForgeGet" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="ForgeEventGID" type="uint" version="1"/>
+        <entry name="ForgeEndTime" type="uint" version="1"/>
+        <entry name="GetItemGID" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogLordEquipDecompose" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="LordEquipGID" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogLordEquipXiLian" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="LordEquipGID" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogLordEquipXiLianSave" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="LordEquipGID" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogLordEquipWearUnwear" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="EquipType" type="byte" version="1"/>
+        <entry name="EquipParts" type="byte" version="1"/>
+        <entry name="OldItemGID" type="uint" version="1"/>
+        <entry name="LordEquipGID" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogLordEquipStarUp" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="LordEquipGID" type="uint" version="1"/>
+        <entry name="CurStar" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogLordEquipLockUnlock" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="LordEquipGID" type="uint" version="1"/>
+        <entry name="LordEquipLockType" type="byte" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogLordEquipForgeSpeedUp" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="SpeedUpType" type="byte" version="1"/>
+        <entry name="ForgeEventGID" type="uint" version="1"/>
+        <entry name="LordEquipID" type="uint" version="1"/>
+        <entry name="EndTime" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogMainDupChapterTreasureBox" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="TreasureBoxChapter" type="uint" version="1"/>
+        <entry name="TreasureBoxLevel" type="byte" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogMainDupMopUp" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="ChapterID" type="uint" version="1"/>
+        <entry name="SectionID" type="uint" version="1"/>
+        <entry name="MopUpCnt" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogMainDupComplete" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="ChapterID" type="uint" version="1"/>
+        <entry name="SectionID" type="uint" version="1"/>
+        <entry name="TurnID" type="uint" version="1"/>
+        <entry name="Passed" type="byte" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogStoneTabletUnlockStone" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="StoneID" type="uint" version="1"/>
+        <entry name="LayerID" type="uint" version="1"/>
+        <entry name="WordID" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogStoneTabletRepairWord" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="StoneID" type="uint" version="1"/>
+        <entry name="LayerID" type="uint" version="1"/>
+        <entry name="WordID" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogStoneTabletLayerUp" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="StoneID" type="uint" version="1"/>
+        <entry name="LayerID" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogStoneTabletUseSkill" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="StoneID" type="uint" version="1"/>
+        <entry name="SkillLevel" type="uint" version="1"/>
+        <entry name="RunningEndTime" type="uint" version="1"/>
+        <entry name="ColdingEndTime" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogStoneTabletSkillRun" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="SkillID" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin,TargetUin,MasterUin" name="LogSlaveCatchSlave" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="TargetUin" type="biguint" version="1"/>
+        <entry name="IsGMCatch" type="byte" version="1"/>
+        <entry name="MasterUin" type="biguint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin,TargetUin" name="LogSlaveFreeSlave" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="TargetUin" type="biguint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin,TargetUin" name="LogSlaveWork" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="TargetUin" type="biguint" version="1"/>
+        <entry name="NodeGID" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin,MasterUin" name="LogSlaveFight" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="MasterUin" type="biguint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin,MasterUin" name="LogSlaveRedeem" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="MasterUin" type="biguint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin,FriendUin,MasterUin" name="LogSlaveSave" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="FriendUin" type="biguint" version="1"/>
+        <entry name="MasterUin" type="biguint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin,OldSlaveUin,NewSlaveUin" name="LogSlaveReplace" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="IsGiveUp" type="byte" version="1"/>
+        <entry name="OldSlaveUin" type="biguint" version="1"/>
+        <entry name="NewSlaveUin" type="biguint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin,SlaveUin" name="LogCollectTaxes" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="SlaveUin" type="biguint" version="1"/>
+        <entry name="GetGrain" type="uint" version="1"/>
+        <entry name="GetWood" type="uint" version="1"/>
+        <entry name="GetSliver" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin,MasterUin" name="LogPayTaxes" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="MasterUin" type="biguint" version="1"/>
+        <entry name="GetGrain" type="uint" version="1"/>
+        <entry name="GetWood" type="uint" version="1"/>
+        <entry name="GetSliver" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin,DispatchUin" name="LogDismissalEnvoy" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="EnvoyGID" type="biguint" version="1"/>
+        <entry name="EnvoyID" type="uint" version="1"/>
+        <entry name="RecycleFlag" type="byte" version="1"/>
+        <entry name="DispatchUin" type="uint" version="1"/>
+        <entry name="TotalTime" type="uint" version="1"/>
+        <entry name="FixationCurrencyType" type="byte" version="1"/>
+        <entry name="FixationCurrencyVal" type="uint" version="1"/>
+        <entry name="ExtraCurrencyType" type="byte" version="1"/>
+        <entry name="ExtraCurrencyVal" type="uint" version="1"/>
+        <entry name="Time" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin,TargetUin" name="LogDispatchEnvoy" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="EnvoyGID" type="biguint" version="1"/>
+        <entry name="EnvoyID" type="uint" version="1"/>
+        <entry name="TargetUin" type="biguint" version="1"/>
+        <entry name="Time" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin,InformUin" name="LogInformEnvoy" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="EnvoyGID" type="biguint" version="1"/>
+        <entry name="EnvoyID" type="uint" version="1"/>
+        <entry name="InformUin" type="biguint" version="1"/>
+        <entry name="RebackCurrencyID" type="byte" version="1"/>
+        <entry name="RebackCurrencyVal" type="uint" version="1"/>
+        <entry name="IsInform" type="byte" version="1"/>
+        <entry name="Time" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin,OwnerUin" name="LogRepatriateEnvoy" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="EnvoyGID" type="biguint" version="1"/>
+        <entry name="OwnerUin" type="biguint" version="1"/>
+        <entry name="RebackCurrencyID" type="byte" version="1"/>
+        <entry name="RebackCurrencyVal" type="uint" version="1"/>
+        <entry name="EnvoyID" type="uint" version="1"/>
+        <entry name="Time" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin,MatchUIn" name="LogArenaMatch" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="IsChangeTarget" type="byte" version="1"/>
+        <entry name="IsGuide" type="byte" version="1"/>
+        <entry name="MatchUIn" type="biguint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogArenaTurntable" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="BattleID" type="biguint" version="1"/>
+        <entry name="BootyID" type="uint" version="1"/>
+        <entry name="IsGuide" type="byte" version="1"/>
+        <entry name="StopCellID" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogTitleUse" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="OldTitleID" type="uint" version="1"/>
+        <entry name="NewTitleID" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogTitleUnlock" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="UnlockTitleID" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogContactApplyFriend" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="AddUin" type="biguint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogContactHandleApply" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="OperType" type="byte" version="1"/>
+        <entry name="ApplyUin" type="biguint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" name="LogSelectPosRecode" cname="realtime">
+        <entry name="EventID" type="biguint" version="1"/>
+        <entry name="EventTime" type="int" version="1"/>
+        <entry name="WorldID" type="int" version="1"/>
+        <entry name="ServerId" type="uint" version="1"/>
+        <entry name="RegionId" type="uint" version="1"/>
+        <entry name="NodeItemID" type="uint" version="1"/>
+        <entry name="CastTime" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" name="LogWorldNodeBascInfo">
+        <entry name="EventID" type="biguint" version="1"/>
+        <entry name="EventTime" type="int" version="1"/>
+        <entry name="WorldID" type="int" version="1"/>
+        <entry name="ServerId" type="uint" version="1"/>
+        <entry name="RegionId" type="uint" version="1"/>
+        <entry name="NodeGID" type="uint" version="1"/>
+        <entry name="NodeItemID" type="uint" version="1"/>
+        <entry name="NodeType" type="int" version="1"/>
+        <entry name="MapRegionID" type="uint" version="1"/>
+        <entry name="PosX" type="smalluint" version="1"/>
+        <entry name="PosY" type="smalluint" version="1"/>
+        <entry name="Uin" type="biguint" version="1"/>
+        <entry name="CreateTime" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="NodeGID" name="LogWorldCreateNode" cname="realtime">
+        <entry name="BascInfo" type="LogWorldNodeBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="WorldNodeCreateReason" type="byte" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="NodeGID" name="LogWorldDestroyNode" cname="realtime">
+        <entry name="BascInfo" type="LogWorldNodeBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="WorldNodeDelReason" type="byte" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="NodeGID" name="LogWorldCreateArmy" cname="realtime">
+        <entry name="BascInfo" type="LogWorldNodeBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="ArmyType" type="byte" version="1"/>
+        <entry name="InitMaxHp" type="uint" version="1"/>
+        <entry name="ArmyPlanID" type="uint" version="1"/>
+        <entry name="NpcGroupID" type="uint" version="1"/>
+        <entry name="FormatID" type="uint" version="1"/>
+        <entry name="TeamHeroCount" type="int" version="1"/>
+        <entry name="TeamSoldierCount" type="int" version="1"/>
+        <entry name="TeamFightRate" type="float" version="1"/>
+        <entry name="ArmyFightVal" type="uint" version="1"/>
+        <entry name="PopulationCnt" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="NodeGID" name="LogWorldFightRecode" cname="realtime">
+        <entry name="BascInfo" type="LogWorldNodeBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="AtkNodeGID" type="uint" version="1"/>
+        <entry name="PlaceNodeGID" type="uint" version="1"/>
+        <entry name="TargetNodeGID" type="uint" version="1"/>
+        <entry name="BattleID" type="biguint" version="1"/>
+        <entry name="WinSide" type="byte" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="NodeGID" name="LogWorldPlayerOwnNode" cname="realtime">
+        <entry name="BascInfo" type="LogWorldNodeBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="OldUin" type="biguint" version="1"/>
+        <entry name="OldRoleName" type="string" size="32" version="1"/>
+        <entry name="NewUin" type="biguint" version="1"/>
+        <entry name="NewRoleName" type="string" size="32" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="NodeGID" name="LogWorldLegionOwnNode" cname="realtime">
+        <entry name="BascInfo" type="LogWorldNodeBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="OldLegionID" type="uint" version="1"/>
+        <entry name="OldLegionName" type="string" size="32" version="1"/>
+        <entry name="LegionID" type="uint" version="1"/>
+        <entry name="LegionMemberCnt" type="uint" version="1"/>
+        <entry name="LegionName" type="string" size="32" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="NodeGID" name="LogWorldArmyAct" cname="realtime">
+        <entry name="BascInfo" type="LogWorldNodeBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="Act" type="byte" version="1"/>
+        <entry name="TargetNodeGID" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="NodeGID" name="LogWorldGhostAtkRecode" cname="realtime">
+        <entry name="BascInfo" type="LogWorldNodeBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="AtkTime" type="uint" version="1"/>
+        <entry name="AtkID" type="uint" version="1"/>
+        <entry name="WinCnt" type="uint" version="1"/>
+        <entry name="LoseCnt" type="uint" version="1"/>
+        <entry name="Point" type="uint" version="1"/>
+        <entry name="Season" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" name="LogServerStartTime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="StartTime" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogTimeLimitGift" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="IsBuy" type="byte" version="1"/>
+        <entry name="GoodsID" type="uint" version="1"/>
+        <entry name="EventType" type="int" version="1"/>
+        <entry name="EventPara" type="int" version="1"/>
+        <entry name="EventPara1" type="int" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogSoldiersOperation" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="OperType" type="byte" version="1"/>
+        <entry name="Status" type="byte" version="1"/>
+        <entry name="CompleteTime" type="uint" version="1"/>
+        <entry name="SoldierClass" type="uint" version="1"/>
+        <entry name="SoldierLevel" type="uint" version="1"/>
+        <entry name="SoldierCnt" type="uint" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogWorldAtkGhostArmy" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="ItemID" type="uint" version="1"/>
+        <entry name="GhostArmyLevel" type="uint" version="1"/>
+        <entry name="Win" type="byte" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogWorldAtkResource" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="ItemID" type="uint" version="1"/>
+        <entry name="ResourceLevel" type="uint" version="1"/>
+        <entry name="ResourceType" type="uint" version="1"/>
+        <entry name="Win" type="byte" version="1"/>
+    </struct>
+    <struct version="1" primarykey="EventID,EventTime" index="RoleID,Uin" name="LogBountyData" cname="realtime">
+        <entry name="BascInfo" type="LogRolePlayerBascInfo" extendtotable="true" tags="without_json_name" version="1"/>
+        <entry name="BountyLevel" type="uint" version="1"/>
+        <entry name="BountyExp" type="uint" version="1"/>
+        <entry name="Have7LvHero" type="byte" version="1"/>
+    </struct>
+</metalib>

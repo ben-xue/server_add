@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+
+<BusConf version="1">
+	<AddrTemplet>region:6.world:14.func:8.inst:4</AddrTemplet>
+	<ConfShmKey>#msgq_shm_key#</ConfShmKey>
+	<ChannelCount>11</ChannelCount>
+	<ChannelList type="ChannelConf">
+		<Address>#regionid#.#worldid#.61.1</Address>
+		<Address>#regionid#.#worldid#.60.1</Address>
+		<SendSize>4096000</SendSize>
+		<RecvSize>4096000</RecvSize>
+		<FuncType>0</FuncType>
+		<Desc>channel from inst conn to zone</Desc>
+	</ChannelList>
+
+	<ChannelList type="ChannelConf">
+		<Address>#regionid#.#worldid#.61.1</Address>
+		<Address>#regionid#.#worldid#.30.1</Address>
+		<SendSize>8192000</SendSize>
+		<RecvSize>8192000</RecvSize>
+		<FuncType>0</FuncType>
+		<Desc>channel from inst zone to db proxy</Desc>
+	</ChannelList>
+
+	<ChannelList type="ChannelConf">
+		<Address>#regionid#.#worldid#.61.1</Address>
+		<Address>#regionid#.#worldid#.89.1</Address>
+		<SendSize>4096000</SendSize>
+		<RecvSize>4096000</RecvSize>
+		<FuncType>0</FuncType>
+		<Desc>channel from inst zone to global db proxy</Desc>
+	</ChannelList>
+
+	<ChannelList type="ChannelConf">
+		<Address>#regionid#.#worldid#.63.1</Address>
+		<Address>#regionid#.#worldid#.30.1</Address>
+		<SendSize>2048000</SendSize>
+		<RecvSize>2048000</RecvSize>
+		<FuncType>0</FuncType>
+		<Desc>channel from inst relation to db proxy</Desc>
+	</ChannelList>
+
+	<ChannelList type="ChannelConf">
+		<Address>#regionid#.#worldid#.63.1</Address>
+		<Address>#regionid#.#worldid#.89.1</Address>
+		<SendSize>2048000</SendSize>
+		<RecvSize>2048000</RecvSize>
+		<FuncType>0</FuncType>
+		<Desc>channel from inst relation to global db proxy</Desc>
+	</ChannelList>
+
+	<ChannelList type="ChannelConf">
+		<Address>#regionid#.#worldid#.62.1</Address>
+		<Address>#regionid#.#worldid#.30.1</Address>
+		<SendSize>2048000</SendSize>
+		<RecvSize>2048000</RecvSize>
+		<FuncType>0</FuncType>
+		<Desc>channel from inst world to db proxy</Desc>
+	</ChannelList>
+
+	<ChannelList type="ChannelConf">
+		<Address>#regionid#.#worldid#.81.1</Address>
+		<Address>#regionid#.#worldid#.30.1</Address>
+		<SendSize>4096000</SendSize>
+		<RecvSize>4096000</RecvSize>
+		<FuncType>0</FuncType>
+		<Desc>channel from legion to db proxy</Desc>
+	</ChannelList>
+
+	<ChannelList type="ChannelConf">
+		<Address>#regionid#.#worldid#.94.1</Address>
+		<Address>#regionid#.#worldid#.30.1</Address>
+		<SendSize>4096000</SendSize>
+		<RecvSize>4096000</RecvSize>
+		<FuncType>0</FuncType>
+		<Desc>channel from init_robot to db proxy</Desc>
+	</ChannelList>
+
+	<ChannelList type="ChannelConf">
+		<Address>#regionid#.#worldid#.92.1</Address>
+		<Address>#regionid#.#worldid#.30.1</Address>
+		<SendSize>4096000</SendSize>
+		<RecvSize>4096000</RecvSize>
+		<FuncType>0</FuncType>
+		<Desc>channel from manor to db proxy</Desc>
+	</ChannelList>
+
+	<ChannelList type="ChannelConf">
+		<Address>#regionid#.#worldid#.95.1</Address>
+		<Address>#regionid#.#worldid#.30.1</Address>
+		<SendSize>4096000</SendSize>
+		<RecvSize>4096000</RecvSize>
+		<FuncType>0</FuncType>
+		<Desc>channel from test to db proxy</Desc>
+	</ChannelList>
+</BusConf>
+
+

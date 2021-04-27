@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<world_svrconf version="1" >
+	<TextMsgHost>#world_svr_php_api_host#</TextMsgHost>
+	<TextMsgPort>#world_svr_php_api_port#</TextMsgPort>
+	<MemPoolShmKey>#world_svr_shm_key#</MemPoolShmKey>
+	<MemPoolShmSize>#world_svr_shm_size#</MemPoolShmSize>
+	<MaxOnlineInfoPoolSize>#world_svr_online_info_pool_size#</MaxOnlineInfoPoolSize>
+	<UdpTextMsgHost>#world_svr_udp_textmsg_host#</UdpTextMsgHost>
+	<UdpTextMsgPort>#world_svr_udp_textmsg_port#</UdpTextMsgPort>
+	<WorldGroupNum>#world_group_num#</WorldGroupNum>
+	<BlockMsgSerialize>#block_msg_serialize#</BlockMsgSerialize>
+	<ZoneSvrChange type="ZoneSvrChange">
+		<ZoneSvrChangeNum>1</ZoneSvrChangeNum>
+		<ZoneSvrChangeList type="ZoneSvrChangeEntry">
+			<SrcZoneSvr>955</SrcZoneSvr>
+			<DstZoneSvr>#worldid#</DstZoneSvr>
+		</ZoneSvrChangeList>
+	</ZoneSvrChange>
+</world_svrconf>

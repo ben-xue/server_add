@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+<ProxyConf version="1" >
+    <CenterAddrCnt>1</CenterAddrCnt>
+    <CenterAddrData type="CenterAddr" >
+          <CenterIpStr>192.168.1.142</CenterIpStr>
+          <CenterPort>4202</CenterPort>
+          <Instance>1</Instance>
+          <RegionID>1</RegionID>
+    </CenterAddrData>
+    <CenterAddrData type="CenterAddr" >
+          <CenterIpStr>192.168.1.142</CenterIpStr>
+          <CenterPort>14203</CenterPort>
+          <Instance>2</Instance>
+	  <RegionID>1</RegionID>
+    </CenterAddrData>
+    <LocalIP>192.168.1.142</LocalIP>
+    <LocalPort>4203</LocalPort>
+    <VerfityMagic>0421</VerfityMagic>
+    <SvrStatus>1</SvrStatus>
+</ProxyConf>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<metalib name="net" version="1" tagsetversion="1" >
+
+    <macrosgroup name="TUNNEL_ROUTE_METHOD_TYPE" desc="" >
+        <macro name="TUNNEL_ROUTE_METHOD_DIRECT" value="1" desc="直接按目的地址路由" />
+        <macro name="TUNNEL_ROUTE_METHOD_BY_GROUPID" value="2" desc="按分组id路由" />
+        <macro name="TUNNEL_ROUTE_METHOD_BY_BROADCAST" value="3" desc="广播路由" />
+        <macro name="TUNNEL_ROUTE_METHOD_BY_DYNAMIC" value="4" desc="动态路由(按照Role转发)" />
+    </macrosgroup>
+
+    <macro name="MAX_TUNNELTRANSLATE_MANAGE_SVR_CNT" value="12" desc="" />
+
+    <struct name="SSRouteDetailDirect" version="1" desc="" >
+        <entry name="Reserved" type="byte" desc="" />
+    </struct>
+
+    <struct name="SSRouteDetailByGroupID" version="1" desc="" >
+        <entry name="FuncID" type="smalluint" desc="" />
+        <entry name="GroupID" type="biguint" desc="" />
+    </struct>
+
+    <struct name="SSRouteDetailBroadCast" version="1" desc="" >
+        <entry name="FuncID" type="smalluint" desc="" />
+    </struct>
+
+    <struct name="SSRouteDetailDynamic" version="1" desc="" >
+        <entry name="FuncID" type="smalluint" desc="" />
+        <entry name="Key" type="biguint" desc="" />
+    </struct>
+
+    <union name="SSTunnelRouteMethodDetail" version="1" desc="tunnel消息路由方法的详细数据" >
+        <entry name="RouteDetailDirect" type="SSRouteDetailDirect" id="TUNNEL_ROUTE_METHOD_DIRECT" desc="" />
+        <entry name="RouteDetailByGroupID" type="SSRouteDetailByGroupID" id="TUNNEL_ROUTE_METHOD_BY_GROUPID" desc="" />
+        <entry name="RouteDetailBroadCast" type="SSRouteDetailBroadCast" id="TUNNEL_ROUTE_METHOD_BY_BROADCAST" desc="" />
+        <entry name="RouteDetailDynamic" type="SSRouteDetailDynamic" id="TUNNEL_ROUTE_METHOD_BY_DYNAMIC" desc="" />
+    </union>
+
+    <macro name="TDR_TUNNEL_MSG_MAGIC_NO" value="7760" desc="" />
+    <macrosgroup name="TUNNEL_CMD_TYPE" desc="tunnel cmd 类型" >
+        <macro name="TUNNEL_CMD_HEART_C2S" value="1" desc="心跳包发送给客户端发给服务器(包括了连接到端口svrID等信息)" />
+        <macro name="TUNNEL_CMD_HEART_S2C" value="2" desc="心跳包发送给服务器发给客户端(包括了连接到端口svrID等信息)" />
+        <macro name="TUNNEL_CMD_GM_REQ"   value="3" desc="GM协议请求" />
+        <macro name="TUNNEL_CMD_GM_RES"   value="4" desc="GM协议响应" />
+        <macro name="TUNNEL_CMD_TRANSLATE_REPORT"   value="5" desc="Translate进程上报信息" />
+        <macro name="TUNNEL_CMD_MSG" value="6" desc="转发消息类型(服务建的中转消息)" />
+    </macrosgroup>
+
+    <struct name="SSTunnelHeartDataToServer" version="1" desc="tunnel心跳包数据" >
+        <entry name="SvrID" type="uint" desc="服务器的id" />
+        <entry name="SvrIDStr" type="string" size="32" desc="字符串表示的服务器id" />
+        <entry name="SvrIP" type="uint" desc="服务器ip"/>
+        <entry name="SvrPort" type="uint" desc="服务器端口" />
+        <entry name="Channel" type="smallint" desc="当前渠道号" />
+        <entry name="VerfityMagic" type="uint" desc="" />
+    </struct>
+
+    <struct name="SSTunnelHeartDataToClient" version="1" desc="tunnel心跳包数据" >
+        <entry name="Reserved" type="byte" desc="保留字段" />
+    </struct>
+
+    <struct name="SSTunnelMsgData" version="1" desc="tunnel中转消息数据" >
+        <entry name="Reserved" type="byte" desc="保留字段" />
+    </struct>
+
+    <struct name="SSTunnelGMReqData" version="1" desc="tunnel GM请求消息" >
+        <entry name="SvrID" type="uint" desc="发起命令的svrid" />
+        <entry name="GmContent" type="string" size="256" desc="GM命令内容" />
+    </struct>
+
+    <struct name="SSTunnelGMResData" version="1" desc="tunnel GM响应消息" >
+        <entry name="Reserved" type="byte" desc="保留字段" />
+    </struct>
+
+    <struct name="SSTranslateReportData" version="1" desc="translate 上报信息" >
+        <entry name="SvrCnt" type="uint" desc="server个数" />
+        <entry name="ServerBusIDList" type="uint" count="MAX_TUNNELTRANSLATE_MANAGE_SVR_CNT" refer="SvrCnt" desc="server busid列表" />
+    </struct>
+
+    <union name="SSTunnelBodyDetailData" version="1" desc="tunnel内部协议包体详细数据" >
+        <entry name="HeartDataToServer" type="SSTunnelHeartDataToServer" id="TUNNEL_CMD_HEART_C2S" desc="心跳数据" />
+        <entry name="HeartDataToClient" type="SSTunnelHeartDataToClient" id="TUNNEL_CMD_HEART_S2C" desc="心跳数据" />
+        <entry name="GMReqData" type="SSTunnelGMReqData" id="TUNNEL_CMD_GM_REQ" desc="GM请求数据" />
+        <entry name="GMResData" type="SSTunnelGMResData" id="TUNNEL_CMD_GM_RES" desc="GM请求数据" />
+        <entry name="TranslateReportData" type="SSTranslateReportData" id="TUNNEL_CMD_TRANSLATE_REPORT" desc="translate 上报信息" />
+    </union>
+
+    <!-- 定义下面的结构体是避免中转服需要解码, 提高转发速度 -->
+    <struct name="SSTunnelPkgHead" version="1" >
+        <entry name="Magic" type="smalluint" desc="" />
+        <entry name="Cmd" type="byte" desc="协议类型 参考TUNNEL_CMD_TYPE" />
+        <entry name="SeqNo" type="biguint" desc="" />
+        <entry name="MsgSrc" type="uint" desc="" />
+        <entry name="MsgDst" type="uint" desc="" />
+        <entry name="RouteMethodID" type="byte" desc="" />
+        <entry name="TunnelRouteMethodDetail" type="SSTunnelRouteMethodDetail" select="RouteMethodID" desc="" />
+        <entry name="BodyLen" type="uint" desc="" />
+        <entry name="SSPkgVersion" type="uint" desc="SSPkg打包版本号" />
+    </struct>
+
+    <struct name="SSTunnelPkgBody" version="1" desc="Tunnel 内部协议包体" >
+        <entry name="Cmd" type="byte" desc="协议类型 参考TUNNEL_CMD_TYPE" />
+        <entry name="DetailData" type="SSTunnelBodyDetailData" select="Cmd" desc="tunnel详细数据" />
+    </struct>
+
+</metalib>

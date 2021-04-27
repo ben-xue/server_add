@@ -1,0 +1,638 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<metalib tagsetversion="1" name="ResDef" version="1">
+    <macro name="MAX_PROTO_KEY_LEN" value="64" desc="协议加密的密钥的最大长度"/>
+    <macro name="MAX_PATH_LENGTH" value="128" desc="文件路径长度"/>
+    <!--写死的系数（概率等）-->
+    <macro name="COMMON_PROB_BASE" value="10000" desc="配置概率值通用系统"/>
+    <macro name="MAX_SENSITIVEWORD_LENGTH" value="128" desc="最大敏感词长度"/>
+    <macro name="MAX_ADVERTISEWORD_LENGTH" value="128" desc="最大广告词长度"/>
+    <macro name="MAX_ITEM_GET_WAY_NUM" value="10" desc="最大获得途径数量"/>
+    <macro name="MAX_FILTER_COND_COUNT" value="10" desc="最大过滤条件数量"/>
+    
+    <struct version="1" name="FilterCondEntry">
+        <entry name="FilterCondType" type="int" version="1" cname="类型"/>
+        <entry name="FilterCondParm" type="int" version="1" cname="参数"/>
+        <entry name="MinValue" type="int" version="1" cname="小值"/>
+        <entry name="MaxValue" type="int" version="1" cname="大值"/>
+    </struct>
+    
+    <macrosgroup name="CurrencyType" desc="货币类型">
+        <macro name="CURRENCY_NONE" value="0" desc="无效货币"/>
+        <macro name="CURRENCY_DIAMOND" value="1" desc="钻石"/>
+        <macro name="CURRENCY_GOLD" value="2" desc="金币"/>
+        <macro name="CURRENCY_YIN" value="3" desc="银币"/>
+        <macro name="CURRENCY_SOLDIER" value="4" desc="预备役"/>
+        <macro name="CURRENCY_GRAIN" value="5" desc="粮草"/>
+        <macro name="CURRENCY_WOOD" value="6" desc="木材"/>
+        <macro name="CURRENCY_STMA" value="7" desc="体力"/>
+        <macro name="CURRENCY_FUND" value="8" desc="军团资金"/>
+        <macro name="CURRENCY_EXPLOIT" value="9" desc="个人功勋"/>
+        <macro name="CURRENCY_SCIENCE_POINT" value="10" desc="科技点"/>
+        <macro name="CURRENCY_VIP_SCORE" value="11" desc="vip积分"/>
+        <macro name="CURRENCY_LINGZHU_POINT" value="12" desc="领主积分"/>
+        <macro name="CURRENCY_HONOUR" value="14" desc="荣誉积分"/>
+        <macro name="CURRENCY_EQUIP_ESSENCE" value="15" desc="装备精华"/>
+        <macro name="CURRENCY_STUDY_POINT" value="16" desc="科研点"/>
+        <macro name="CURRENCY_WORLD_TOKEN" value="17" desc="行军令"/>
+        <macro name="CURRENCY_HONOR_SCORE" value="18" desc="荣耀值"/>
+        <macro name="CURRENCY_WARBOOK" value="19" desc="战书"/>
+        <macro name="CURRENCY_CRYSTAL" value="20" desc="水晶"/>
+        <macro name="CURRENCY_TRADE_POINT" value="21" desc="贸易点"/>
+        <macro name="CURRENCY_PRAY_TICKET" value="22" desc="祈祷券(奇迹之塔)"/>
+        <macro name="CURRENCY_DUST" value="23" desc="粉尘" />
+        <macro name="CURRENCY_RUST" value="24" desc="铁色精华" />
+        <macro name="CURRENCY_MAX" value="25" desc="最大"/>
+    </macrosgroup>
+
+    <macrosgroup name="RecruitType" desc="招募类型">
+        <macro name="NORMAL_ONCE" value="1" desc="普通招募一次"/>
+        <macro name="NORMAL_TEN" value="2" desc="普通招募10次"/>
+        <macro name="ADVANCED_ONCE" value="3" desc="高级招募一次"/>
+        <macro name="ADVANCED_TEN" value="4" desc="高级招募10次"/>
+    </macrosgroup>
+
+    <macrosgroup name="ColorQuality" desc="颜色品质定义">
+        <macro name="COLOR_NONE" value="0" desc="无定义颜色占位"/>
+        <macro name="COLOR_BAI" value="1" desc="白色"/>
+        <macro name="COLOR_LV" value="2" desc="绿色"/>
+        <macro name="COLOR_LAN" value="3" desc="蓝色"/>
+        <macro name="COLOR_ZI" value="4" desc="紫色"/>
+        <macro name="COLOR_CHENG" value="5" desc="橙色"/>
+        <macro name="COLOR_HONG" value="6" desc="红色"/>
+        <macro name="COLOR_MAX" value="7" desc="最大"/>
+    </macrosgroup>
+
+    <macrosgroup name="LordEquipColorQuality" desc="领主装备颜色品质定义">
+        <macro name="LORD_EQUIP_COLOR_NONE" value="0" desc="无定义颜色占位"/>
+        <macro name="LORD_EQUIP_COLOR_BAI" value="1" desc="白色"/>
+        <macro name="LORD_EQUIP_COLOR_LV" value="2" desc="绿色"/>
+        <macro name="LORD_EQUIP_COLOR_LAN" value="3" desc="蓝色"/>
+        <macro name="LORD_EQUIP_COLOR_ZI" value="4" desc="紫色"/>
+        <macro name="LORD_EQUIP_COLOR_CHENG" value="5" desc="橙色"/>
+        <macro name="LORD_EQUIP_COLOR_HONG" value="6" desc="红色"/>
+    </macrosgroup>
+
+    <macrosgroup name="ItemPromptType" desc="物品提示类型">
+        <macro name="PROMPT_TYPE_NONE" value="0" desc="不提示"/>
+        <macro name="PROMPT_TYPE_FIRST" value="1" desc="首次提示"/>
+        <macro name="PROMPT_TYPE_EVERY" value="2" desc="每次提示"/>
+        <macro name="PROMPT_TYPE_INCREASE" value="3" desc="增加提示"/>
+        <macro name="PROMPT_TYPE_END" value="4" desc="结束"/>
+    </macrosgroup>
+
+    <macro name="HERO_MIN_STAR" value="1" desc="英雄最小星级"/>
+    <macro name="HERO_MAX_STAR" value="10" desc="英雄最大星级"/>
+    <macro name="HERO_MIN_LEVEL" value="1" desc="英雄最小等级"/>
+    <macro name="HERO_MAX_LEVEL" value="100" desc="英雄最大等级"/>
+    <macro name="SOLDIER_MIN_LEVEL" value="1" desc="兵种最小等级"/>
+    <macro name="SOLDIER_MAX_LEVEL" value="30" desc="兵种最大等级"/>
+    <macro name="SHOP_RATE_CNT" value="3" desc="商店折扣数目"/>
+
+    <macrosgroup name="HeroAtkType" desc="英雄攻击类型">
+        <macro name="HERO_ATK_TYPE_PHY" value="1" desc="物理攻击"/>
+        <macro name="HERO_ATK_TYPE_MAGIC" value="2" desc="法术攻击"/>
+    </macrosgroup>
+
+    <macrosgroup name="SelectTargetHeroType" desc="目标英雄类型">
+        <macro name="TargetHeroNone" value="0" desc="无限制"/>
+        <macro name="TargetHeroHero" value="1" desc="英雄"/>
+        <macro name="TargetHeroSoldier" value="2" desc="士兵"/>
+    </macrosgroup>
+
+    <macrosgroup name="RecruitDefineType" desc="英雄招募类型">
+        <macro name="RECRUIT_NORMAL" value="1" desc="普通招募"/>
+        <macro name="RECRUIT_ADVANCE" value="2" desc="高级招募"/>
+        <macro name="RECRUIT_TOWER" value="3" desc="奇迹之塔祈祷"/>
+    </macrosgroup>
+
+    <macrosgroup name="ArithmeticTokenType" desc="算法符号类型">
+        <macro name="ArithmeticTokenLess" value="1" desc="小于"/>
+        <macro name="ArithmeticTokenEqual" value="2" desc="等于"/>
+        <macro name="ArithmeticTokenGreater" value="3" desc="大于"/>
+    </macrosgroup>
+
+    <macrosgroup name="EquipType" desc="装备类别定义">
+        <macro name="EQUIP_TYPE_NONE" value="0" desc="无定义占位"/>
+        <macro name="EQUIP_TYPE_WEAPON" value="1" desc="武器"/>
+        <macro name="EQUIP_TYPE_CLOTHING" value="2" desc="衣服"/>
+        <macro name="EQUIP_TYPE_TROUSERS" value="3" desc="裤子"/>
+        <macro name="EQUIP_TYPE_ARTIFACT" value="4" desc="神器"/>
+        <macro name="EQUIP_TYPE_MAX" value="5" desc="最大"/>
+    </macrosgroup>
+
+    <macro name="EQUIP_LEVEL_MAX" value="5" desc="装备最大等级"/>
+    <macro name="BEAUTY_POSITION_MAX_NUM" value="10" desc="最大妃位为皇后"/>
+    <macro name="BEAUTY_MAX_LEVEL" value="20" desc="美人最大等级"/>
+    <macro name="BEAUTY_MAX_STAR" value="5" desc="美人最大星级"/>
+    <macro name="PLAYER_MAX_RANK" value="6" desc="玩家最大军衔"/>
+    <macro name="BEAUTY_MAX_HERO_NUM" value="3" desc="美人最多天命武将个数"/>
+    <!--常量宏定义-->
+    <macro name="MODEL_FILE_NAME_MAXLEN" value="256" desc="模型ID长度"/>
+    <macro name="FILE_NAME_MAXLEN" value="256" desc="文件长度"/>
+    <macro name="ROLE_NAME_MAXLEN" value="64" desc="名字长度"/>
+    <macro name="ROLE_MODELID_MAXLEN" value="64" desc="模型ID长度"/>
+    <macro name="ROLE_DES_MAXLEN" value="256" desc="角色描述长度"/>
+    <macro name="MAX_SKILL_SLOT_CNT" value="8" desc="最大技能槽位数量"/>
+    <macro name="MAX_ROLE_NAME_LEN" value="64" desc="最大角色名字长度"/>
+    <macro name="MAX_ROLE_JOB_NUM" value="6" desc="最大职业类型"/>
+    <macro name="MIN_PLAYER_LEVEL" value="1" desc="玩家最小等级"/>
+    <macro name="MAX_PLAYER_LEVEL" value="200" desc="玩家最大等级"/>
+    <macro name="MAX_IMAGE_NAME_LEN" value="128" desc="最大图片名字长度"/>
+    <macro name="EFFECT_NAME_MAXLEN" value="64" desc="特效名字长度"/>
+    <macro name="MAX_REFRESH_TIME_LIST_CNT" value="4" desc="最大刷新时间列表元素个数"/>
+    <macro name="MAX_CFG_DESC_LEN" value="64" desc="配置最大描述长度"/>
+    <macro name="HERO_MAX_ATLAS_NAME_COUNT" value="32" desc="最大图集名称长度"/>
+    <macro name="BORDER_ICON_CONDITION_STR_COUNT" value="32" desc="边框限制条件说明文字长度"/>
+    <macro name="LORD_EQUIP_MAX_STAR" value="10" desc="领主装备最大星级"/>
+
+    <!--英雄士兵相关-->
+    <macro name="TARGET_LOCK_PARM_COUNT" value="2" desc="锁定敌人参数个数"/>
+    <macro name="MAX_HERO_SKILL_CNT" value="4" desc="英雄最大技能个数"/>
+    <macro name="MAX_HERO_FRAME_TYPE_CNT" value="3" desc="英雄帧数类型最大值"/>
+
+    <macrosgroup name="TargetLockType" version="1" desc="锁定敌人类型">
+        <macro name="TARGET_LOCK_NONE" value="0" desc=""/>
+        <macro name="TARGET_LOCK_NEARST" value="1" desc="锁定最近的敌人"/>
+        <macro name="TARGET_LOCK_LOWHP" value="2" desc="锁定血量最少的敌人"/>
+        <macro name="TARGET_LOCK_FARTHEST" value="3" desc="锁定最远的敌人"/>
+        <macro name="TARGET_LOCK_LOWHP_RATE" value="4" desc="锁定血量比例最少的敌人"/>
+        <macro name="TARGET_LOCK_TYPE_SOLDIER" value="5" desc="锁定特定类型的兵团"/>
+        <macro name="TargetLockMax" value="10" desc="最大"/>
+    </macrosgroup>
+
+    <macrosgroup name="HeroType" version="1" desc="英雄类型 (对兵种的倾向)">
+        <macro name="TYPE_NONE" value="0" desc="无"/>
+        <macro name="TYPE_TJ" value="1" desc="突击"/>
+        <macro name="TYPE_FY" value="2" desc="防御"/>
+        <macro name="TYPE_YS" value="3" desc="远射"/>
+        <macro name="TYPE_QG" value="4" desc="强攻"/>
+        <macro name="TYPE_QN" value="5" desc="全能"/>
+		<macro name="TYPE_FZ" value="6" desc="辅助"/>
+    </macrosgroup>
+	<macrosgroup name="HeroRaceType" version="1" desc="英雄种族(擅长领域)">
+        <macro name="RACE_NONE" value="0" desc="无"/>
+        <macro name="RACE_ZS" value="1" desc="驻守"/>
+        <macro name="RACE_DY" value="2" desc="打野"/>
+        <macro name="RACE_GC" value="3" desc="攻城"/>
+        <macro name="RACE_CJ" value="4" desc="采集"/>
+        <macro name="RACE_ZH" value="5" desc="综合"/>
+    </macrosgroup>
+	
+    <!--成就相关-->
+    <macro name="RESMAX_ACHIEVE_NAME_LENGTH" value="64" desc="成就名字最长字符数"/>
+    <macro name="RESMAX_ACHIEVE_DESC_LENGTH" value="256" desc="成就描述最长字符数"/>
+    <macro name="RESMAX_ACHIEVE_BEHAVIOR_PARAM_CNT" value="4" desc="成就事件参数个数"/>
+
+    <!--建筑相关-->
+    <macrosgroup name="SpeedUpStructureType" desc="建筑加速类型定义">
+        <macro name="SPEED_UP_FREE" value="1" desc="vip免费加速"/>
+        <macro name="SPEED_UP_MONEY" value="2" desc="金币加速"/>
+        <macro name="SPEED_UP_ITEM" value="3" desc="道具加速"/>
+    </macrosgroup>
+    <struct name="ResVector2" version="1" desc="UI坐标">
+        <entry name="X" type="float" desc="坐标X"/>
+        <entry name="Y" type="float" desc="坐标Y"/>
+    </struct>
+    <struct name="ResVector3" version="1" desc="坐标">
+        <entry name="X" type="float" desc="X"/>
+        <entry name="Y" type="float" desc="Y"/>
+        <entry name="Z" type="float" desc="Z"/>
+    </struct>
+    <macro name="MAX_HUNTING_BUFF_NAME_LEN" value="64" desc="打猎Buff名称最大长度"/>
+    <macro name="MAX_HUNTING_BUFF_ICON_LEN" value="128" desc="打猎buff图标名称"/>
+    <macro name="MAX_HUNTING_BUFF_PARAM_CNT" value="3" desc="打猎buff参数"/>
+    <!--军团相关-->
+    <macro name="LEGION_ICON_LENGTH" value="128" desc="军团图标资源长度"/>
+    <macrosgroup name="ResLanguageType" desc="语言类型">
+        <macro name="RES_LANGUAGE_TYPE_ALL" value="0" desc="所有语言"/>
+        <macro name="RES_LANGUAGE_TYPE_CH" value="1" desc="默认简体中文"/>
+        <macro name="RES_LANGUAGE_TYPE_TW" value="2" desc="繁体中文"/>
+        <macro name="RES_LANGUAGE_TYPE_EN" value="3" desc="英文"/>
+        <macro name="RES_LANGUAGE_TYPE_KR" value="4" desc="韩语"/>
+        <macro name="RES_LANGUAGE_TYPE_JP" value="5" desc="日语"/>
+        <macro name="RES_LANGUAGE_TYPE_INA" value="6" desc="印尼语"/>
+        <macro name="RES_LANGUAGE_TYPE_MAX" value="7" desc="最大值"/>
+    </macrosgroup>
+    <macro name="ITEM_NAME_LENGTH" value="64" desc="物品名字长度"/>
+    <macro name="MAX_SKILL_NUM" value="5" desc="最大技能数量"/>
+    <macro name="PEERAGE_BG_NAME_LENGTH" value="32" desc="爵位背景资源长度"/>
+    <macro name="COUNTRY_ICON_NAME_LENGTH" value="32" desc="国家图标名称长度"/>
+    <macro name="COUNTRY_NAME_LENGTH" value="32" desc="国家名称长度"/>
+    <macro name="LEGION_EVENT_TEMP_LENGTH" value="128" desc="军团事件模板长度"/>
+    <macro name="LEGION_EVENT_PARAM_COUNT" value="5" desc="军团事件参数个数"/>
+    <macro name="DEFAULT_WORKER_NUM" value="1" desc="创建角色后的工人数量"/>
+    <!--领地增益-->
+    <macro name="MANOR_IMPACT_NAME_LEN" value="128" desc="增益名称长度"/>
+    <macro name="MANOR_IMPACT_DESCRIPTION_LEN" value="128" desc="增益描述长度"/>
+    <macro name="MANOR_IMPACT_ICON_LEN" value="64" desc="增益默认图标长度"/>
+    <macro name="MANOR_IMPACT_LIST_NAME_LEN" value="128" desc="增益名称长度"/>
+    <macro name="MANOR_IMPACT_LIST_DESCRIPTION_LEN" value="128" desc="增益描述长度"/>
+    <macro name="MAX_MANOR_IMPACT_PARAM_CNT" value="3" desc="领地增益参数个数"/>
+    <macro name="MAX_CASTLE_TYPE_CNT" value="4" desc="城堡类型上限"/>
+    <!--签到-->
+    <macro name="MAX_FRESH_GROUP" value="4" desc="最大签到奖励刷新组数"/>
+    <macro name="MAX_DATE_LEN_IN_CHAR" value="16" desc="签到字符数组宏"/>
+    <!--新手主线-->
+    <macro name="RESMAX_BEHAVIOR_PARAM_CNT" value="4" desc="最多事件参数数量"/>
+    <macro name="MAX_SPECIAL_MULTI_PARAM_CNT" value="64" desc="特殊参数字符串容量"/>
+    <macro name="ANY_SCIENCE" value="1" desc="任意科技任务ID"/>
+
+    <macrosgroup name="MainTaskCompleteType" desc="主线任务完成类型">
+        <macro name="FROM_GET_TASK" value="0" desc="从领取了任务开始累计进度(任务出现后,要等下一次事件触发)"/>
+        <macro name="FROM_HISTORY" value="1" desc="领取任务之前的进度也计算在内"/>
+        <macro name="FROM_SPECIAL_TASK" value="2" desc="从指定任务出现后开始统计"/>
+        <macro name="FROM_GET_TASK_AND_TRIGGER" value="3" desc="从指定任务出现后开始统计(任务出现后,主动触发一次事件)"/>
+    </macrosgroup>
+
+    <macrosgroup name="ActivityOpenType" desc="活动开启类型，作为活动tab，进行标签区分">
+        <macro name="OpenType_Fixed" value="1" desc="固定开启，类似七日签到"/>
+        <macro name="OpenType_Normal" value="2" desc="正常活动开启方式"/>
+        <macro name="OpenType_Newcomer" value="3" desc="新手开启方式"/>
+        <macro name="OpenType_Loop" value="4" desc="循环开启"/>
+    </macrosgroup>
+    <macrosgroup name="ActivityStatus" desc="活动状态">
+        <macro name="ActivityStatusLimit" value="1" desc="限时"/>
+        <macro name="ActivityStatusHot" value="2" desc="火爆"/>
+        <macro name="ActivityStatusNew" value="3" desc="最新"/>
+    </macrosgroup>
+
+    <macrosgroup name="ActivitygroupType" desc="活动所属大类">
+		<macro name="ActivityCalendar" value="1" desc="活动日历"/>
+		<macro name="ActivityCycle" value="2" desc="热门活动"/>
+        <macro name="ActivityOperation" value="3" desc="日常活动"/>
+    </macrosgroup>
+
+    <macrosgroup name="ActivityType" desc="活动类型，标识活动身份">
+        <macro name="ActivityTypeRedeemCode" value="1" desc="兑换码活动"/>
+        <macro name="ActivityTypeDailySign" value="2" desc="每日签到"/>
+        <macro name="ActivityTypeLevelGift" value="3" desc="等级礼包"/>
+        <macro name="ActivityTypeShopDailyItemGood" value="4" desc="商城-每日特惠"/>
+        <macro name="ActivityTypeShopSuperGift" value="5" desc="商城-超值礼包"/>
+        <macro name="ActivityTypeShopHotSell" value="6" desc="商城-热销商品"/>
+        <macro name="ActivityTypeCumulativeCharge" value="7" desc="累积充值"/>
+        <macro name="ActivityTypeHolidayCumulativeCharge" value="8" desc="节假日累计充值"/>
+        <macro name="ActivityTypeDailyStma" value="9" desc="每日体力活动"/>
+        <macro name="ACTIVITYTYPESUPERGIFTPRESENT" value="10" desc="超值礼包-限时馈赠"/>
+        <macro name="ActivityTypeTimeLimitGift" value="11" desc="限时礼包"/>
+        <macro name="CycleActivityNormal" value="12" desc="循环活动-任务式活动"/>
+        <macro name="CycleActivityScore" value="13" desc="循环活动-个人积分活动"/>
+        <macro name="CycleActivityLegionScore" value="14" desc="循环活动-军团积分活动"/>
+        <macro name="CycleActivityBestLord" value="15" desc="循环活动-最强领主"/>
+        <macro name="ActivityCitySupply" value="16" desc="城池补给"/>
+        <macro name="ActivityDiamonShop" value="17" desc="钻石商城"/>
+        <macro name="ActivityWeekGift" value="18" desc="周礼包"/>
+        <macro name="ActivityMonthGift" value="19" desc="月礼包"/>
+        <macro name="ActivityTypeFirstCharge" value="20" desc="首充活动"/>
+        <macro name="CycleActivitySevenDay" value="21" desc="循环活动-开服七日活动"/>
+        <macro name="GrowthFundCharge" value="22" desc="成长基金充值" />
+        <macro name="CycleActivityGhost" value="23" desc="循环活动-野怪试炼" />
+        <macro name="CycleActivitySupply" value="24" desc="循环活动-战略物资" />
+        <macro name="ActivityExchange" value="25" desc="限时兑换" />
+        <macro name="ActivityMacroWar" value="26" desc="大作战" />
+        <macro name="ActivityMapBox" value="27" desc="地图宝箱" />
+        <macro name="ActivityQuestionnaire" value="28" desc="问卷" />
+        <macro name="ActivityTypeMax" value="30" desc="最大"/>
+    </macrosgroup>
+    <macro name="RES_ICON_MAX_LEN" value="128" desc="icon最大长度"/>
+    <!--特权卡类型-->
+    <macrosgroup name="PrivilegeCardType" desc="特权卡类型">
+        <macro name="PCT_NORMAL" value="1" desc="普通特权卡"/>
+        <macro name="PCT_ADVANCE" value="2" desc="至尊特权卡"/>
+    </macrosgroup>
+    <macrosgroup name="ScienceAttrImpactType" desc="学院科技影响分类">
+        <macro name="SAT_HERO" value="1" desc="对英雄的影响"/>
+        <macro name="SAT_RES" value="2" desc="对资源的影响"/>
+        <macro name="SAT_STRUCTURE" value="3" desc="对建筑的影响"/>
+        <macro name="SAT_CITYWALL" value="4" desc="对城墙的影响"/>
+        <macro name="SAT_OTHER" value="5" desc="对系统其它的影响"/>
+        <macro name="SAT_WORLD" value="6" desc="对大世界的影响"/>
+        <macro name="SAT_SOLDIER" value="7" desc="对兵种的影响"/>
+        <macro name="SAT_BUFF" value="8" desc="buff属性影响"/>
+    </macrosgroup>
+    <macro name="MAX_OBTAIN_DESC_LEN" value="100" desc="获取途径"/>
+    <macro name="MAX_HEAD_FRAME_DESC_LEN" value="100" desc="相框名称"/>
+    <macro name="MAX_HEAD_FRAME_ICON_LEN" value="48" desc="相框icon长度"/>
+    <!--头像类别-->
+    <macrosgroup name="HeadType" desc="头像类型">
+        <macro name="HEAD_INVALID" value="0" desc="不作为玩家头像的小兵头像"/>
+        <macro name="HEAD_COMMON" value="1" desc="通用头像"/>
+        <macro name="HEAD_ARENA_RANK" value="2" desc="段位解锁"/>
+        <macro name="HEAD_HERO" value="3" desc="英雄解锁"/>
+    </macrosgroup>
+    <!--头像框类别-->
+    <macrosgroup name="HeadFrameType" desc="头像框类型">
+        <macro name="HEAD_FRAME_COMMON" value="1" desc="通用头像"/>
+        <macro name="HEAD_FRAME_ARENA_RANK" value="2" desc="竞技场段位解锁"/>
+        <macro name="HEAD_FRAME_ACHIEVE" value="3" desc="成就解锁"/>
+        <macro name="HEAD_FRAME_VIP_LEVEL" value="4" desc="vip等级解锁"/>
+        <macro name="HEAD_FRAME_USING_ITEM" value="5" desc="使用指定道具解锁"/>
+    </macrosgroup>
+    <!--限时礼包-->
+    <macro name="TIME_LIMIT_GIFT_NAME_LENGTH" value="48" desc="限时礼包名字"/>
+    <macro name="TIME_LIMIT_GIFT_ICON_LENGTH" value="64" desc="限时礼包ICON"/>
+    <macro name="TIME_LIMIT_GIFT_POSTFIX_ARRAY_LENGTH" value="128" desc="后置礼包数组最大长度(字符串)"/>
+    <macro name="TIME_LIMIT_GIFT_POSTFIX_ARRAY_SIZE" value="5" desc="后置礼包数组最大长度(数目)"/>
+    <macro name="TIME_LIMIT_GIFT_PICTURE_NAME_LENGTH" value="64" desc="礼包名称图片"/>
+    <macro name="TIME_LIMIT_GIFT_PICTURE_DESC_LENGTH" value="256" desc="礼包描述"/>
+
+    <macrosgroup name="TimeLimitGiftType" desc="限时礼包种类">
+        <macro name="TL_GIFT_LEVEL" value="1" desc="升级"/>
+        <macro name="TL_GIFT_HERO_ID" value="2" desc="获得指定ID的英雄"/>
+        <macro name="TL_GIFT_HERO_QUALITY" value="3" desc="获得指定品质的英雄"/>
+        <macro name="TL_GIFT_STRUCTURE" value="4" desc="指定建筑等级 >= 指定等级"/>
+        <macro name="TL_GIFT_SOLDIERS" value="5" desc="当日累计伤亡兵 >= 指定数量"/>
+    </macrosgroup>
+
+    <macrosgroup name="TimeLimitGiftPostfixIDType" desc="限时礼包后置ID种类">
+        <macro name="TL_GIFT_UNIQUE" value="0" desc="无后置礼包"/>
+        <macro name="TL_GIFT_HERO_NORMAL_NODE" value="1" desc="有后置礼包的一个节点"/>
+    </macrosgroup>
+    <macro name="MAX_PREVIOUS_MAINTASK_CNT" value="3" desc="最大前置任务数目"/>
+    <macro name="MAX_NEXT_MAINTASK_CNT" value="3" desc="最大后置任务数目"/>
+    <!--商店-->
+    <macro name="SHOP_ITEM_NAME_MAX_LEN" value="64" desc="商品物品名称最大长度"/>
+    <macro name="SHOP_ITEM_DESC_MAX_LEN" value="128" desc="商品物品描述最大长度"/>
+    <macro name="SHOP_ITEM_ICON_MAX_LEN" value="64" desc="商品物品图标最大长度"/>
+    <macro name="MAX_HOT_SELL_POSTER_URL_SIZE" value="100" desc="海报URL长度"/>
+    <macrosgroup name="ShopPosterType" desc="商店海报类型">
+        <macro name="POSTER_HOT_SELL" value="1" desc="热销礼包"/>
+        <macro name="POSTER_SUPER_GIFT" value="2" desc="超值礼包"/>
+    </macrosgroup>
+    <!--随机名字-->
+    <macro name="MAX_PREFIX_GROUP" value="3" desc="最大前缀分组"/>
+    <macro name="MAX_INFIX_GROUP" value="3" desc="最大中缀分组"/>
+    <macro name="MAX_SUFFIX_GROUP" value="3" desc="最大后缀分组"/>
+    <macro name="RES_YUANFEN_NAME_LEN" value="64" desc="缘分名称长度"/>
+    <macro name="RES_YUANFEN_HERO_LIST_CNT" value="3" desc="缘分列表英雄个数"/>
+    <macro name="RES_TREASURE_NAME_LEN" value="64" desc="宝藏名称长度"/>
+    <macro name="RES_TREASURE_ICON_LEN" value="128" desc="宝藏图标长度"/>
+    <macrosgroup name="RotaryRewardType" desc="转盘奖励类型">
+        <macro name="RotaryCache" value="0" desc="转为奴隶"/>
+        <macro name="RotaryItem" value="1" desc="道具类型"/>
+        <macro name="RotaryCurrency" value="2" desc="货币类型"/>
+    </macrosgroup>
+    <macrosgroup name="UseItemProtectedType" desc="使用道具加资源是否保护">
+        <macro name="USE_ITEM_UNSAFE" value="0" desc="非保护"/>
+        <macro name="USE_ITEM_SAFE" value="1" desc="受保护"/>
+    </macrosgroup>
+    <macrosgroup name="WarPvPBattleType" desc="大世界战斗阵营">
+        <macro name="WAR_PVP_NPC_BOSS_ATTACK" value="1" desc="Boss入侵"/>
+        <macro name="WAR_PVP_NPC_DEFENCE" value="2" desc="城防守军"/>
+    </macrosgroup>
+    <macro name="XIAO_MEI_UIN" value="100" desc="小美的uin(引导用)"/>
+    <macrosgroup name="EmojiUnlockType" desc="表情解锁类型">
+        <macro name="EMOJI_UNLOCK_BY_MONEY" value="0" desc="货币解锁"/>
+        <macro name="EMOJI_UNLOCK_BY_USING_ITEM" value="1" desc="使用道具解锁"/>
+    </macrosgroup>
+
+    <!--领主装备-->
+    <macrosgroup name="LordEquipForgeSpeedUpType" desc="领主装备加速类型定义">
+        <macro name="LORD_EQUIP_FORGE_SPEED_UP_FREE" value="1" desc="vip免费加速"/>
+        <macro name="LORD_EQUIP_FORGE_SPEED_UP_ITEM" value="2" desc="加速道具加速"/>
+        <macro name="LORD_EQUIP_FORGE_SPEED_UP_MONEY" value="3" desc="金钱加速"/>
+    </macrosgroup>
+
+    <!--大世界通用tips-->
+    <macro name="WAR_TIPS_TARGET_UI_NAME_LENGTH" value="128" desc="窗口名长度"/>
+    <macro name="WAR_TIPS_TARGET_GAMEOBJECT_LENGTH" value="256" desc="内容长度"/>
+    <macro name="RES_MAX_BE_WHIP_CNT" value="10"/>
+    <macro name="RES_MAX_HERO_TRAIN_POX_CNT" value="4"/>
+    <macro name="RES_MAX_HERO_UP_CLASS_LEVEL_ATTR_CNT" value="5"/>
+    <macro name="RES_MAX_HERO_TRAIN_ATTR_CNT" value="5"/>
+    <macro name="RES_MAX_HERO_EQUIP_ATTR_CNT" value="5"/>
+    <macro name="RES_MAX_PATROL_COST_RES_NUM" value="3" desc="最大治安消耗资源组"/>
+    <macro name="RES_MAX_PATROL_COST_ITEM_NUM" value="3" desc="最大治安消耗道具组"/>
+
+    <macro name="RES_MAX_CLICK_NPC_COST_ITEM_KIND" value="2" desc="点击NPC剧情配置表-最多损失物品种类"/>
+    <macro name="RES_MAX_CLICK_NPC_CHOICE_KIND" value="2" desc="一个点击npc最多的剧情组"/>
+
+    <macro name="RES_MAX_SUN_RING_ATTR_CNT" value="5" desc="太阳环属性提升个数"/>
+    <macro name="RES_MAX_SUN_RING_DEBRIS_CNT" value="5" desc="太阳环需要碎片个数"/>
+    <macro name="RES_MAX_DEBRIS_LIFEBLOOD_CNT" value="10" desc="碎片命脉个数"/>
+    <macro name="RES_MAX_SUN_RING_DEBRIS_ATTR_CNT" value="3" desc="太阳环碎片属性个数"/>
+    <macro name="RES_MAX_SUN_RING_LIFEBLOOD_ATTR_CNT" value="3" desc="太阳环命脉属性个数"/>
+
+    <macro name="RES_MAX_TRIAL_ICON_LEN" value="128" desc="秘境图标资源长度"/>
+    <macro name="RES_MAX_TRIAL_EFFECT_COUNT" value="3" desc="秘术战前效果最大数目"/>
+    <macro name="RES_MAX_TRIAL_EFFECT_PARA_COUNT" value="3" desc="秘术战前效果参数最大数目"/>
+
+    <macrosgroup name="TrialStageType" desc="试炼秘境关卡类型">
+        <macro name="TRIAL_STAGE_BATTLE" value="1" desc="战斗类型"/>
+        <macro name="TRIAL_STAGE_TREASURE" value="2" desc="宝箱类型"/>
+    </macrosgroup>
+
+    <macrosgroup name="TrialBufAccumType" desc="试炼秘境buf叠加类型">
+        <macro name="TRIAL_BUF_ACCUM_WIN_CNT" value="1" desc="累计胜利次数叠加"/>
+    </macrosgroup>
+
+    <macrosgroup name="TrialBuffType" desc="试炼秘境Buff类型">
+        <macro name="TRIAL_BUFF_BEFORN_BATTLE" value="1" desc="战前生效"/>
+        <macro name="TRIAL_BUFF_IN_BATTLE" value="2" desc="战斗中生效(通过战斗buff实现)"/>
+        <macro name="TRIAL_NON_BUFF_IN_BATTLE" value="3" desc="战斗中生效(不通过战斗buff实现)"/>
+        <macro name="TRIAL_ENEMY_DEBUFF_IN_BATTLE" value="4" desc="战斗中生效的敌人debuf(通过战斗buff实现)"/>
+    </macrosgroup>
+
+    <macrosgroup name="TrialBuffBefornBattleType" desc="试炼秘境战前生效Buff类型">
+        <macro name="TRIAL_BEFORN_BATTLE_RELIVE" value="1" desc="随机复活英雄"/>
+        <macro name="TRIAL_BEFORN_BATTLE_ADD_STATE" value="2" desc="全体加状态"/>
+        <macro name="TRIAL_BEFORN_BATTLE_WEAK_ADD_STATE" value="3" desc="血量最低的英雄加状态"/>
+    </macrosgroup>
+
+    <macrosgroup name="TrialBuffBefornBattleAddType" desc="试炼战前生效Buff增益类型">
+        <macro name="TRIAL_BEFORN_BATTLE_ADD_HP" value="1" desc="加血"/>
+        <macro name="TRIAL_BEFORN_BATTLE_ADD_FURY" value="2" desc="加能量"/>
+    </macrosgroup>
+
+    <macro name="RES_MAX_DUNGEON_OPEN_COND" value="3" desc="最大副本开启条件"/>
+    <macro name="RES_MAX_MAGIC_NUM_IN_ONE_CHOOSE" value="4" desc="一次可供选择的秘术最大数目"/>
+    <macro name="RES_MAX_JADE_DREAMLAND_STAR_COUNT" value="3" desc="翡翠幻境关卡最大评测数"/>
+
+    <macro name="RES_SCIENCE_ATTR_CNT" value="4" desc="科技最多属性个数"/>
+    <macro name="RES_WORLD_NORMAL_STRUCT_ARG_CNT" value="3" desc="大世界建筑参数最大数量"/>
+    <macro name="RES_WORLD_MAX_ALARM_ENTRY_CNT" value="100" desc="预警提示信息最大分类数目"/>
+    <macro name="RES_WORLD_NORMAL_STRUCT_MAX_FLAG_BUFF_CNT" value="3" desc="旗帜最大buff效果数目"/>
+
+    <macrosgroup name="WatchTowerAlarmInfo" desc="瞭望塔提示信息映射关系">
+        <macro name="LORD_INFO_ENEMY_ACT" value="101" desc="敌方部队的行为"/>
+        <macro name="LORD_INFO_HEAD_AND_NAME" value="102" desc="领主头像和名称"/>
+        <macro name="LORD_INFO_LV_AND_POS" value="103" desc="领主等级、领主坐标"/>
+        <macro name="LORD_INFO_LEGION_INFO" value="104" desc="领主所属军团"/>
+        <macro name="LORD_INFO_ARRIVE_TIME" value="105" desc="部队抵达具体时间"/>
+
+        <macro name="HERO_INFO_1" value="201" desc="英雄数量"/>
+        <macro name="HERO_INFO_2" value="202" desc="英雄等级"/>
+        <macro name="HERO_INFO_3" value="203" desc="英雄稀有度"/>
+        <macro name="HERO_INFO_4" value="204" desc="英雄阶级(品质)"/>
+        <macro name="HERO_INFO_5" value="205" desc="英雄星级"/>
+
+        <macro name="SOLDIER_INFO_1" value="301" desc="士兵数量"/>
+        <macro name="SOLDIER_INFO_2" value="302" desc="出战士兵类型"/>
+        <macro name="SOLDIER_INFO_3" value="303" desc="每种士兵的数量"/>
+        <macro name="SOLDIER_INFO_4" value="304" desc="士兵等级"/>
+    </macrosgroup>
+
+    <macro name="RES_MAX_SOLDIER_BURDEN_TYPE_CNT" value="4" desc="士兵负重类型最大种类数"/>
+    <macro name="RES_MAX_STORE_RESOURCE_TYPE_CNT" value="4" desc="仓库容量最大种类数"/>
+
+    <struct name="ResResource" version="1" desc="资源">
+        <entry name="Type" type="uint" cname="种类" desc="种类"/>
+        <entry name="Value" type="uint" cname="数量" desc="数量"/>
+    </struct>
+
+    <macro name="RES_MAGIC_BUF_MAX_HERO_TYPE_CNT" value="2" desc="秘境buf可生效的最大英雄种类数"/>
+    <macro name="RES_MAGIC_BUF_MAX_ENABLE_POS_CNT" value="5" desc="秘境buf可生效的最大位置数"/>
+
+    <macrosgroup name="HeroFuncType" desc="英雄功能定位">
+        <macro name="HERO_TYPE_WARRIOR" value="1" desc="战士"/>
+        <macro name="HERO_TYPE_TANK" value="2" desc="坦克"/>
+        <macro name="HERO_TYPE_MAGE" value="3" desc="法师"/>
+        <macro name="HERO_TYPE_SUPPORT" value="4" desc="辅助"/>
+        <macro name="HERO_TYPE_HUNTER" value="5" desc="游侠"/>
+        <macro name="HERO_TYPE_ANY" value="10" desc="任意种类"/>
+    </macrosgroup>
+
+    <macro name="RES_MAX_HERO_FUNC_TYPE" value="2" desc="英雄功能定位最大数"/>
+
+    <macrosgroup name="TaskCalcCompleteType" desc="任务计算进度方式">
+        <macro name="TASK_CALC_TYPE_AFTER_COMPLETE" value="0" desc="动作完成才算进度"/>
+        <macro name="TASK_CALC_TYPE_IMMEDIATLY" value="1" desc="立刻算进度"/>
+    </macrosgroup>
+
+    <macro name="RES_MAX_STONE_TABLET_WORD_IN_A_LAYER_CNT" value="10" desc="石碑一层中碑文的数量"/>
+
+    <macro name="MAX_NEED_STRUCT_CNT" value="4" desc="建筑升级所需前置建筑条件最大数目"/>
+    <macro name="MAX_TOWER_ALWAYS_HIT_TRIGGER_PARA_CNT" value="3" desc="奇迹之塔保底机制触发条件最大参数"/>
+
+    <macrosgroup name="TOWER_ALWAYS_HIT_TRIGGER_TYPE" desc="奇迹之塔保底机制触发条件类型">
+        <macro name="TOWER_ALWAYS_HIT_TRIGGER_PRAY_CNT" value="1" desc="祈祷次数触发"/>
+    </macrosgroup>
+
+    <struct name="SciencePreData" version="1" desc="前置科技数据">
+        <entry name="ID" type="uint" cname="ID" desc="ID"/>
+        <entry name="Level" type="uint" cname="等级" desc="等级"/>
+    </struct>
+
+    <macro name="MAX_SCIENCE_PRE_CNT" value="4" desc="最大前置科技数量"/>
+    <macro name="MAX_SCIENCE_LINE_POS_COUNT" value="5" desc="最大科技树连线坐标数量"/>
+    <struct name="ScienceLinePosData" version="1" desc="科技树连线数据">
+        <entry name="ScienceID" type="uint" cname="科技ID" desc="科技ID"/>
+        <entry name="Pos" type="ResVector2" count="MAX_SCIENCE_LINE_POS_COUNT" cname="坐标" desc="坐标"/>
+    </struct>
+
+    <macrosgroup name="ITEM_USE_TYPE_FOR_TASK" desc="道具使用类型(For 任务)">
+        <macro name="ITEM_USE_TYPE_RESOURCE" value="1" desc="使用资源类道具"/>
+        <macro name="ITEM_USE_TYPE_FOOD" value="2" desc="使用粮食增产道具"/>
+        <macro name="ITEM_USE_TYPE_WOOD" value="3" desc="使用木材增产道具"/>
+        <macro name="ITEM_USE_TYPE_SLIVER" value="4" desc="使用秘银增产道具"/>
+        <macro name="ITEM_USE_TYPE_TUNTIAN" value="5" desc="使用屯田增产道具"/>
+        <macro name="ITEM_USE_TYPE_EXP" value="6" desc="使用经验书道具"/>
+        <macro name="ITEM_USE_TYPE_SPEEDUP_TIME" value="7" desc="使用时间加速道具"/>
+    </macrosgroup>
+
+    <macrosgroup name="AchieveType" desc="成就类型">
+        <macro name="Develop" value="1" desc="发展"/>
+        <macro name="Social" value="2" desc="社交"/>
+        <macro name="Battle" value="3" desc="战斗"/>
+        <macro name="Special" value="4" desc="特殊"/>
+    </macrosgroup>
+
+    <macro name="RES_MAX_ACTIVITY_SCORE_PARAMETER_CNT" value="3" desc="活动积分参数最大数目"/>
+    <macro name="RES_MAX_TL_GIFT_UNLOCK_PARAMETER_CNT" value="2" desc="限时礼包解锁参数数量"/>
+    <macro name="RES_MAX_ATTACH_ACTIVITY_COUNT" value="3" desc="道具关联活动最大数量"/>
+
+    <macrosgroup name="BestLordActivityType" desc="最强领主任务类型">
+        <macro name="BestLordTask" value="1" desc="任务式"/>
+        <macro name="BestLordScore" value="2" desc="积分式"/>
+    </macrosgroup>
+
+    <macrosgroup name="BestLordStage" desc="最强领主阶段ID">
+        <macro name="BestLordStageShow" value="0" desc="未开始展示阶段"/>
+        <macro name="BestLordStage1" value="1" desc="第1阶段"/>
+        <macro name="BestLordStage2" value="2" desc="第2阶段"/>
+        <macro name="BestLordStage3" value="3" desc="第3阶段"/>
+        <macro name="BestLordStage4" value="4" desc="第4阶段"/>
+        <macro name="BestLordStage5" value="5" desc="第5阶段"/>
+        <macro name="BestLordStageEnd" value="6" desc="已结束的结算阶段"/>
+    </macrosgroup>
+
+    <macrosgroup name="SevenDayEnum" desc="开服七日活动-天数枚举">
+        <macro name="SevenDay1" value="1" desc="第1天"/>
+        <macro name="SevenDay2" value="2" desc="第2天"/>
+        <macro name="SevenDay3" value="3" desc="第3天"/>
+        <macro name="SevenDay4" value="4" desc="第4天"/>
+        <macro name="SevenDay5" value="5" desc="第5天"/>
+        <macro name="SevenDay6" value="6" desc="第6天"/>
+        <macro name="SevenDay7" value="7" desc="第7天"/>
+    </macrosgroup>
+
+    <macrosgroup name="ActivityTabGroupType" desc="活动页签分类">
+        <macro name="ActivityTabShop" value="1" desc="商城"/>
+        <macro name="ActivityTabActi" value="2" desc="活动"/>
+    </macrosgroup>
+
+    <macrosgroup name="ExpiredItemType" desc="物品过期类型">
+        <macro name="NewbieMoveCity" 	value="1" desc="新手迁城道具"/>
+        <macro name="ExpiredActivity" 	value="2" desc="活动过期道具"/>
+    </macrosgroup>
+
+    <macrosgroup name="SoldierClassType" desc="兵种归类阶级">
+        <macro name="SoldierClassFirst" 	value="1" desc="第一阶级"/>
+        <macro name="SoldierClassSecond" 	value="2" desc="第二阶级"/>
+        <macro name="SoldierClassThird" 	value="3" desc="第三阶级"/>
+        <macro name="SoldierClassInTowerTS" 	value="96" desc="奇迹之塔兵种天使"/>
+        <macro name="SoldierClassInTowerTT" 	value="97" desc="奇迹之塔兵种泰坦"/>
+        <macro name="SoldierClassInTowerGL" 	value="98" desc="奇迹之塔兵种骨龙"/>
+        <macro name="SoldierClassInTowerHL" 	value="99" desc="奇迹之塔兵种黑龙"/>
+        <macro name="SoldierClassInTowerALL" 	value="100" desc="以上所有的奇迹之塔兵种"/>
+    </macrosgroup>
+
+    <macrosgroup name="ActivityStatusSwitch" desc="活动状态(活动总开关)">
+        <macro name="ActivityStatusSwitchOn" 	value="0" desc="开启"/>
+        <macro name="ActivityStatusSwitchOff" 	value="1" desc="关闭"/>
+    </macrosgroup>
+
+    <macrosgroup name="ActivityGhostQuality" desc="活动野怪品质">
+        <macro name="ActivityGhostQualityNormal" 	value="1" desc="普通"/>
+        <macro name="ActivityGhostQualityAdvance" 	value="2" desc="精英"/>
+    </macrosgroup>
+
+    <macro name="RES_MAX_WORLD_REGION_CONTAINED_CONFIG" value="3" desc="大世界外围包含区域等级最大数量"/>
+
+    <macrosgroup name="ExchangeActivityItemType" desc="兑换活动所需物品类型">
+        <macro name="ExchangeActivityNeedItem"  value="1" desc="道具"/>
+        <macro name="ExchangeActivityNeedMoney" value="2" desc="货币"/>
+    </macrosgroup>
+
+    <macrosgroup name="ExchangeActivityAwardType" desc="兑换活动奖励类型">
+        <macro name="ExchangeActivityAwardItem" 	value="1" desc="道具"/>
+        <macro name="ExchangeActivityAwardBooty" 	value="2" desc="掉落"/>
+    </macrosgroup>
+
+    <macro name="MAX_RES_MACROWAR_DEVELOP_COUNT" value="3" desc="大作战培养最大数量" />
+    <macro name="MAX_RES_MACROWAR_CRIT_COUNT" value="5" desc="大作战暴击最大数量" />
+    <macro name="MAX_RES_MACROWAR_ACTIVITY_LEVEL" value="9999" desc="大作战无限奖励对应的等级" />
+    <macro name="MAX_RES_ROBOT_ARENA_FORMAT_POS_CNT" value="6" desc="机器人竞技场阵型位置最大数量" />
+    <macro name="MAX_RES_MAP_BOX_FRESH_CNT" value="5" desc="地图宝箱刷新点数量" />
+
+    <macro name="RES_MAX_WORLD_BOUNTY_TASK_FRESH_ENTRY" value="5" desc="大世界悬赏任务最大刷新属性数目"/>
+    <macro name="RES_MAX_WORLD_BOUNTY_TASK_TYPE" value="6" desc="大世界悬赏任务最大种类"/>
+    <macro name="RES_MAX_WORLD_BOUNTY_TASK_QUESTION_CHOICE" value="4" desc="大世界悬赏任务答题最大选项数目"/>
+    <macro name="RES_MAX_WORLD_BOUNTY_TASK_PARA_CNT" value="3" desc="大世界悬赏任务参数最大数目"/>
+
+    <macro name="RES_MAX_DUP_ENEMY_ARMY_CNT" value="6" desc="主线关卡每关最大敌军数"/>
+    <macro name="RES_MAX_DUP_PLAYER_ARMY_CNT" value="5" desc="主线关卡每关最大玩家部队数"/>
+
+    <macrosgroup name="ResWorldDragonNestType" desc="龙巢类型">
+        <macro name="RES_DRAGON_NEST_BLACK" 	value="1" desc="黑龙龙巢"/>
+        <macro name="RES_DRAGON_NEST_BONE" 		value="2" desc="骨龙龙巢"/>
+    </macrosgroup>
+
+    <macro name="RES_MAX_BOUNTY_TASK_STABLE_REFRESH_CNT" value="12" desc="悬赏任务固定刷新最大数量"/>
+    <macro name="RES_BOUNTY_TASK_VILIAGR_START_CHAPTERID" value="100" desc="悬赏任务-拯救村庄起始章节ID"/>
+
+    <macro name="RES_MAX_ROB_RESOURCE_TYPE" value="4" desc="可以被抢的最大资源种类数(木材、粮草、银币、金币)"/>
+
+    <macro name="RES_DESC_COMMON_LEN" value="256" desc="描述通用长度" />
+    <macro name="RES_URL_COMMON_LEN" value="512" desc="url通用长度" />
+
+</metalib>

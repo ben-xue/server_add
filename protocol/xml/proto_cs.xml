@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<metalib name="net" version="1" tagsetversion="1" >
+
+    <union name="CSPkgBody" desc="所有消息包体" version="1">
+        <entry name="HeatBeatReq" type="CSHeatBeatReq" id="CS_CMD_HEATBEAT_REQ" />
+        <entry name="HeatBeatRes" type="CSHeatBeatRes" id="CS_CMD_HEATBEAT_RES" />
+        <entry name="GMReq" type="CSGMReq" id="CS_CMD_GM_REQ" desc="GM操作" />
+        <entry name="GMRes" type="CSGMRes" id="CS_CMD_GM_RES" desc="GM操作" />
+        <entry name="ActLoginReq" type="CSActLoginReq" id="CS_CMD_ACT_LOGIN_REQ" desc="帐号登录请求"/>
+        <entry name="ActLoginRes" type="CSActLoginRes" id="CS_CMD_ACT_LOGIN_RES" desc="帐号登录回包"/>
+        <entry name="ActLogoutReq" type="CSActLogoutReq" id="CS_CMD_ACT_LOGOUT_REQ" desc="帐号登出请求"/>
+        <entry name="ActLogoutRes" type="CSActLogoutRes" id="CS_CMD_ACT_LOGOUT_RES" desc="帐号登出回包"/>
+        <entry name="SendNetworkTypeReq" type="CSSendNetworkTypeReq" id="CS_CMD_SEND_NETWORK_TYPE_REQ" desc="同步给服务器网络连接类型" />
+        <entry name="RoleCreateReq" type="CSRoleCreateReq" id="CS_CMD_ROLE_CREATE_REQ" desc="创建角色请求" />
+        <entry name="RoleCreateRes" type="CSRoleCreateRes" id="CS_CMD_ROLE_CREATE_RES" desc="创建角色回包" />
+        <entry name="RoleLoginReq" type="CSRoleLoginReq" id="CS_CMD_ROLE_LOGIN_REQ" desc="角色登录请求"/>
+        <entry name="RoleLoginRes" type="CSRoleLoginRes" id="CS_CMD_ROLE_LOGIN_RES" desc="角色登录回包"/>
+    </union>
+
+
+    <!-- Pkg head -->
+    <struct name="CSPkgHead" version="1" >
+        <entry name="Magic" type="smalluint" defaultvalue="PROTOCOL_MAGIC" />
+        <entry name="Cmd" type="smalluint"/>
+        <entry name="PkgLen" type="smalluint" />
+        <entry name="Ver" type="smalluint" />
+        <entry name="Echo" type="uint" desc="回带字段"/>
+        <entry name="SvrTime" type="uint" desc="服务器时间"/>
+    </struct>
+
+    <struct name="CSMiniPkgHead" version="1" desc="实时战斗模式下的包头" >
+        <entry name="Magic" type="smalluint" defaultvalue="PROTOCOL_MINI_MAGIC" />
+        <entry name="Cmd" type="smalluint"/>
+        <entry name="PkgLen" type="smalluint" />
+        <entry name="Ver" type="smalluint" />
+    </struct>
+
+    <!-- Pkg -->
+    <struct name="CSPkg" versionindicator="Head.Ver" sizeinfo="Head.PkgLen" version="1" >
+        <entry name="Head" type="CSPkgHead"  />
+        <entry name="Body" type="CSPkgBody" select="Head.Cmd"/>
+    </struct>
+
+    <struct name="CSMiniPkg" version="1" versionindicator="Head.Ver" sizeinfo="Head.PkgLen" >
+        <entry name="Head" type="CSMiniPkgHead"  />
+        <entry name="Body" type="CSPkgBody" select="Head.Cmd"/>
+    </struct>
+
+</metalib>
+
+        </metalib>

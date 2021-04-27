@@ -1,0 +1,64 @@
+<metalib name="net" version="1">
+    <macro name="MAX_ROLE_NAME" value="64"/>
+    <macro name="MAX_SS_GM_LEN" value="256"/>
+    <macro name="PROTOCOL_CONN" value="12865"/>
+    <macro name="PROTOCOL_MAGIC" value="12867"/>
+    <macro name="PROTOCOL_MINI_MAGIC" value="12868"/>
+    <macro name="MAX_SS_PKG_HEAD_UIN_NUM" value="20"/>
+    <macrosgroup name="PlayerStatusType">
+        <entry name="PLAYER_STATUS_CONN_INIT" value="0"/>
+        <entry name="PLAYER_STATUS_ACCT_LOGIN" value="1"/>
+        <entry name="PLAYER_STATUS_ACCT_LOGIN_OK" value="2"/>
+        <entry name="PLAYER_STATUS_CREATE_ROLE_CHECK_NAME" value="3"/>
+        <entry name="PLAYER_STATUS_CREATE_ROLE_INSERT" value="4"/>
+        <entry name="PLAYER_STATUS_ROLELIST_REQ" value="5"/>
+        <entry name="PLAYER_STATUS_ROLELIST_OK" value="6"/>
+        <entry name="PLAYER_STATUS_CREATE_ROLE_REQ" value="7"/>
+        <entry name="PLAYER_STATUS_ROLE_LOIGN_REQ" value="8"/>
+        <entry name="PLAYER_STATUS_ROLE_LOIGN_OK" value="9"/>
+        <entry name="PLAYER_STATUS_ROLE_OFFLINE" value="10"/>
+    </macrosgroup>
+    <union version="1" name="SSPkgBody">
+        <entry name="PlayerCoRoutineTestReq" type="uint" id="40001" version="1"/>
+    </union>
+    <macrosgroup name="SSPkgHeadFlag">
+        <entry name="SS_HEAD_FLAG_TRAN_BY_NORMAL" value="0"/>
+        <entry name="SS_HEAD_FLAG_TRAN_BY_UIN" value="1"/>
+    </macrosgroup>
+    <struct version="1" name="SSPkgHeadNormal">
+        <entry name="Reserved" type="byte" version="1"/>
+    </struct>
+    <struct version="1" name="SSPkgHeadUin">
+        <entry name="FuncID" type="smalluint" version="1"/>
+        <entry name="Uin" type="biguint" version="1"/>
+    </struct>
+    <union version="1" name="SSHeadSpec">
+        <entry name="HeadUin" type="SSPkgHeadUin" id="1" version="1"/>
+        <entry name="HeadNormal" type="SSPkgHeadNormal" id="0" version="1"/>
+    </union>
+    <struct version="1" name="OrigCoData">
+        <entry name="SvrId" type="uint" version="1"/>
+        <entry name="Seq" type="int" version="1"/>
+        <entry name="CoId" type="int" version="1"/>
+        <entry name="Cmd" type="int" version="1"/>
+    </struct>
+    <struct version="1" name="SSUinCbData">
+        <entry name="Uin" type="biguint" version="1"/>
+        <entry name="CliSeq" type="uint" version="1"/>
+        <entry name="AccUin" type="uint" version="1"/>
+    </struct>
+    <struct version="1" name="SSPkgHead">
+        <entry name="Cmd" type="smalluint" version="1"/>
+        <entry name="PkgLen" type="smalluint" version="1"/>
+        <entry name="HasOrigCo" type="byte" version="1"/>
+        <entry name="OrigCoData" type="OrigCoData" count="1" refer="HasOrigCo" version="1"/>
+        <entry name="HasUinCbData" type="byte" version="1"/>
+        <entry name="UinCbData" type="SSUinCbData" count="1" refer="HasUinCbData" version="1"/>
+        <entry name="Flag" type="uint" version="1"/>
+        <entry name="HeadSpec" type="SSHeadSpec" select="Flag" version="1"/>
+    </struct>
+    <struct version="1" sizeinfo="Head.PkgLen" name="SSPkg">
+        <entry name="Head" type="SSPkgHead" version="1"/>
+        <entry name="Body" type="SSPkgBody" select="Head.Cmd" version="1"/>
+    </struct>
+</metalib>

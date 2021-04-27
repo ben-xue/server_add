@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<RealtimeOperLogLoadSvrConf version="1">
+	<dr>../cfg/protocol/log.dr</dr>
+	<listen_ip>#realtime_log_svr_udp_ip#</listen_ip>
+	<listen_port>#realtime_log_svr_udp_port#</listen_port>
+	<conn_db_num>1</conn_db_num>
+	<conn_db_info type="ConnDBInfo">
+		<type>mysql</type>
+		<host>#logdb_proxy_host#</host>
+		<port>#logdb_proxy_port#</port>
+		<user>#logdb_proxy_user#</user>
+		<pwd>#logdb_proxy_pwd#</pwd>
+		<database>logload_#regionid#_#worldid#</database>
+		<charset>utf8mb4</charset>
+	</conn_db_info>
+
+	<thread_num>2</thread_num>
+	<thread_info type="ThreadInfo">
+		<msg_queue_key>>#realtime_oper_svr_thread_queue_key_1#</msg_queue_key>
+		<msg_queue_size>4096000</msg_queue_size>
+	</thread_info>
+	<thread_info type="ThreadInfo">
+		<msg_queue_key>>#realtime_oper_svr_thread_queue_key_2#</msg_queue_key>
+		<msg_queue_size>4096000</msg_queue_size>
+	</thread_info>
+	<thread_info type="ThreadInfo">
+		<msg_queue_key>#realtime_oper_svr_thread_queue_key_3#</msg_queue_key>
+		<msg_queue_size>4096000</msg_queue_size>
+	</thread_info>
+	<thread_info type="ThreadInfo">
+		<msg_queue_key>#realtime_oper_svr_thread_queue_key_4#</msg_queue_key>
+		<msg_queue_size>4096000</msg_queue_size>
+	</thread_info>
+	<thread_info type="ThreadInfo">
+		<msg_queue_key>#realtime_oper_svr_thread_queue_key_5#</msg_queue_key>
+		<msg_queue_size>4096000</msg_queue_size>
+	</thread_info>
+	<thread_info type="ThreadInfo">
+		<msg_queue_key>#realtime_oper_svr_thread_queue_key_6#</msg_queue_key>
+		<msg_queue_size>4096000</msg_queue_size>
+	</thread_info>
+	<thread_info type="ThreadInfo">
+		<msg_queue_key>#realtime_oper_svr_thread_queue_key_7#</msg_queue_key>
+		<msg_queue_size>4096000</msg_queue_size>
+	</thread_info>
+	<thread_info type="ThreadInfo">
+		<msg_queue_key>#realtime_oper_svr_thread_queue_key_8#</msg_queue_key>
+		<msg_queue_size>4096000</msg_queue_size>
+	</thread_info>
+
+	<max_row_num_per_select>100</max_row_num_per_select>
+</RealtimeOperLogLoadSvrConf>
+

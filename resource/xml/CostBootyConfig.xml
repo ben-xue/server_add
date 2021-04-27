@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<metalib tagsetversion="1" name="ResDef" version="1">
+  <struct name="CostBootyConfig" version="1" sortkey="BootyID" desc="有损奖励配置表" only_svr="true">
+    <entry name="BootyID" type="uint" cname="奖励ID" desc="奖励编号" />
+    <entry name="BootyType" type="int" bindmacrosgroup="BootyType" cname="奖励类型" desc="奖励类型,参考BootyType定义" />
+    <entry name="AwardCnt" type="int" cname="奖励领取的个数" desc="奖励的领取的个数" />
+    <entry name="RandParam" type="int" cname="概率" desc="概率参数,根据BootyType来决定" />
+    <entry name="ItemID" type="int" cname="掉落ID" desc="掉落ID" />
+    <entry name="ItemParam" type="int" cname="奖励参数" count="3" desc="奖励参数" />
+    <entry name="IsCost" type="int" cname="有损" desc="是否有损" />
+    <entry name="LeastCount" type="int" cname="至少次数" desc="至少抽奖几次才能获得该物品" />
+    <entry name="MaxGetCount" type="int" cname="最大随机次数" desc="最大随机次数(某个条目奖励最多可获得的次数)" />
+    <entry name="RandMin" type="int" cname="随机小数" desc="多少次必中的随机数最小值" />
+    <entry name="RandMax" type="int" cname="随机大数" desc="多少次必中的随机数最大值" />
+    <entry name="BootyKind" type="byte" cname="奖励类别" desc="奖励类别" />
+  </struct>
+</metalib>

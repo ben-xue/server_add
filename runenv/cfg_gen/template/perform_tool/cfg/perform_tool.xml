@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+<PerformToolConf version="10">
+	<ListenIp>192.168.1.3</ListenIp>
+	<ListenPort>4702</ListenPort>
+	<ProtoTdrPath>./proto/proto_cs.dr</ProtoTdrPath>
+	<SSProtoTdrPath>./proto/proto_ss.dr</SSProtoTdrPath>
+	<TotalTestNum>1</TotalTestNum>
+	<SimEntityNum>2000</SimEntityNum>
+	<StartUin>10001</StartUin>
+	<TestName>test</TestName>
+	<TestParam></TestParam>
+
+</PerformToolConf>

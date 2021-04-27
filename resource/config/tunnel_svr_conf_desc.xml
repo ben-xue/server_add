@@ -1,0 +1,23 @@
+<metalib tagsetversion="1" name="tunnel_svr" version="1" >
+
+	<struct name="TunnelAddr" version="1" desc="" >
+		<entry name="IPStr" type="string" size="32" desc="" />
+		<entry name="Port" type="int" desc="" />
+		<entry name="VerfityMagic" type="uint" desc="" />
+	</struct>
+
+	<struct name="GroupInfoConf" version="1" desc="tunnel的分组信息" >
+		<entry name="FuncID"   type="smalluint" desc="" />
+		<entry name="FuncCnt" type="int" desc="" />
+	</struct>
+	
+    <struct name="tunnel_svrconf" version="1" >
+        <entry name="LocalIP" type="string" size="32" desc="绑定监听套接字的ip" />
+        <entry name="LocalPort" type="int" desc="绑定监听套接字的端口" />
+        <entry name="SelfIDStr" type="string" size="32" desc="绑定监听套接字的ip" />
+        <entry name="VerfityMagic" type="uint" desc="" />
+		<entry name="GroupCnt"  type="byte" desc="" />
+		<entry name="GroupInfo" type="GroupInfoConf" count="100" refer="GroupCnt" desc="" />
+    </struct>
+</metalib>
+
