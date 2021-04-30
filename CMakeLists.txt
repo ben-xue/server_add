@@ -1,0 +1,395 @@
+cmake_minimum_required(VERSION 3.10)
+project(server_add)
+
+set(CMAKE_CXX_STANDARD 11)
+
+include_directories(lib/dsf/include)
+include_directories(lib/dsf/include/app)
+include_directories(lib/dsf/include/bus)
+include_directories(lib/dsf/include/comm)
+include_directories(lib/dsf/include/conn)
+include_directories(lib/dsf/include/dr)
+include_directories(lib/dsf/include/log)
+include_directories(lib/dsf/include/ormapi)
+include_directories(lib/dsf/include/pal)
+include_directories(lib/hiredis)
+include_directories(lib/hiredis/adapters)
+include_directories(lib/hiredis/examples)
+include_directories(lib/jsoncpp)
+include_directories(lib/jsoncpp/include)
+include_directories(lib/jsoncpp/include/json)
+include_directories(lib/libevent)
+include_directories(lib/libevent/include)
+include_directories(lib/libevent/include/event2)
+include_directories(protocol)
+include_directories(protocol/include)
+include_directories(resource/include)
+include_directories(resource/src)
+include_directories(src/comm)
+include_directories(src/zone_svr/frame)
+include_directories(src/zone_svr/logic)
+include_directories(src/zone_svr/model)
+include_directories(src/logic_comm/)
+include_directories(src/logic_comm/base/)
+include_directories(src/logic_comm/attr/)
+include_directories(src/logic_comm/config/)
+include_directories(src/logic_comm/gm/)
+include_directories(src/logic_comm/iocfg/)
+
+file(GLOB ZONE_SVR_MODEL
+        src/logic_comm/base/*.h
+        src/logic_comm/base/*.cpp
+        src/zone_svr/logic/*.h
+        src/zone_svr/logic/*.cpp
+        src/zone_svr/model/*.h
+        src/zone_svr/model/*.cpp
+        src/logic_comm/config/*.cpp
+        src/logic_comm/config/*.h)
+
+add_executable(server_add
+        ${ZONE_SVR_MODEL}
+        lib/dsf/include/app/app.h
+        lib/dsf/include/bus/bus.h
+        lib/dsf/include/bus/bus_def.h
+        lib/dsf/include/bus/bus_err.h
+        lib/dsf/include/bus/CRelayBus.h
+        lib/dsf/include/comm/base64.h
+        lib/dsf/include/comm/convert.h
+        lib/dsf/include/comm/file_util.h
+        lib/dsf/include/comm/mempool.h
+        lib/dsf/include/comm/mempool_shm.h
+        lib/dsf/include/comm/shtable.h
+        lib/dsf/include/comm/shtable_shm.h
+        lib/dsf/include/comm/singleton.h
+        lib/dsf/include/comm/stdinc.h
+        lib/dsf/include/comm/thread_helper.h
+        lib/dsf/include/comm/tinyxml2.h
+        lib/dsf/include/comm/util.h
+        lib/dsf/include/conn/CConnApi.h
+        lib/dsf/include/conn/zone_conn_frame.c
+        lib/dsf/include/conn/zone_conn_frame.h
+        lib/dsf/include/dr/dr_err.h
+        lib/dsf/include/dr/dr_meta.h
+        lib/dsf/include/dr/dr_net.h
+        lib/dsf/include/dr/dr_sql.h
+        lib/dsf/include/log/log.h
+        lib/dsf/include/log/log_def.h
+        lib/dsf/include/log/log_dr.h
+        lib/dsf/include/log/log_err.h
+        lib/dsf/include/ormapi/COrmApi.h
+        lib/dsf/include/ormapi/orm_err.h
+        lib/dsf/include/ormapi/orm_protocol.h
+        lib/dsf/include/ormapi/orm_svr_err.h
+        lib/dsf/include/pal/pal_os.h
+        lib/hiredis/adapters/ae.h
+        lib/hiredis/adapters/glib.h
+        lib/hiredis/adapters/ivykis.h
+        lib/hiredis/adapters/libev.h
+        lib/hiredis/adapters/libevent.h
+        lib/hiredis/adapters/libuv.h
+        lib/hiredis/adapters/macosx.h
+        lib/hiredis/adapters/qt.h
+        lib/hiredis/examples/example-ae.c
+        lib/hiredis/examples/example-glib.c
+        lib/hiredis/examples/example-ivykis.c
+        lib/hiredis/examples/example-libev.c
+        lib/hiredis/examples/example-libevent.c
+        lib/hiredis/examples/example-libuv.c
+        lib/hiredis/examples/example-macosx.c
+        lib/hiredis/examples/example-qt.cpp
+        lib/hiredis/examples/example-qt.h
+        lib/hiredis/examples/example.c
+        lib/hiredis/async.c
+        lib/hiredis/async.h
+        lib/hiredis/dict.c
+        lib/hiredis/dict.h
+        lib/hiredis/fmacros.h
+        lib/hiredis/hiredis.c
+        lib/hiredis/hiredis.h
+        lib/hiredis/net.c
+        lib/hiredis/net.h
+        lib/hiredis/read.c
+        lib/hiredis/read.h
+        lib/hiredis/sds.c
+        lib/hiredis/sds.h
+        lib/hiredis/test.c
+        lib/hiredis/win32.h
+        lib/jsoncpp/include/json/autolink.h
+        lib/jsoncpp/include/json/config.h
+        lib/jsoncpp/include/json/features.h
+        lib/jsoncpp/include/json/forwards.h
+        lib/jsoncpp/include/json/json.h
+        lib/jsoncpp/include/json/reader.h
+        lib/jsoncpp/include/json/value.h
+        lib/jsoncpp/include/json/writer.h
+        lib/libevent/include/event2/buffer.h
+        lib/libevent/include/event2/buffer_compat.h
+        lib/libevent/include/event2/bufferevent.h
+        lib/libevent/include/event2/bufferevent_compat.h
+        lib/libevent/include/event2/bufferevent_ssl.h
+        lib/libevent/include/event2/bufferevent_struct.h
+        lib/libevent/include/event2/dns.h
+        lib/libevent/include/event2/dns_compat.h
+        lib/libevent/include/event2/dns_struct.h
+        lib/libevent/include/event2/event-config.h
+        lib/libevent/include/event2/event.h
+        lib/libevent/include/event2/event_compat.h
+        lib/libevent/include/event2/event_struct.h
+        lib/libevent/include/event2/http.h
+        lib/libevent/include/event2/http_compat.h
+        lib/libevent/include/event2/http_struct.h
+        lib/libevent/include/event2/keyvalq_struct.h
+        lib/libevent/include/event2/listener.h
+        lib/libevent/include/event2/rpc.h
+        lib/libevent/include/event2/rpc_compat.h
+        lib/libevent/include/event2/rpc_struct.h
+        lib/libevent/include/event2/tag.h
+        lib/libevent/include/event2/tag_compat.h
+        lib/libevent/include/event2/thread.h
+        lib/libevent/include/event2/util.h
+        lib/libevent/include/evdns.h
+        lib/libevent/include/event.h
+        lib/libevent/include/evhttp.h
+        lib/libevent/include/evrpc.h
+        lib/libevent/include/evutil.h
+        protocol/include/database.h
+        protocol/include/proto_cs.h
+        protocol/include/proto_cs_player.h
+        protocol/include/proto_macro.h
+        protocol/include/proto_player_comm.h
+        protocol/include/proto_result_comm.h
+        protocol/include/proto_sec.h
+        protocol/include/proto_ss.h
+        resource/include/AchieveConfig.h
+        resource/include/Activity.h
+        resource/include/ActivityOpenConfig.h
+        resource/include/AdvertiseWordConfig.h
+        resource/include/AnimBaseCfg.h
+        resource/include/ArenaConfig.h
+        resource/include/ArtifactForgingConfig.h
+        resource/include/AttrDataConfig.h
+        resource/include/BattleConfig.h
+        resource/include/BootyConfig.h
+        resource/include/BuffConfig.h
+        resource/include/CFightCapacity.h
+        resource/include/ChannelGiftConfig.h
+        resource/include/ChargeActConfig.h
+        resource/include/ChargeConfig.h
+        resource/include/ChatConfig.h
+        resource/include/CityWallConfig.h
+        resource/include/CollegeConfig.h
+        resource/include/CostBootyConfig.h
+        resource/include/DungeonConfig.h
+        resource/include/EmojiConfig.h
+        resource/include/EquipConfig.h
+        resource/include/FuncParamConfig.h
+        resource/include/GuideConfig.h
+        resource/include/HeadIconConfig.h
+        resource/include/HeroConfig.h
+        resource/include/ItemConfig.h
+        resource/include/KgameLogNameRefer.h
+        resource/include/LegionConfig.h
+        resource/include/LevelGiftConfig.h
+        resource/include/LordEquipConfig.h
+        resource/include/MailConfig.h
+        resource/include/MainDupConfig.h
+        resource/include/MapConfig.h
+        resource/include/MatchConfig.h
+        resource/include/ModelConfig.h
+        resource/include/NpcConfig.h
+        resource/include/PeerList.h
+        resource/include/PlayerConfig.h
+        resource/include/PlayerExpConfig.h
+        resource/include/PlotConfig.h
+        resource/include/PrivateShopConfig.h
+        resource/include/QueueWhiteListConfig.h
+        resource/include/RandomNameConfig.h
+        resource/include/RandomParamConfig.h
+        resource/include/RelationConfig.h
+        resource/include/ResMacro.h
+        resource/include/RobotConfig.h
+        resource/include/SceneClientConfig.h
+        resource/include/SearchConfig.h
+        resource/include/SensitiveWordConfig.h
+        resource/include/ShopComm.h
+        resource/include/ShopConfig.h
+        resource/include/SignConfig.h
+        resource/include/SkillConfig.h
+        resource/include/SkillDispConfig.h
+        resource/include/SlaveConfig.h
+        resource/include/SoldierConfig.h
+        resource/include/SoundConfig.h
+        resource/include/StaminaConfig.h
+        resource/include/StoneTabletConfig.h
+        resource/include/StructureConfig.h
+        resource/include/SystemSettingConfig.h
+        resource/include/SysUnlockConfig.h
+        resource/include/TaskConfig.h
+        resource/include/TeamConfig.h
+        resource/include/TextConfig.h
+        resource/include/TileItemConfig.h
+        resource/include/TipsConfig.h
+        resource/include/TitleConfig.h
+        resource/include/UIConfig.h
+        resource/include/VipConfig.h
+        resource/include/WarConfig.h
+        resource/include/WorldBountyTaskConfig.h
+        resource/include/WorldBuildButtonConfig.h
+        resource/include/WorldEventConfig.h
+        resource/include/WorldFuncParamConfig.h
+        resource/include/WorldMapConfig.h
+        resource/include/WorldStructureConfig.h
+        resource/include/WorldTileItemResourceConfig.h
+        resource/src/bi_svr_conf_desc.c
+        resource/src/bi_svr_conf_desc.h
+        resource/src/cache_svr_conf_desc.c
+        resource/src/cache_svr_conf_desc.h
+        resource/src/chat_svr_conf_desc.c
+        resource/src/chat_svr_conf_desc.h
+        resource/src/db_proxy_desc.c
+        resource/src/db_proxy_desc.h
+        resource/src/guild_svr_conf_desc.c
+        resource/src/guild_svr_conf_desc.h
+        resource/src/jsonlogload_svr_conf_desc.c
+        resource/src/jsonlogload_svr_conf_desc.h
+        resource/src/lbs_svr_conf_desc.c
+        resource/src/lbs_svr_conf_desc.h
+        resource/src/logload_svr_conf_desc.c
+        resource/src/logload_svr_conf_desc.h
+        resource/src/manor_svr_conf_desc.c
+        resource/src/manor_svr_conf_desc.h
+        resource/src/match_svr_conf_desc.c
+        resource/src/match_svr_conf_desc.h
+        resource/src/misc_svr_conf_desc.c
+        resource/src/misc_svr_conf_desc.h
+        resource/src/perform_tool_desc.c
+        resource/src/perform_tool_desc.h
+        resource/src/rank_svr_conf_desc.c
+        resource/src/rank_svr_conf_desc.h
+        resource/src/redis_proxy_conf_desc.c
+        resource/src/redis_proxy_conf_desc.h
+        resource/src/relation_svr_conf_desc.c
+        resource/src/relation_svr_conf_desc.h
+        resource/src/robot_tool_conf_desc.c
+        resource/src/robot_tool_conf_desc.h
+        resource/src/tunnel_proxy_desc.c
+        resource/src/tunnel_proxy_desc.h
+        resource/src/tunnel_svr_conf_desc.c
+        resource/src/tunnel_svr_conf_desc.h
+        resource/src/tunnel_translate_conf_desc.c
+        resource/src/tunnel_translate_conf_desc.h
+        resource/src/war_svr_conf_desc.c
+        resource/src/war_svr_conf_desc.h
+        resource/src/world_svr_conf_desc.c
+        resource/src/world_svr_conf_desc.h
+        resource/src/zone_conn_conf_desc.c
+        resource/src/zone_conn_conf_desc.h
+        resource/src/zone_svr_conf_desc.c
+        resource/src/zone_svr_conf_desc.h
+        src/comm/ArrayOper.h
+        src/comm/base64.cpp
+        src/comm/base64.h
+        src/comm/CAppFrame.cpp
+        src/comm/CAppFrame.h
+        src/comm/CAuto.h
+        src/comm/CBArray.h
+        src/comm/CBaseFsRank.h
+        src/comm/CBaseRank.h
+        src/comm/CBinaryHeap.h
+        src/comm/CBinReader.cpp
+        src/comm/CBinReader.h
+        src/comm/CDrLibCacheMgr.cpp
+        src/comm/CDrLibCacheMgr.h
+        src/comm/CFsDb.cpp
+        src/comm/CFsDb.h
+        src/comm/CFsTable.cpp
+        src/comm/CFsTable.h
+        src/comm/CItemSelector.h
+        src/comm/CMsgQueue.cpp
+        src/comm/CMsgQueue.h
+        src/comm/comm_inc.h
+        src/comm/CPerformStatsticMgr.cpp
+        src/comm/CPerformStatsticMgr.h
+        src/comm/CRandGenerator.cpp
+        src/comm/CRandGenerator.h
+        src/comm/CRandUtil.cpp
+        src/comm/CRandUtil.h
+        src/comm/Crc.h
+        src/comm/CShareKvData.cpp
+        src/comm/CShareKvData.h
+        src/comm/CShmArray.h
+        src/comm/CShmArrayList.h
+        src/comm/CShmDataPool.cpp
+        src/comm/CShmDataPool.h
+        src/comm/CShmEliminateList.h
+        src/comm/CShmemMgr.cpp
+        src/comm/CShmemMgr.h
+        src/comm/CShmFastPool.h
+        src/comm/CShmHash.h
+        src/comm/CShmHashObjPool.h
+        src/comm/CShmList.h
+        src/comm/CShmObjPool.h
+        src/comm/CShmSortArray.h
+        src/comm/CShmSortStatsArray.h
+        src/comm/CShmStruct.h
+        src/comm/CSimpleRandSelect.cpp
+        src/comm/CSimpleRandSelect.h
+        src/comm/CSingleton.h
+        src/comm/CSortArray.h
+        src/comm/CStrUtil.cpp
+        src/comm/CStrUtil.h
+        src/comm/CSvrConfig.cpp
+        src/comm/CSvrConfig.h
+        src/comm/CSvrRuntimeContext.cpp
+        src/comm/CSvrRuntimeContext.h
+        src/comm/CTime.cpp
+        src/comm/CTime.h
+        src/comm/CTimerTick.cpp
+        src/comm/CTimerTick.h
+        src/comm/CXmlConfReader.h
+        src/comm/dirty.cpp
+        src/comm/dirty.h
+        src/comm/Dodxx.cpp
+        src/comm/Dodxx.h
+        src/comm/entity.cpp
+        src/comm/entity.h
+        src/comm/HashMap.h
+        src/comm/http_task.cpp
+        src/comm/http_task.h
+        src/comm/klog.cpp
+        src/comm/klog.h
+        src/comm/md5.c
+        src/comm/md5.h
+        src/comm/monitor_client.h
+        src/comm/monitor_define.h
+        src/comm/MurmurHash3.cpp
+        src/comm/MurmurHash3.h
+        src/comm/proto_all.h
+        src/comm/proto_db.h
+        src/comm/proto_inc_comm.h
+        src/comm/proto_rank.h
+        src/comm/RandSelect.cpp
+        src/comm/RandSelect.h
+        src/comm/res_all.h
+        src/comm/res_comm.h
+        src/comm/shm_debug.cpp
+        src/comm/shm_debug.h
+        src/comm/TrueRandom.cpp
+        src/comm/TrueRandom.h
+        src/comm/XGRand.cpp
+        src/comm/XGRand.h
+        src/comm/XGXmlUtil.cpp
+        src/comm/XGXmlUtil.h
+        src/zone_svr/frame/CEventMgr.cpp
+        src/zone_svr/frame/CEventMgr.h
+        src/zone_svr/frame/CZoneAppFrame.cpp
+        src/zone_svr/frame/CZoneAppFrame.h
+        src/zone_svr/frame/zone_svr.cpp
+        src/zone_svr/frame/ZoneEventDefine.h
+        src/zone_svr/model/CPlayer.cpp
+        src/zone_svr/model/CPlayer.h
+        src/zone_svr/model/CPlayerBag.cpp
+        src/zone_svr/model/CPlayerBag.h
+        src/zone_svr/model/CPlayerCmpt.cpp
+        src/zone_svr/model/CPlayerCmpt.h
+        src/zone_svr/model/CPlayerDirty.h src/zone_svr/model/CPlayerPoolMgr.cpp src/zone_svr/model/CPlayerPoolMgr.h src/zone_svr/frame/zone_comm.cpp src/zone_svr/frame/zone_comm.h src/zone_svr/logic/CZoneDbMgr.cpp src/zone_svr/logic/CZoneDbMgr.h src/zone_svr/logic/CZoneTormHandler.cpp src/zone_svr/logic/CZoneTormHandler.h)
