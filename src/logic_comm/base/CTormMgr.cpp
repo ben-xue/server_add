@@ -185,69 +185,6 @@ bool IsDbOpCmd(int iDbCmd)
 	return false;
 }
 
-int CTormMgr::HandleTormResInCoContext(char * pPkg, int iPkgLen)
-{
-	LOG_DBG("enter HandleTormResInCoContext");
-	tagORMPkg * pstPkg = (tagORMPkg *)pPkg;
-
-	if (!IsDbOpCmd(pstPkg->Head.HeadCmd.Cmd))
-	{
-		return 0;
-	}
-
-	CTormHandler* pTormHander = GetDbHandler(pstPkg->Head.HeadCmd.MetaNameVer.MetaName);
-	if (NULL == pTormHander)
-	{
-		LOG_ERR("find no torm handler, table name: %s", pstPkg->Head.HeadCmd.MetaNameVer.MetaName);
-		return -1;
-	}
-
-	pTormHander->m_pTormHead = &pstPkg->Head;
-
-	LOG_DBG("Handle torm response, MetaName[%s] TormCmd[%d]", pstPkg->Head.HeadCmd.MetaNameVer.MetaName, (int)pstPkg->Head.HeadCmd.Cmd);
-
-	ASSERT_RET(pstPkg->Head.HeadApp.AsynCallBackDataLen < ORM_MAX_ASYNCALLBACK_DATA_LEN, -1);
-	void *pCbData = NULL;
-	int iCbLen = 0;
-	if (pstPkg->Head.HeadApp.AsynCallBackDataLen > 0)
-	{
-		pCbData = m_asynCallBackData;
-		iCbLen = pstPkg->Head.HeadApp.AsynCallBackDataLen;
-		memcpy(m_asynCallBackData, pstPkg->Head.HeadApp.AsynCallBackData, pstPkg->Head.HeadApp.AsynCallBackDataLen);
-	}
-
-	switch (pstPkg->Head.HeadCmd.Cmd)
-	{
-	case ORM_SELECT_RES:
-		pTormHander->HandleSelect(this, &pstPkg->Body.SelectRes, pCbData, iCbLen);
-		break;
-
-	case ORM_UPDATE_RES:
-		pTormHander->HandleUpdate(this, &pstPkg->Body.UpdateRes, pCbData, iCbLen);
-		break;
-
-	case ORM_INSERT_RES:
-		pTormHander->HandleInsert(this, &pstPkg->Body.InsertRes, pCbData, iCbLen);
-		break;
-
-	case ORM_DELETE_RES:
-		pTormHander->HandleDelete(this, &pstPkg->Body.DeleteRes, pCbData, iCbLen);
-		break;
-
-	case ORM_SELECT_COUNT_RES:
-		pTormHander->HandleSelectCnt(this, &pstPkg->Body.SelectCountRes, pCbData, iCbLen);
-		break;
-    case ORM_REPLACE_INSERT_REQ:
-        pTormHander->HandleReplaceInsert(this, &pstPkg->Body.ReplaceInsertRes, pCbData, iCbLen);
-        break;
-
-	default:
-		break;
-	}
-
-	return 0;
-}
-
 DR_HANDLE_META CTormMgr::GetTableMeta(const char * szTableName)
 {
 	return dr_lib_find_meta_by_name(m_pDbMetaLib, szTableName);

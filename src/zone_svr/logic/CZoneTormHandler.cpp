@@ -3,7 +3,7 @@
 //
 
 #include "CZoneTormHandler.h"
-#include "CZoneDBMgr.h"
+#include "CZoneDbMgr.h"
 
 int CRoleDbTormHandler::HandleUpdate(CTormMgr *pMgr, tagORMUpdateRes *pUpdateRes, void *pCbData, int iCbDataLen)
 {

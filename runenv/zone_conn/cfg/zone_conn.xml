@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<zone_conn_svr_conf version="1">
+    <max_conn>3000</max_conn>
+    <max_up_size>102400</max_up_size>
+    <max_down_size>102400</max_down_size>
+    <parser type="pkg_parser">
+        <dr_path>../cfg/proto/proto_cs.dr</dr_path>
+        <pkg_head>CSSecHead</pkg_head>
+        <pkg_len_entry>PkgLen</pkg_len_entry>
+    </parser>
+    <listen_ip>192.168.1.211</listen_ip>
+    <listen_port>40601</listen_port>
+    <recv_buff_size>4194304</recv_buff_size>
+    <dst_bus_addr>1.6.61.1</dst_bus_addr>
+    <start_queue_conn>50</start_queue_conn>
+</zone_conn_svr_conf>

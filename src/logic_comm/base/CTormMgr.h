@@ -96,8 +96,6 @@ public:
     */
     int AddDbHandler(const char *szTableName, CTormHandler *pHandler);
 
-    int HandleTormResInCoContext(char *pPkg, int iPkgLen);
-
     /**
     *	获得对应表的单行记录大小
     */

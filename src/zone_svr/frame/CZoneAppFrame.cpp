@@ -8,6 +8,8 @@
 
 #include "zone_svr_conf_desc.h"
 #include "CZoneAppFrame.h"
+#include "CZoneDbMgr.h"
+#include "CPlayerPoolMgr.h"
 
 extern const char *g_szMetaLib_zone_svr;
 
@@ -17,7 +19,22 @@ CZoneAppFrame::CZoneAppFrame() : CAppFrame(g_szMetaLib_zone_svr, "zone_svrconf")
 
 int CZoneAppFrame::OnInit()
 {
-    return CAppFrame::OnInit();
+    int iRet = CZoneDbMgr::Instance()->Init();
+    if(iRet)
+    {
+        LOG_ERR("CZoneDbMgr Init failed!");
+        return -1;
+    }
+
+    tagzone_svrconf *pZoneSvrCfg = GetZoneSvrConfig();
+    iRet = CPlayerPoolMgr::Instance()->Init(pZoneSvrCfg->MemPoolShmKey,pZoneSvrCfg->MemPoolShmSize);
+    if(iRet)
+    {
+        LOG_ERR("CPlayerPoolMgr Init failed!");
+        return -1;
+    }
+    
+    return 0;
 }
 
 int CZoneAppFrame::OnProc()
